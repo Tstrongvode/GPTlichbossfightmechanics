@@ -1,0 +1,1574 @@
+# Learn technical details about the SpatialMath module.
+
+
+Module import path: /UnrealEngine.com/Temporary/SpatialMath
+
+    UnrealEngine.com
+
+    Temporary
+
+    SpatialMath
+
+Classes and Structs
+Name 	Description
+rotation 	
+transform 	
+
+A combination of scale, rotation, and translation, applied in that order.
+vector2 	
+
+2-dimensional vector with float components.
+vector2i 	
+
+2-dimensional vector with int components.
+vector3 	
+
+3-dimensional vector with float components.
+Functions
+Name 	Description
+MakeRotation 	
+
+Makes a rotation from Axis and AngleRadians using a left-handed sign convention (e.g. a positive rotation around +Z takes +X to +Y). If Axis.IsAlmostZero[], make the identity rotation.
+MakeRotationFromYawPitchRollDegrees 	
+
+Makes a rotation by applying YawRightDegrees, PitchUpDegrees, and RollClockwiseDegrees, in that order:
+
+    first a yaw about the Z axis with a positive angle indicating a clockwise rotation when viewed from above,
+    then a pitch about the new Y axis with a positive angle indicating 'nose up',
+    followed by a roll about the new X axis axis with a positive angle indicating a clockwise rotation when viewed along +X. Note that these conventions differ from MakeRotation but match ApplyYaw, ApplyPitch, and ApplyRoll.
+
+IdentityRotation 	
+
+Makes the identity rotation.
+Distance 	
+
+Returns the 'distance' between Rotation1 and Rotation2. The result will be between:
+
+    0.0, representing equivalent rotations and
+    1.0 representing rotations which are 180 degrees apart (i.e., the shortest rotation between them is 180 degrees around some axis).
+
+AngularDistance 	
+
+Returns the 'smallest angular distance' between Rotation1 and Rotation2 in radians.
+MakeShortestRotationBetween 	
+
+Makes the smallest angular rotation from InitialRotation to FinalRotation such that: InitialRotation.RotateBy(MakeShortestRotationBetween(InitialRotation, FinalRotation)) = FinalRotation and MakeShortestRotationBetween(InitialRotation, FinalRotation)?.GetAngle() is as small as possible.
+MakeShortestRotationBetween 	
+
+Makes the smallest angular rotation from InitialVector to FinalVector such that: InitialVector.RotateBy(MakeShortestRotationBetween(InitialVector, Vector)) = FinalVector and MakeShortestRotationBetween(InitialVector, FinalVector)?.GetAngle() is as small as possible.
+Slerp 	
+
+Used to perform spherical linear interpolation between From (when Parameter = 0.0) and To (when Parameter = 1.0). Expects that 0.0 <= Parameter <= 1.0.
+ToString 	
+
+Makes a string representation of rotation in axis/degrees format with a left-handed sign convention. ToString(MakeRotation(vector3{X:=1.0, Y:=0.0, Z:=0.0}, PiFloat/2.0)) produces the string: "Axis: {x=1.000000,y=0.000000,z=0.000000} Angle: 90.000000".
+DegreesToRadians 	
+
+Returns radians from Degrees.
+RadiansToDegrees 	
+
+Returns degrees from Radians.
+TransformVector 	
+
+Makes a vector3 by applying InTransform to InVector.
+TransformVectorNoScale 	
+
+Makes a vector3 by applying InTransform to InVector without applying InTransform.Scale.
+ReflectVector 	
+
+Makes a vector2 by inverting the SurfaceNormal component of Direction. Fails if not SurfaceNormal.MakeUnitVector[].
+DotProduct 	
+
+Returns the dot product of V1 and V2.
+Distance 	
+
+Returns the Euclidean distance between V1 and V2.
+DistanceSquared 	
+
+Returns the squared Euclidean distance between V1 and V2.
+Lerp 	
+
+Used to linearly interpolate/extrapolate between From (when Parameter = 0.0) and To (when Parameter = 1.0). Expects that all arguments are finite. Returns From*(1 - Parameter) + To*Parameter.
+ToString 	
+
+Makes a string representation of V.
+prefix'-' 	
+
+Makes a vector2 by inverting the signs of Operand.
+operator'+' 	
+
+Makes a vector2 by component-wise addition of Left and Right.
+operator'-' 	
+
+Makes a vector2 by component-wise subtraction of Right from Left.
+operator'*' 	
+
+Makes a vector2 by component-wise multiplication of Left and Right.
+operator'*' 	
+
+Makes a vector2 by multiplying the components of Right by Left.
+operator'/' 	
+
+Makes a vector2 by dividing the components of Left by Right.
+operator'/' 	
+
+Makes a vector2 by component-wise division of Left by Right.
+ToVector2 	
+
+Makes a vector2 by converting the components of V to floats.
+IsAlmostEqual 	
+
+Succeeds when each component of V1 and V2 are within AbsoluteTolerance of each other.
+DotProduct 	
+
+Returns the dot product of V1 and V2.
+Equals 	
+
+Makes a vector2i that is component-wise equal to V1 and V2. Fails if any component of V1 does not equal the corresponding component of V2.
+ToString 	
+
+Makes a string representation of V.
+ToVector2i 	
+
+Makes a vector2i by component-wise truncation of V to intss.
+prefix'-' 	
+
+Makes a vector2i by inverting the signs of Operand.
+operator'+' 	
+
+Makes a vector2i by component-wise addition of Left and Right.
+operator'-' 	
+
+Makes a vector2i by component-wise subtraction of Right from Left.
+operator'*' 	
+
+Makes a vector2i by multiplying the components of Left by Right.
+operator'*' 	
+
+Makes a vector2i by multiplying the components of Right by Left.
+ReflectVector 	
+
+Makes a vector3 by inverting the SurfaceNormal component of Direction. Fails if not SurfaceNormal.MakeUnitVector[].
+DotProduct 	
+
+Returns the dot product of V1 and V2.
+CrossProduct 	
+
+Returns the cross product of V1 and V2.
+Distance 	
+
+Returns the Euclidean distance between V1 and V2.
+DistanceSquared 	
+
+Returns the squared Euclidean distance between V1 and V2.
+DistanceXY 	
+
+Returns the 2-D Euclidean distance between V1 and V2 by ignoring the difference in Z.
+DistanceSquaredXY 	
+
+Returns the squared 2-D Euclidean distance between V1 and V2 by ignoring their difference in Z.
+ToString 	
+
+Makes a string representation of V.
+Lerp 	
+
+Used to linearly interpolate/extrapolate between From (when Parameter = 0.0) and To (when Parameter = 1.0). Expects that all arguments are finite. Returns From*(1 - Parameter) + To*Parameter.
+prefix'-' 	
+
+Makes a vector3 by inverting the signs of Operand.
+operator'+' 	
+
+Makes a vector3 by component-wise addition of Left and Right.
+operator'-' 	
+
+Makes a vector3 by component-wise subtraction of Right from Left.
+operator'*' 	
+
+Makes a vector3 by component-wise multiplication of Left and Right.
+operator'*' 	
+
+Makes a vector3 by multiplying the components of Left by Right.
+operator'*' 	
+
+Makes a vector3 by multiplying the components of Right by Left.
+operator'/' 	
+
+Makes a vector3 by dividing the components of Left by Right.
+operator'/' 	
+
+Makes a vector3 by component-wise division of Left by Right.
+IsAlmostEqual 	
+
+Succeeds when each component of V1 and V2 are within AbsoluteTolerance of each other.
+
+Returns the 'smallest angular distance' between Rotation1 and Rotation2 in radians.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+AngularDistance<native><public>(Rotation1:rotation, Rotation2:rotation)<varies>:float
+Parameters
+
+AngularDistance takes the following parameters:
+Name 	Type 	Description
+Rotation1 	rotation 	 
+Rotation2 	rotation 	 
+Attributes and Effects
+
+The following attributes and effects determine how AngularDistance behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+
+
+Makes a rotation by applying AngleRadians of left-handed rotation around the local +Y axis to InitialRotation.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(InitialRotation:rotation).ApplyLocalRotationY<public>(AngleRadians:float)<varies><transacts>:rotation
+Parameters
+
+ApplyLocalRotationY takes the following parameters:
+Name 	Type 	Description
+InitialRotation 	rotation 	 
+AngleRadians 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how ApplyLocalRotationY behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+
+Makes a rotation by applying AngleRadians of left-handed rotation around the local +Z axis to InitialRotation.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(InitialRotation:rotation).ApplyLocalRotationZ<public>(AngleRadians:float)<varies><transacts>:rotation
+Parameters
+
+ApplyLocalRotationZ takes the following parameters:
+Name 	Type 	Description
+InitialRotation 	rotation 	 
+AngleRadians 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how ApplyLocalRotationZ behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Makes a rotation by applying PitchUpRadians of right-handed rotation around the local +Y axis to InitialRotation.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(InitialRotation:rotation).ApplyPitch<native><public>(PitchUpRadians:float)<varies><transacts>:rotation
+Parameters
+
+ApplyPitch takes the following parameters:
+Name 	Type 	Description
+InitialRotation 	rotation 	 
+PitchUpRadians 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how ApplyPitch behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+
+(InitialRotation:rotation).ApplyRoll extension
+
+Learn technical details about the (InitialRotation:rotation).ApplyRoll extension.
+UEFN
+(InitialRotation:rotation).ApplyRoll extension
+
+Makes a rotation by applying RollClockwiseRadians of right-handed rotation around the local +X axis to InitialRotation.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(InitialRotation:rotation).ApplyRoll<native><public>(RollClockwiseRadians:float)<varies><transacts>:rotation
+Parameters
+
+ApplyRoll takes the following parameters:
+Name 	Type 	Description
+InitialRotation 	rotation 	 
+RollClockwiseRadians 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how ApplyRoll behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+
+Makes a rotation by applying AngleRadians of left-handed rotation around the world +X axis to InitialRotation.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(InitialRotation:rotation).ApplyWorldRotationX<native><public>(AngleRadians:float)<varies><transacts>:rotation
+Parameters
+
+ApplyWorldRotationX takes the following parameters:
+Name 	Type 	Description
+InitialRotation 	rotation 	 
+AngleRadians 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how ApplyWorldRotationX behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Makes a rotation by applying AngleRadians of left-handed rotation around the world +Y axis to InitialRotation.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(InitialRotation:rotation).ApplyWorldRotationY<native><public>(AngleRadians:float)<varies><transacts>:rotation
+Parameters
+
+ApplyWorldRotationY takes the following parameters:
+Name 	Type 	Description
+InitialRotation 	rotation 	 
+AngleRadians 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how ApplyWorldRotationY behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Makes a rotation by applying AngleRadians of left-handed rotation around the world +Z axis to InitialRotation.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(InitialRotation:rotation).ApplyWorldRotationZ<native><public>(AngleRadians:float)<varies><transacts>:rotation
+Parameters
+
+ApplyWorldRotationZ takes the following parameters:
+Name 	Type 	Description
+InitialRotation 	rotation 	 
+AngleRadians 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how ApplyWorldRotationZ behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+
+Makes a rotation by applying YawRightRadians of left-handed rotation around the local +Z axis to InitialRotation.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(InitialRotation:rotation).ApplyYaw<native><public>(YawRightRadians:float)<varies><transacts>:rotation
+Parameters
+
+ApplyYaw takes the following parameters:
+Name 	Type 	Description
+InitialRotation 	rotation 	 
+YawRightRadians 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how ApplyYaw behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+
+Returns the cross product of V1 and V2.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+CrossProduct<native><public>(V1:vector3, V2:vector3)<varies>:vector3
+Parameters
+
+CrossProduct takes the following parameters:
+Name 	Type 	Description
+V1 	vector3 	 
+V2 	vector3 	 
+Attributes and Effects
+
+The following attributes and effects determine how CrossProduct behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+
+Returns radians from Degrees.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+DegreesToRadians<public>(Degrees:float)<varies>:float
+Parameters
+
+DegreesToRadians takes the following parameters:
+Name 	Type 	Description
+Degrees 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how DegreesToRadians behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+
+Returns the 'distance' between Rotation1 and Rotation2. The result will be between:
+
+    0.0, representing equivalent rotations and
+    1.0 representing rotations which are 180 degrees apart (i.e., the shortest rotation between them is 180 degrees around some axis).
+
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+Distance<native><public>(Rotation1:rotation, Rotation2:rotation)<varies>:float
+Parameters
+
+Distance takes the following parameters:
+Name 	Type 	Description
+Rotation1 	rotation 	 
+Rotation2 	rotation 	 
+Attributes and Effects
+
+The following attributes and effects determine how Distance behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+
+
+
+Returns the Euclidean distance between V1 and V2.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+Distance<native><public>(V1:vector2, V2:vector2)<varies>:float
+Parameters
+
+Distance takes the following parameters:
+Name 	Type 	Description
+V1 	vector2 	 
+V2 	vector2 	 
+Attributes and Effects
+
+The following attributes and effects determine how Distance behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+Returns the Euclidean distance between V1 and V2.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+Distance<native><public>(V1:vector3, V2:vector3)<varies>:float
+Parameters
+
+Distance takes the following parameters:
+Name 	Type 	Description
+V1 	vector3 	 
+V2 	vector3 	 
+Attributes and Effects
+
+The following attributes and effects determine how Distance behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+Returns the squared Euclidean distance between V1 and V2.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+DistanceSquared<native><public>(V1:vector2, V2:vector2)<varies>:float
+Parameters
+
+DistanceSquared takes the following parameters:
+Name 	Type 	Description
+V1 	vector2 	 
+V2 	vector2 	 
+Attributes and Effects
+
+The following attributes and effects determine how DistanceSquared behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+
+Returns the squared Euclidean distance between V1 and V2.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+DistanceSquared<native><public>(V1:vector3, V2:vector3)<varies>:float
+Parameters
+
+DistanceSquared takes the following parameters:
+Name 	Type 	Description
+V1 	vector3 	 
+V2 	vector3 	 
+Attributes and Effects
+
+The following attributes and effects determine how DistanceSquared behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+
+Returns the squared 2-D Euclidean distance between V1 and V2 by ignoring their difference in Z.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+DistanceSquaredXY<native><public>(V1:vector3, V2:vector3)<varies>:float
+Parameters
+
+DistanceSquaredXY takes the following parameters:
+Name 	Type 	Description
+V1 	vector3 	 
+V2 	vector3 	 
+Attributes and Effects
+
+The following attributes and effects determine how DistanceSquaredXY behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+
+Returns the 2-D Euclidean distance between V1 and V2 by ignoring the difference in Z.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+DistanceXY<native><public>(V1:vector3, V2:vector3)<varies>:float
+Parameters
+
+DistanceXY takes the following parameters:
+Name 	Type 	Description
+V1 	vector3 	 
+V2 	vector3 	 
+Attributes and Effects
+
+The following attributes and effects determine how DistanceXY behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+
+Returns the dot product of V1 and V2.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+DotProduct<native><public>(V1:vector2, V2:vector2)<varies>:float
+Parameters
+
+DotProduct takes the following parameters:
+Name 	Type 	Description
+V1 	vector2 	 
+V2 	vector2 	 
+Attributes and Effects
+
+The following attributes and effects determine how DotProduct behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+
+Returns the dot product of V1 and V2.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+DotProduct<public>(V1:vector2i, V2:vector2i):int
+Parameters
+
+DotProduct takes the following parameters:
+Name 	Type 	Description
+V1 	vector2i 	 
+V2 	vector2i 	 
+Attributes and Effects
+
+The following attributes and effects determine how DotProduct behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+
+Returns the dot product of V1 and V2.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+DotProduct<native><public>(V1:vector3, V2:vector3)<varies>:float
+Parameters
+
+DotProduct takes the following parameters:
+Name 	Type 	Description
+V1 	vector3 	 
+V2 	vector3 	 
+Attributes and Effects
+
+The following attributes and effects determine how DotProduct behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+
+
+
+Makes a vector2i that is component-wise equal to V1 and V2. Fails if any component of V1 does not equal the corresponding component of V2.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+Equals<public>(V1:vector2i, V2:vector2i)<decides>:vector2i
+Parameters
+
+Equals takes the following parameters:
+Name 	Type 	Description
+V1 	vector2i 	 
+V2 	vector2i 	 
+Attributes and Effects
+
+The following attributes and effects determine how Equals behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+decides 	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+
+Returns the radians of rotation around the axis of rotation. See also GetAxis.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(Rotation:rotation).GetAngle<native><public>()<varies>:float
+Parameters
+
+GetAngle takes the following parameters:
+Name 	Type 	Description
+Rotation 	rotation 	 
+Attributes and Effects
+
+The following attributes and effects determine how GetAngle behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+
+Makes a vector3 from the axis of rotation. If rotation is nearly identity, this will return the +X axis. See also GetAngle.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(Rotation:rotation).GetAxis<native><public>()<varies>:vector3
+Parameters
+
+GetAxis takes the following parameters:
+Name 	Type 	Description
+Rotation 	rotation 	 
+Attributes and Effects
+
+The following attributes and effects determine how GetAxis behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+
+Makes a unit vector3 pointing in the local space forward direction in world space coordinates. This is equivalent to: RotateVector(Rotation, vector3{X:=1.0, Y:=0.0, Z:=0.0}).
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(Rotation:rotation).GetLocalForward<public>()<varies><transacts>:vector3
+Parameters
+
+GetLocalForward takes the following parameters:
+Name 	Type 	Description
+Rotation 	rotation 	 
+Attributes and Effects
+
+The following attributes and effects determine how GetLocalForward behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+    api
+    extension
+
+Makes a unit vector3 pointing in the the local space right direction in world space coordinates. This is equivalent to: RotateVector(Rotation, vector3{X:=0.0, Y:=1.0, Z:=0.0}).
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(Rotation:rotation).GetLocalRight<public>()<varies><transacts>:vector3
+Parameters
+
+GetLocalRight takes the following parameters:
+Name 	Type 	Description
+Rotation 	rotation 	 
+Attributes and Effects
+
+The following attributes and effects determine how GetLocalRight behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Makes a unit vector3 pointing in the local space up direction in world space coordinates. This is equivalent to: RotateVector(Rotation, vector3{X:=0.0, Y:=0.0, Z:=1.0}).
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(Rotation:rotation).GetLocalUp<public>()<varies><transacts>:vector3
+Parameters
+
+GetLocalUp takes the following parameters:
+Name 	Type 	Description
+Rotation 	rotation 	 
+Attributes and Effects
+
+The following attributes and effects determine how GetLocalUp behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Makes an []float with three elements:
+
+    yaw degrees of rotation
+    pitch degrees of rotation
+    roll degrees of rotation using the conventions of MakeRotationFromYawPitchRollDegrees.
+
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(Rotation:rotation).GetYawPitchRollDegrees<native><public>()<varies>:[]float
+Parameters
+
+GetYawPitchRollDegrees takes the following parameters:
+Name 	Type 	Description
+Rotation 	rotation 	 
+Attributes and Effects
+
+The following attributes and effects determine how GetYawPitchRollDegrees behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+
+Makes the identity rotation.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+IdentityRotation<native><public>():rotation
+Parameters
+
+IdentityRotation does not take any parameters.
+Attributes and Effects
+
+The following attributes determine how IdentityRotation behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+
+Makes a rotation by inverting Rotation such that ApplyRotation(Rotation, Rotation.Invert())) = IdentityRotation.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(Rotation:rotation).Invert<native><public>()<varies><transacts>:rotation
+Parameters
+
+Invert takes the following parameters:
+Name 	Type 	Description
+Rotation 	rotation 	 
+Attributes and Effects
+
+The following attributes and effects determine how Invert behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Succeeds when each component of V1 and V2 are within AbsoluteTolerance of each other.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+IsAlmostEqual<public>(V1:vector2, V2:vector2, AbsoluteTolerance:float)<decides>:void
+Parameters
+
+IsAlmostEqual takes the following parameters:
+Name 	Type 	Description
+V1 	vector2 	 
+V2 	vector2 	 
+AbsoluteTolerance 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how IsAlmostEqual behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+decides 	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+
+Succeeds when each component of V1 and V2 are within AbsoluteTolerance of each other.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+IsAlmostEqual<public>(V1:vector3, V2:vector3, AbsoluteTolerance:float)<decides>:void
+Parameters
+
+IsAlmostEqual takes the following parameters:
+Name 	Type 	Description
+V1 	vector3 	 
+V2 	vector3 	 
+AbsoluteTolerance 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how IsAlmostEqual behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+decides 	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+
+
+Succeeds when each component of V is within AbsoluteTolerance of 0.0.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(V:vector2).IsAlmostZero<public>(AbsoluteTolerance:float)<decides>:void
+Parameters
+
+IsAlmostZero takes the following parameters:
+Name 	Type 	Description
+V 	vector2 	 
+AbsoluteTolerance 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how IsAlmostZero behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+decides 	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+
+
+Succeeds when each component of V is within AbsoluteTolerance of 0.0.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(V:vector3).IsAlmostZero<public>(AbsoluteTolerance:float)<decides>:void
+Parameters
+
+IsAlmostZero takes the following parameters:
+Name 	Type 	Description
+V 	vector3 	 
+AbsoluteTolerance 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how IsAlmostZero behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+decides 	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+
+
+Returns Rotation if it does not contain NaN, Inf or -Inf.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(Rotation:rotation).IsFinite<native><public>()<decides>:rotation
+Parameters
+
+IsFinite takes the following parameters:
+Name 	Type 	Description
+Rotation 	rotation 	 
+Attributes and Effects
+
+The following attributes and effects determine how IsFinite behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+decides 	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+
+
+Returns V if all components are finite. Fails if any of the components are not finite.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(V:vector2).IsFinite<public>()<decides>:vector2
+Parameters
+
+IsFinite takes the following parameters:
+Name 	Type 	Description
+V 	vector2 	 
+Attributes and Effects
+
+The following attributes and effects determine how IsFinite behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+decides 	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+
+Returns V if all components are finite. Fails if any of the components are not finite.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(V:vector3).IsFinite<public>()<decides>:vector3
+Parameters
+
+IsFinite takes the following parameters:
+Name 	Type 	Description
+V 	vector3 	 
+Attributes and Effects
+
+The following attributes and effects determine how IsFinite behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+decides 	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+
+Returns the length of V.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(V:vector2).Length<public>()<varies>:float
+Parameters
+
+Length takes the following parameters:
+Name 	Type 	Description
+V 	vector2 	 
+Attributes and Effects
+
+The following attributes and effects determine how Length behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+Returns the squared length of V.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(V:vector2).LengthSquared<public>()<varies>:float
+Parameters
+
+LengthSquared takes the following parameters:
+Name 	Type 	Description
+V 	vector2 	 
+Attributes and Effects
+
+The following attributes and effects determine how LengthSquared behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+Returns the length of V as if V.Z = 0.0.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(V:vector3).LengthXY<public>()<varies>:float
+Parameters
+
+LengthXY takes the following parameters:
+Name 	Type 	Description
+V 	vector3 	 
+Attributes and Effects
+
+The following attributes and effects determine how LengthXY behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+Used to linearly interpolate/extrapolate between From (when Parameter = 0.0) and To (when Parameter = 1.0). Expects that all arguments are finite. Returns From*(1 - Parameter) + To*Parameter.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+Lerp<public>(From:vector2, To:vector2, Parameter:float)<varies>:vector2
+Parameters
+
+Lerp takes the following parameters:
+Name 	Type 	Description
+From 	vector2 	 
+To 	vector2 	 
+Parameter 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how Lerp behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+Used to linearly interpolate/extrapolate between From (when Parameter = 0.0) and To (when Parameter = 1.0). Expects that all arguments are finite. Returns From*(1 - Parameter) + To*Parameter.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+Lerp<public>(From:vector3, To:vector3, Parameter:float)<varies>:vector3
+Parameters
+
+Lerp takes the following parameters:
+Name 	Type 	Description
+From 	vector3 	 
+To 	vector3 	 
+Parameter 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how Lerp behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+
+Makes a rotation from Axis and AngleRadians using a left-handed sign convention (e.g. a positive rotation around +Z takes +X to +Y). If Axis.IsAlmostZero[], make the identity rotation.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+MakeRotation<native><public>(Axis:vector3, AngleRadians:float)<varies>:rotation
+Parameters
+
+MakeRotation takes the following parameters:
+Name 	Type 	Description
+Axis 	vector3 	 
+AngleRadians 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how MakeRotation behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+Makes a rotation by applying YawRightDegrees, PitchUpDegrees, and RollClockwiseDegrees, in that order:
+
+    first a yaw about the Z axis with a positive angle indicating a clockwise rotation when viewed from above,
+    then a pitch about the new Y axis with a positive angle indicating 'nose up',
+    followed by a roll about the new X axis axis with a positive angle indicating a clockwise rotation when viewed along +X. Note that these conventions differ from MakeRotation but match ApplyYaw, ApplyPitch, and ApplyRoll.
+
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+MakeRotationFromYawPitchRollDegrees<native><public>(YawRightDegrees:float, PitchUpDegrees:float, RollClockwiseDegrees:float)<varies>:rotation
+Parameters
+
+MakeRotationFromYawPitchRollDegrees takes the following parameters:
+Name 	Type 	Description
+YawRightDegrees 	float 	 
+PitchUpDegrees 	float 	 
+RollClockwiseDegrees 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how MakeRotationFromYawPitchRollDegrees behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+Makes the smallest angular rotation from InitialRotation to FinalRotation such that: InitialRotation.RotateBy(MakeShortestRotationBetween(InitialRotation, FinalRotation)) = FinalRotation and MakeShortestRotationBetween(InitialRotation, FinalRotation)?.GetAngle() is as small as possible.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+MakeShortestRotationBetween<native><public>(InitialRotation:rotation, FinalRotation:rotation)<varies><transacts>:rotation
+Parameters
+
+MakeShortestRotationBetween takes the following parameters:
+Name 	Type 	Description
+InitialRotation 	rotation 	 
+FinalRotation 	rotation 	 
+Attributes and Effects
+
+The following attributes and effects determine how MakeShortestRotationBetween behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Makes the smallest angular rotation from InitialVector to FinalVector such that: InitialVector.RotateBy(MakeShortestRotationBetween(InitialVector, Vector)) = FinalVector and MakeShortestRotationBetween(InitialVector, FinalVector)?.GetAngle() is as small as possible.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+MakeShortestRotationBetween<native><public>(InitialVector:vector3, FinalVector:vector3)<varies><transacts>:rotation
+Parameters
+
+MakeShortestRotationBetween takes the following parameters:
+Name 	Type 	Description
+InitialVector 	vector3 	 
+FinalVector 	vector3 	 
+Attributes and Effects
+
+The following attributes and effects determine how MakeShortestRotationBetween behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+
+Makes a unit length vector3 pointing in the same direction of V. Fails if V.IsAlmostZero[] or not V.IsFinite[].
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(V:vector2).MakeUnitVector<native><public>()<decides><varies>:vector2
+Parameters
+
+MakeUnitVector takes the following parameters:
+Name 	Type 	Description
+V 	vector2 	 
+Attributes and Effects
+
+The following attributes and effects determine how MakeUnitVector behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+decides 	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+Makes a vector2 by component-wise subtraction of Right from Left.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+operator'-'<public>(Left:vector2, Right:vector2):vector2
+Parameters
+
+operator'-' takes the following parameters:
+Name 	Type 	Description
+Left 	vector2 	 
+Right 	vector2 	 
+Attributes and Effects
+
+The following attributes and effects determine how operator'-' behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+Makes a vector2i by component-wise subtraction of Right from Left.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+operator'-'<public>(Left:vector2i, Right:vector2i):vector2i
+Parameters
+
+operator'-' takes the following parameters:
+Name 	Type 	Description
+Left 	vector2i 	 
+Right 	vector2i 	 
+Attributes and Effects
+
+The following attributes and effects determine how operator'-' behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+
+Makes a vector2 by component-wise addition of Left and Right.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+operator'+'<public>(Left:vector2, Right:vector2):vector2
+Parameters
+
+operator'+' takes the following parameters:
+Name 	Type 	Description
+Left 	vector2 	 
+Right 	vector2 	 
+Attributes and Effects
+
+The following attributes and effects determine how operator'+' behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+
+Makes a vector2i by component-wise addition of Left and Right.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+operator'+'<public>(Left:vector2i, Right:vector2i):vector2i
+Parameters
+
+operator'+' takes the following parameters:
+Name 	Type 	Description
+Left 	vector2i 	 
+Right 	vector2i 	 
+Attributes and Effects
+
+The following attributes and effects determine how operator'+' behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+
+Makes a vector2 by multiplying the components of Right by Left.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+operator'*'<public>(Left:float, Right:vector2):vector2
+Parameters
+
+operator'*' takes the following parameters:
+Name 	Type 	Description
+Left 	float 	 
+Right 	vector2 	 
+Attributes and Effects
+
+The following attributes and effects determine how operator'*' behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+Makes a vector2 by dividing the components of Left by Right.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+operator'/'<public>(Left:vector2, Right:float):vector2
+Parameters
+
+operator'/' takes the following parameters:
+Name 	Type 	Description
+Left 	vector2 	 
+Right 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how operator'/' behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+
+
+Makes a vector2 by inverting the signs of Operand.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+prefix'-'<public>(Operand:vector2):vector2
+Parameters
+
+prefix'-' takes the following parameters:
+Name 	Type 	Description
+Operand 	vector2 	 
+Attributes and Effects
+
+The following attributes and effects determine how prefix'-' behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+
+Returns degrees from Radians.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+RadiansToDegrees<public>(Radians:float)<varies>:float
+Parameters
+
+RadiansToDegrees takes the following parameters:
+Name 	Type 	Description
+Radians 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how RadiansToDegrees behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+Makes a vector2 by inverting the SurfaceNormal component of Direction. Fails if not SurfaceNormal.MakeUnitVector[].
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+ReflectVector<native><public>(Direction:vector2, SurfaceNormal:vector2)<decides><varies>:vector2
+Parameters
+
+ReflectVector takes the following parameters:
+Name 	Type 	Description
+Direction 	vector2 	 
+SurfaceNormal 	vector2 	 
+Attributes and Effects
+
+The following attributes and effects determine how ReflectVector behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+decides 	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+
+Makes a rotation by composing AdditionalRotation to InitialRotation.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+(InitialRotation:rotation).RotateBy<native><public>(AdditionalRotation:rotation)<varies><transacts>:rotation
+Parameters
+
+RotateBy takes the following parameters:
+Name 	Type 	Description
+InitialRotation 	rotation 	 
+AdditionalRotation 	rotation 	 
+Attributes and Effects
+
+The following attributes and effects determine how RotateBy behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Used to perform spherical linear interpolation between From (when Parameter = 0.0) and To (when Parameter = 1.0). Expects that 0.0 <= Parameter <= 1.0.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+Slerp<native><public>(InitialRotation:rotation, FinalRotation:rotation, Parameter:float)<decides><varies><transacts>:rotation
+Parameters
+
+Slerp takes the following parameters:
+Name 	Type 	Description
+InitialRotation 	rotation 	 
+FinalRotation 	rotation 	 
+Parameter 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how Slerp behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+decides 	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+
+Makes a string representation of rotation in axis/degrees format with a left-handed sign convention. ToString(MakeRotation(vector3{X:=1.0, Y:=0.0, Z:=0.0}, PiFloat/2.0)) produces the string: "Axis: {x=1.000000,y=0.000000,z=0.000000} Angle: 90.000000".
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+ToString<native><public>(Rotation:rotation)<varies>:[]char
+Parameters
+
+ToString takes the following parameters:
+Name 	Type 	Description
+Rotation 	rotation 	 
+Attributes and Effects
+
+The following attributes and effects determine how ToString behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+
+Makes a string representation of V.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+ToString<native><public>(V:vector2)<varies>:[]char
+Parameters
+
+ToString takes the following parameters:
+Name 	Type 	Description
+V 	vector2 	 
+Attributes and Effects
+
+The following attributes and effects determine how ToString behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+Makes a vector2 by converting the components of V to floats.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+ToVector2<public>(V:vector2i)<varies><transacts>:vector2
+Parameters
+
+ToVector2 takes the following parameters:
+Name 	Type 	Description
+V 	vector2i 	 
+Attributes and Effects
+
+The following attributes and effects determine how ToVector2 behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Makes a vector2i by component-wise truncation of V to intss.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+ToVector2i<public>(V:vector2)<decides><varies>:vector2i
+Parameters
+
+ToVector2i takes the following parameters:
+Name 	Type 	Description
+V 	vector2 	 
+Attributes and Effects
+
+The following attributes and effects determine how ToVector2i behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+decides 	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+A combination of scale, rotation, and translation, applied in that order.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+Members
+
+This struct has data members, but no functions.
+Data
+Data Member Name 	Type 	Description
+Scale 	vector3 	
+
+The scale of this transform.
+Rotation 	rotation 	
+
+The rotation of this transform.
+Translation 	vector3 	
+
+The location of this transform.
+
+
+Makes a vector3 by applying InTransform to InVector.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+TransformVector<native><public>(InTransform:transform, InVector:vector3)<varies>:vector3
+Parameters
+
+TransformVector takes the following parameters:
+Name 	Type 	Description
+InTransform 	transform 	 
+InVector 	vector3 	 
+Attributes and Effects
+
+The following attributes and effects determine how TransformVector behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+
+Makes a vector3 by applying InTransform to InVector without applying InTransform.Scale.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+
+TransformVectorNoScale<native><public>(InTransform:transform, InVector:vector3)<varies>:vector3
+Parameters
+
+TransformVectorNoScale takes the following parameters:
+Name 	Type 	Description
+InTransform 	transform 	 
+InVector 	vector3 	 
+Attributes and Effects
+
+The following attributes and effects determine how TransformVectorNoScale behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+2-dimensional vector with float components.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+Members
+
+This struct has data members, but no functions.
+Data
+Data Member Name 	Type 	Description
+X 	float 	 
+Y 	float 	 
+
+2-dimensional vector with int components.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+Members
+
+This struct has data members, but no functions.
+Data
+Data Member Name 	Type 	Description
+X 	int 	 
+Y 	int 	 
+
+3-dimensional vector with float components.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/SpatialMath }
+Members
+
+This struct has data members, but no functions.
+Data
+Data Member Name 	Type 	Description
+X 	float 	 
+Y 	float 	 
+Z 	float 	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
