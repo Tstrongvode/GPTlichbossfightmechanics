@@ -11,3 +11,82 @@ fort_playspace
 A nested container that scopes objects, style, gameplay rules, visuals, etc. All objects and players in an experience will belong to a fort_playspace. There is typically one fort_playspace for an entire experience, though this may change in the future as the platform evolves.
 
 To access the fort_playspace for a creative_device use creative_device.GetPlayspace.
+
+
+A nested container that scopes objects, style, gameplay rules, visuals, etc. All objects and players in an experience will belong to a fort_playspace. There is typically one fort_playspace for an entire experience, though this may change in the future as the platform evolves.
+
+To access the fort_playspace for a creative_device use creative_device.GetPlayspace.
+  	 
+Verse using statement 	using { /Fortnite.com/Playspaces }
+
+Get an []players in the current fort_playspace.
+  	 
+Verse using statement 	using { /Fortnite.com/Playspaces }
+
+GetPlayers<public>()<varies><transacts>:[]player
+Parameters
+
+GetPlayers does not take any parameters.
+Attributes and Effects
+
+The following attributes and effects determine how GetPlayers behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+
+Get an []players in the current fort_playspace.
+  	 
+Verse using statement 	using { /Fortnite.com/Playspaces }
+
+GetPlayers<public>()<varies><transacts>:[]player
+Parameters
+
+GetPlayers does not take any parameters.
+Attributes and Effects
+
+The following attributes and effects determine how GetPlayers behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Signaled when a player joins the fort_playspace. Returns a subscribable with a payload of thefort_character that entered the fort_playspace.
+  	 
+Verse using statement 	using { /Fortnite.com/Playspaces }
+
+PlayerAddedEvent<public>()<varies><transacts><no_rollback>:listenable(payload)
+Parameters
+
+PlayerAddedEvent does not take any parameters.
+Attributes and Effects
+
+The following attributes and effects determine how PlayerAddedEvent behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback 	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Signaled when a player leaves the fort_playspace. Returns a subscribable with a payload of thefort_character that left the fort_playspace.
+  	 
+Verse using statement 	using { /Fortnite.com/Playspaces }
+
+PlayerRemovedEvent<public>()<varies><transacts><no_rollback>:listenable(payload)
+Parameters
+
+PlayerRemovedEvent does not take any parameters.
+Attributes and Effects
+
+The following attributes and effects determine how PlayerRemovedEvent behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback 	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
