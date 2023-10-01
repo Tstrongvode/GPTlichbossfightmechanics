@@ -1,0 +1,475 @@
+# read this whole sheet for ai module in verse fortnite understanding
+
+Fortnite.com module
+
+Learn technical details about the Fortnite.com module.
+UEFN
+Fortnite.com module
+
+    Fortnite.com
+
+        UI
+
+        Devices
+            InterpolationTypes
+
+        Vehicles
+
+        Teams
+
+        Playspaces
+
+        Game
+
+        FortPlayerUtilities
+
+        Characters
+
+        AI
+AI module
+
+Learn technical details about the AI module.
+UEFN
+AI module
+
+Module import path: /Fortnite.com/AI
+
+    Fortnite.com
+
+    AI
+
+Classes and Structs
+Name 	Description
+navigation_target 	
+Interfaces
+Name 	Description
+focus_interface 	
+fort_leashable 	
+navigatable 	
+Functions
+Name 	Description
+MakeNavigationTarget 	
+
+Generate a navigation_target from any position
+MakeNavigationTarget 	
+
+Generate a navigation_target from an agent
+Enumerations
+Name 	Description
+navigation_result 	
+
+Result of a navigation request
+
+MaintainFocus function
+
+Learn technical details about the MaintainFocus function.
+UEFN
+MaintainFocus function
+
+Look At specified location. Will never complete unless interrupted.
+  	 
+Verse using statement 	using { /Fortnite.com/AI }
+
+MaintainFocus<public>(Location:vector3)<suspends><varies><transacts><no_rollback>:void
+Parameters
+
+MaintainFocus takes the following parameters:
+Name 	Type 	Description
+Location 	vector3 	 
+Attributes and Effects
+
+The following attributes and effects determine how MaintainFocus behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+suspends 	Indicates that the function is async. Creates an async context for the body of the function.
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback 	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+MaintainFocus function
+
+Learn technical details about the MaintainFocus function.
+UEFN
+MaintainFocus function
+
+Look At specified Agent. Will never complete unless interrupted.
+  	 
+Verse using statement 	using { /Fortnite.com/AI }
+
+MaintainFocus<public>(Agent:agent)<suspends><varies><transacts><no_rollback>:void
+Parameters
+
+MaintainFocus takes the following parameters:
+Name 	Type 	Description
+Agent 	agent 	 
+Attributes and Effects
+
+The following attributes and effects determine how MaintainFocus behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+suspends 	Indicates that the function is async. Creates an async context for the body of the function.
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback 	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+fort_leashable interface
+
+Learn technical details about the fort_leashable interface.
+UEFN
+fort_leashable interface
+  	 
+Verse using statement 	using { /Fortnite.com/AI }
+Members
+
+This interface has functions, but no data members.
+Functions
+Function Name 	Description
+SetLeashPosition 	
+
+Set custom leash position. 'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters). 'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
+SetLeashAgent 	
+
+Set the agent to be the new center of the leash. 'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters). 'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
+ClearLeash 	
+
+Removes the current leash.
+
+Verse using statement 	using { /Fortnite.com/AI }
+
+ClearLeash<public>()<varies><transacts><no_rollback>:void
+Parameters
+
+ClearLeash does not take any parameters.
+Attributes and Effects
+
+The following attributes and effects determine how ClearLeash behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback 	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+    api
+    function
+
+Set the agent to be the new center of the leash. 'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters). 'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
+  	 
+Verse using statement 	using { /Fortnite.com/AI }
+
+SetLeashAgent<public>(Agent:agent, InnerRadius:float, OuterRadius:float)<varies><transacts><no_rollback>:void
+Parameters
+
+SetLeashAgent takes the following parameters:
+Name 	Type 	Description
+Agent 	agent 	 
+InnerRadius 	float 	 
+OuterRadius 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how SetLeashAgent behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback 	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Set custom leash position. 'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters). 'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
+  	 
+Verse using statement 	using { /Fortnite.com/AI }
+
+SetLeashPosition<public>(Location:vector3, InnerRadius:float, OuterRadius:float)<varies><transacts><no_rollback>:void
+Parameters
+
+SetLeashPosition takes the following parameters:
+Name 	Type 	Description
+Location 	vector3 	 
+InnerRadius 	float 	 
+OuterRadius 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how SetLeashPosition behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback 	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+(InCharacter:fort_character).GetFocusInterface extension
+
+Learn technical details about the (InCharacter:fort_character).GetFocusInterface extension.
+UEFN
+(InCharacter:fort_character).GetFocusInterface extension
+
+Get the focus_interface interface for the specified character.
+  	 
+Verse using statement 	using { /Fortnite.com/AI }
+
+(InCharacter:fort_character).GetFocusInterface<native><public>()<decides><varies><transacts>:focus_interface
+Parameters
+
+GetFocusInterface takes the following parameters:
+Name 	Type 	Description
+InCharacter 	fort_character 	 
+Attributes and Effects
+
+The following attributes and effects determine how GetFocusInterface behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+decides 	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Get the current fort_leashable interface for the specified character.
+  	 
+Verse using statement 	using { /Fortnite.com/AI }
+
+(InCharacter:fort_character).GetFortLeashable<native><public>()<decides><varies><transacts>:fort_leashable
+Parameters
+
+GetFortLeashable takes the following parameters:
+Name 	Type 	Description
+InCharacter 	fort_character 	 
+Attributes and Effects
+
+The following attributes and effects determine how GetFortLeashable behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+decides 	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Get the navigatable interface for the specified character.
+  	 
+Verse using statement 	using { /Fortnite.com/AI }
+
+(InCharacter:fort_character).GetNavigatable<native><public>()<decides><varies><transacts>:navigatable
+Parameters
+
+GetNavigatable takes the following parameters:
+Name 	Type 	Description
+InCharacter 	fort_character 	 
+Attributes and Effects
+
+The following attributes and effects determine how GetNavigatable behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+decides 	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+MakeNavigationTarget function
+
+Learn technical details about the MakeNavigationTarget function.
+UEFN
+MakeNavigationTarget function
+
+Generate a navigation_target from any position
+  	 
+Verse using statement 	using { /Fortnite.com/AI }
+
+MakeNavigationTarget<native><public>(Position:vector3)<varies><transacts><no_rollback>:navigation_target
+Parameters
+
+MakeNavigationTarget takes the following parameters:
+Name 	Type 	Description
+Position 	vector3 	 
+Attributes and Effects
+
+The following attributes and effects determine how MakeNavigationTarget behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback 	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Generate a navigation_target from an agent
+  	 
+Verse using statement 	using { /Fortnite.com/AI }
+
+MakeNavigationTarget<native><public>(Target:agent)<varies><transacts><no_rollback>:navigation_target
+Parameters
+
+MakeNavigationTarget takes the following parameters:
+Name 	Type 	Description
+Target 	agent 	 
+Attributes and Effects
+
+The following attributes and effects determine how MakeNavigationTarget behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback 	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+
+navigatable interface
+
+Learn technical details about the navigatable interface.
+UEFN
+navigatable interface
+  	 
+Verse using statement 	using { /Fortnite.com/AI }
+Members
+
+This interface has functions, but no data members.
+Functions
+Function Name 	Description
+GetCurrentDestination 	
+
+Return the current destination of the NPC
+NavigateTo 	
+
+Navigate toward the specified target
+StopNavigation 	
+
+Stop navigation
+Wait 	
+
+Wait for a specific duration
+
+Return the current destination of the NPC
+  	 
+Verse using statement 	using { /Fortnite.com/AI }
+
+GetCurrentDestination<public>()<decides><varies><transacts>:vector3
+Parameters
+
+GetCurrentDestination does not take any parameters.
+Attributes and Effects
+
+The following attributes and effects determine how GetCurrentDestination behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+decides 	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Navigate toward the specified target
+  	 
+Verse using statement 	using { /Fortnite.com/AI }
+
+NavigateTo<public>(Target:navigation_target, ReachRadius:float, AllowPartialPath:logic)<suspends><varies><transacts><no_rollback>:navigation_result
+Parameters
+
+NavigateTo takes the following parameters:
+Name 	Type 	Description
+Target 	navigation_target 	 
+ReachRadius 	float 	 
+AllowPartialPath 	logic 	 
+Attributes and Effects
+
+The following attributes and effects determine how NavigateTo behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+suspends 	Indicates that the function is async. Creates an async context for the body of the function.
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback 	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+StopNavigation function
+
+Learn technical details about the StopNavigation function.
+UEFN
+StopNavigation function
+
+Stop navigation
+  	 
+Verse using statement 	using { /Fortnite.com/AI }
+
+StopNavigation<public>()<varies><transacts><no_rollback>:void
+Parameters
+
+StopNavigation does not take any parameters.
+Attributes and Effects
+
+The following attributes and effects determine how StopNavigation behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback 	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Wait function
+
+Learn technical details about the Wait function.
+UEFN
+Wait function
+
+Wait for a specific duration
+  	 
+Verse using statement 	using { /Fortnite.com/AI }
+
+Wait<public>(Duration:float)<suspends><varies><transacts><no_rollback>:void
+Parameters
+
+Wait takes the following parameters:
+Name 	Type 	Description
+Duration 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how Wait behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+suspends 	Indicates that the function is async. Creates an async context for the body of the function.
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback 	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+    api
+    function
+
+navigation_result enumeration
+
+Learn technical details about the navigation_result enumeration.
+UEFN
+navigation_result enumeration
+
+Result of a navigation request
+  	 
+Verse using statement 	using { /Fortnite.com/AI }
+Enumerators
+
+The navigation_result enumeration includes the following enumerators:
+Name 	Description
+Reached 	
+
+The destination has been reached
+PartiallyReached 	
+
+The destination has been partially reached (AllowPartialPath was used)
+Interrupted 	
+
+Navigation has been interrupted before completion
+Blocked 	
+
+The navigating agent is blocked
+Unreachable 	
+
+The destination cannot be reached
+
+Verse using statement 	using { /Fortnite.com/AI }
+
+
+
+
+
+
