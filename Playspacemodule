@@ -1,0 +1,13 @@
+Module import path: /Fortnite.com/Playspaces
+
+    Fortnite.com
+
+    Playspaces
+
+Interfaces
+Name 	Description
+fort_playspace 	
+
+A nested container that scopes objects, style, gameplay rules, visuals, etc. All objects and players in an experience will belong to a fort_playspace. There is typically one fort_playspace for an entire experience, though this may change in the future as the platform evolves.
+
+To access the fort_playspace for a creative_device use creative_device.GetPlayspace.
