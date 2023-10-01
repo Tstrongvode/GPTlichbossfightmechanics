@@ -1,0 +1,552 @@
+# Learn technical details about the UnrealEngine.com module.
+
+
+
+    UnrealEngine.com
+
+    Temporary
+
+        UI
+
+        Diagnostics
+
+        Curves
+
+        SpatialMath
+
+
+Module import path: /UnrealEngine.com/Temporary/Curves
+
+    UnrealEngine.com
+
+    Temporary
+
+    Curves
+
+Classes and Structs
+Name 	Description
+editable_curve
+
+Module import path: /UnrealEngine.com/Temporary/Curves
+
+    UnrealEngine.com
+
+    Temporary
+
+    Curves
+
+Classes and Structs
+Name 	Description
+editable_curve
+
+Verse using statement 	using { /UnrealEngine.com/Temporary/Curves }
+Members
+
+This class has functions, but no data members.
+Functions
+Function Name 	Description
+Evaluate 	
+
+Evaluates this float curve at the specified time and returns the result as a float
+
+
+Evaluates this float curve at the specified time and returns the result as a float
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Curves }
+
+Evaluate<native><public>(Time:float)<varies><transacts><no_rollback>:float
+Parameters
+
+Evaluate takes the following parameters:
+Name 	Type 	Description
+Time 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how Evaluate behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback 	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Module import path: /UnrealEngine.com/Temporary/Diagnostics
+
+    UnrealEngine.com
+
+    Temporary
+
+    Diagnostics
+
+Classes and Structs
+Name 	Description
+debug_draw_channel 	
+
+debug_draw_channel is the base class used to define debug draw channels.
+debug_draw 	
+
+debug draw class to draw debug shapes on screen.
+log_channel 	
+
+log_channel is the base class used to define log channels. When printing a message to a log, the log channel class name will be prefixed to the output message.
+log 	
+
+log class to send messages to the default log
+Enumerations
+Name 	Description
+debug_draw_duration_policy 	
+
+Enumerated presets for policies describing a desired draw duration.
+log_level 	
+
+log levels available for various log commands
+
+
+debug draw class to draw debug shapes on screen.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+Members
+
+This class has both data members and functions.
+Data
+Data Member Name 	Type 	Description
+Channel 	debug_draw_channel 	
+
+Channel will be used to clear specific debug draw.
+Functions
+Function Name 	Description
+ShowChannel 	
+
+Show Debug Draw for the channel for all users.
+HideChannel 	
+
+Hide Debug Draw for the channel for all users.
+ClearChannel 	
+
+Clears all debug draw for the channel.
+Clear 	
+
+Clears all debug draw from this debug_draw instance.
+DrawSphere 	
+
+Draws a sphere at the named location, and using the provided draw parameters.
+DrawBox 	
+
+Draws a box at the named location, and using the provided draw parameters
+DrawCapsule 	
+
+Draws a capsule at the named location, and using the provided draw parameters.
+DrawCone 	
+
+Draws a cone at the named location, and using the provided draw parameters.
+DrawCylinder 	
+
+Draws a cylinder at the named location, and using the provided draw parameters.
+DrawLine 	
+
+Draws a line from Start to End locations, and using the provided draw parameters.
+DrawPoint 	
+
+Draws a point at the named location, and using the provided draw parameters.
+DrawArrow 	
+
+Draws an arrow pointing from Start to End locations, and using the provided draw parameters.
+
+Clears all debug draw from this debug_draw instance.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+
+Clear<native><public>()<varies><transacts>:void
+Parameters
+
+Clear does not take any parameters.
+Attributes and Effects
+
+The following attributes and effects determine how Clear behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Clears all debug draw for the channel.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+
+ClearChannel<native><public>()<varies><transacts>:void
+Parameters
+
+ClearChannel does not take any parameters.
+Attributes and Effects
+
+The following attributes and effects determine how ClearChannel behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Draws an arrow pointing from Start to End locations, and using the provided draw parameters.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+
+DrawArrow<native><public>(Start:vector3, End:vector3, ArrowSize:float, Color:color, Thickness:float, DrawDurationPolicy:debug_draw_duration_policy, Duration:float)<varies><transacts>:void
+Parameters
+
+DrawArrow takes the following parameters:
+Name 	Type 	Description
+Start 	vector3 	 
+End 	vector3 	 
+ArrowSize 	float 	 
+Color 	color 	 
+Thickness 	float 	 
+DrawDurationPolicy 	debug_draw_duration_policy 	 
+Duration 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how DrawArrow behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Draws a box at the named location, and using the provided draw parameters
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+
+DrawBox<native><public>(Center:vector3, Rotation:rotation, Extent:vector3, Color:color, Thickness:float, DrawDurationPolicy:debug_draw_duration_policy, Duration:float)<varies><transacts>:void
+Parameters
+
+DrawBox takes the following parameters:
+Name 	Type 	Description
+Center 	vector3 	 
+Rotation 	rotation 	 
+Extent 	vector3 	 
+Color 	color 	 
+Thickness 	float 	 
+DrawDurationPolicy 	debug_draw_duration_policy 	 
+Duration 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how DrawBox behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Draws a capsule at the named location, and using the provided draw parameters.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+
+DrawCapsule<native><public>(Center:vector3, Rotation:rotation, Height:float, Radius:float, Color:color, Thickness:float, DrawDurationPolicy:debug_draw_duration_policy, Duration:float)<varies><transacts>:void
+Parameters
+
+DrawCapsule takes the following parameters:
+Name 	Type 	Description
+Center 	vector3 	 
+Rotation 	rotation 	 
+Height 	float 	 
+Radius 	float 	 
+Color 	color 	 
+Thickness 	float 	 
+DrawDurationPolicy 	debug_draw_duration_policy 	 
+Duration 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how DrawCapsule behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Draws a cone at the named location, and using the provided draw parameters.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+
+DrawCone<native><public>(Origin:vector3, Direction:vector3, Height:float, NumSides:int, AngleWidthRadians:float, AngleHeightRadians:float, Color:color, Thickness:float, DrawDurationPolicy:debug_draw_duration_policy, Duration:float)<varies><transacts>:void
+Parameters
+
+DrawCone takes the following parameters:
+Name 	Type 	Description
+Origin 	vector3 	 
+Direction 	vector3 	 
+Height 	float 	 
+NumSides 	int 	 
+AngleWidthRadians 	float 	 
+AngleHeightRadians 	float 	 
+Color 	color 	 
+Thickness 	float 	 
+DrawDurationPolicy 	debug_draw_duration_policy 	 
+Duration 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how DrawCone behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Draws a cylinder at the named location, and using the provided draw parameters.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+
+DrawCylinder<native><public>(Start:vector3, End:vector3, NumSegments:int, Radius:float, Color:color, Thickness:float, DrawDurationPolicy:debug_draw_duration_policy, Duration:float)<varies><transacts>:void
+Parameters
+
+DrawCylinder takes the following parameters:
+Name 	Type 	Description
+Start 	vector3 	 
+End 	vector3 	 
+NumSegments 	int 	 
+Radius 	float 	 
+Color 	color 	 
+Thickness 	float 	 
+DrawDurationPolicy 	debug_draw_duration_policy 	 
+Duration 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how DrawCylinder behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+
+Draws a line from Start to End locations, and using the provided draw parameters.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+
+DrawLine<native><public>(Start:vector3, End:vector3, Color:color, Thickness:float, DrawDurationPolicy:debug_draw_duration_policy, Duration:float)<varies><transacts>:void
+Parameters
+
+DrawLine takes the following parameters:
+Name 	Type 	Description
+Start 	vector3 	 
+End 	vector3 	 
+Color 	color 	 
+Thickness 	float 	 
+DrawDurationPolicy 	debug_draw_duration_policy 	 
+Duration 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how DrawLine behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+    api
+    function
+
+Draws a point at the named location, and using the provided draw parameters.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+
+DrawPoint<native><public>(Position:vector3, Color:color, Thickness:float, DrawDurationPolicy:debug_draw_duration_policy, Duration:float)<varies><transacts>:void
+Parameters
+
+DrawPoint takes the following parameters:
+Name 	Type 	Description
+Position 	vector3 	 
+Color 	color 	 
+Thickness 	float 	 
+DrawDurationPolicy 	debug_draw_duration_policy 	 
+Duration 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how DrawPoint behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+
+Draws a sphere at the named location, and using the provided draw parameters.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+
+DrawSphere<native><public>(Center:vector3, Radius:float, Color:color, NumSegments:int, Thickness:float, DrawDurationPolicy:debug_draw_duration_policy, Duration:float)<varies><transacts>:void
+Parameters
+
+DrawSphere takes the following parameters:
+Name 	Type 	Description
+Center 	vector3 	 
+Radius 	float 	 
+Color 	color 	 
+NumSegments 	int 	 
+Thickness 	float 	 
+DrawDurationPolicy 	debug_draw_duration_policy 	 
+Duration 	float 	 
+Attributes and Effects
+
+The following attributes and effects determine how DrawSphere behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Hide Debug Draw for the channel for all users.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+
+HideChannel<native><public>()<varies><transacts>:void
+Parameters
+
+HideChannel does not take any parameters.
+Attributes and Effects
+
+The following attributes and effects determine how HideChannel behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+    api
+    function
+Show Debug Draw for the channel for all users.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+
+ShowChannel<native><public>()<varies><transacts>:void
+Parameters
+
+ShowChannel does not take any parameters.
+Attributes and Effects
+
+The following attributes and effects determine how ShowChannel behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect 	Meaning
+varies 	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts 	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+
+debug_draw_channel is the base class used to define debug draw channels.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+
+Enumerated presets for policies describing a desired draw duration.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+Enumerators
+
+The debug_draw_duration_policy enumeration includes the following enumerators:
+Name 	Description
+SingleFrame 	 
+FiniteDuration 	 
+Persistent 	 
+
+
+
+
+
+
+
+log class to send messages to the default log
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+Members
+
+This class has both data members and functions.
+Data
+Data Member Name 	Type 	Description
+Channel 	log_channel 	
+
+Channel class name will be added as a prefix used when printing the message e.g. '[log_channel]: #Message
+DefaultLevel 	log_level 	
+
+Sets the default log level of the displayed message. See log_level enum for more info on log levels. Defaults to log_level.Normal.
+Functions
+Function Name 	Description
+Print 	
+
+Print message using the given log level
+PrintCallStack 	
+
+Prints current script call stack using the give log level
+
+
+Print message using the given log level
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+
+Print<native><public>(Message:[]char, Level:log_level):void
+Parameters
+
+Print takes the following parameters:
+Name 	Type 	Description
+Message 	[]char 	 
+Level 	log_level 	 
+Attributes and Effects
+
+The following attributes and effects determine how Print behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+Prints current script call stack using the give log level
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+
+PrintCallStack<native><public>(Level:log_level):void
+Parameters
+
+PrintCallStack takes the following parameters:
+Name 	Type 	Description
+Level 	log_level 	 
+Attributes and Effects
+
+The following attributes and effects determine how PrintCallStack behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute 	Meaning
+native 	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public 	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+
+log_channel is the base class used to define log channels. When printing a message to a log, the log channel class name will be prefixed to the output message.
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+
+log levels available for various log commands
+  	 
+Verse using statement 	using { /UnrealEngine.com/Temporary/Diagnostics }
+Enumerators
+
+The log_level enumeration includes the following enumerators:
+Name 	Description
+Debug 	 
+Verbose 	 
+Normal 	 
+Warning 	 
+Error 	 
+
+
+
+
+
+
+
+
+
+
