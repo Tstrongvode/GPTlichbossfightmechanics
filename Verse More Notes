@@ -1,0 +1,542 @@
+Clears this device's saved data for Agent.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+ClearPersistenceData<public>(Agent:agent)<varies><transacts><no_rollback>:void
+
+Parameters
+ClearPersistenceData takes the following parameters:
+
+Name	Type	Description
+Agent	agent	 
+Attributes and Effects
+The following attributes and effects determine how ClearPersistenceData behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+ClearPersistenceDataForAll function
+Learn technical details about the ClearPersistenceDataForAll function.
+
+UEFNClearPersistenceDataForAll function
+Clears this device's saved data for all agents.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+ClearPersistenceDataForAll<public>(Agent:agent)<varies><transacts><no_rollback>:void
+
+Parameters
+ClearPersistenceDataForAll takes the following parameters:
+
+Name	Type	Description
+Agent	agent	 
+Attributes and Effects
+The following attributes and effects determine how ClearPersistenceDataForAll behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified
+
+ClearPersistenceDataForAll function
+Learn technical details about the ClearPersistenceDataForAll function.
+
+UEFNClearPersistenceDataForAll function
+Clears this device's saved data for all agents.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+ClearPersistenceDataForAll<public>()<varies><transacts><no_rollback>:void
+
+Parameters
+ClearPersistenceDataForAll does not take any parameters.
+
+Attributes and Effects
+The following attributes and effects determine how ClearPersistenceDataForAll behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Completes the timer for Agent.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Complete<public>(Agent:agent)<varies><transacts><no_rollback>:void
+
+Parameters
+Complete takes the following parameters:
+
+Name	Type	Description
+Agent	agent	 
+Attributes and Effects
+The following attributes and effects determine how Complete behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Complete function
+Learn technical details about the Complete function.
+
+UEFNComplete function
+Completes the timer.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Complete<public>()<varies><transacts><no_rollback>:void
+
+Parameters
+Complete does not take any parameters.
+
+Attributes and Effects
+The following attributes and effects determine how Complete behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+
+Completes the timer for all agents.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+CompleteForAll<public>(Agent:agent)<varies><transacts><no_rollback>:void
+
+Parameters
+CompleteForAll takes the following parameters:
+
+Name	Type	Description
+Agent	agent	 
+Attributes and Effects
+The following attributes and effects determine how CompleteForAll behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Completes the timer for all agents.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+CompleteForAll<public>()<varies><transacts><no_rollback>:void
+
+Parameters
+CompleteForAll does not take any parameters.
+
+Attributes and Effects
+The following attributes and effects determine how CompleteForAll behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Disables this device for Agent. While disabled this device will not receive signals.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Disable<public>(Agent:agent)<varies><transacts><no_rollback>:void
+
+Parameters
+Disable takes the following parameters:
+
+Name	Type	Description
+Agent	agent	 
+Attributes and Effects
+The following attributes and effects determine how Disable behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Disables this device. While disabled this device will not receive signals.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Disable<public>()<varies><transacts><no_rollback>:void
+
+Parameters
+Disable does not take any parameters.
+
+Attributes and Effects
+The following attributes and effects determine how Disable behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Enables this device for Agent.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Enable<public>(Agent:agent)<varies><transacts><no_rollback>:void
+
+Parameters
+Enable takes the following parameters:
+
+Name	Type	Description
+Agent	agent	 
+Attributes and Effects
+The following attributes and effects determine how Enable behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+
+Enables this device.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Enable<public>()<varies><transacts><no_rollback>:void
+
+Parameters
+Enable does not take any parameters.
+
+Attributes and Effects
+The following attributes and effects determine how Enable behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+
+Returns the remaining time (in seconds) on the timer for Agent.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+GetActiveDuration<public>(Agent:agent)<varies><transacts>:float
+
+Parameters
+GetActiveDuration takes the following parameters:
+
+Name	Type	Description
+Agent	agent	 
+Attributes and Effects
+The following attributes and effects determine how GetActiveDuration behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Returns the remaining time (in seconds) on the timer if it is set to be global.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+GetActiveDuration<public>()<varies><transacts>:float
+
+Parameters
+GetActiveDuration does not take any parameters.
+
+Attributes and Effects
+The following attributes and effects determine how GetActiveDuration behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+
+
+Returns the maximum duration of the timer (in seconds).
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+GetMaxDuration<public>()<varies><transacts>:float
+
+Parameters
+GetMaxDuration does not take any parameters.
+
+Attributes and Effects
+The following attributes and effects determine how GetMaxDuration behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+
+Succeeds if this device is tracking timer state for each individual agent independently. Fails if state is being tracked globally for all agent's.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+IsStatePerAgent<public>()<decides><varies><transacts>:void
+
+Parameters
+IsStatePerAgent does not take any parameters.
+
+Attributes and Effects
+The following attributes and effects determine how IsStatePerAgent behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+decides	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Loads this device's saved data for Agent.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Load<public>(Agent:agent)<varies><transacts><no_rollback>:void
+
+Parameters
+Load takes the following parameters:
+
+Name	Type	Description
+Agent	agent	 
+Attributes and Effects
+The following attributes and effects determine how Load behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Sets the remaining time (in seconds) on the timer, if active, on Agent.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+SetActiveDuration<public>(Time:float, Agent:agent)<varies><transacts><no_rollback>:void
+
+Parameters
+SetActiveDuration takes the following parameters:
+
+Name	Type	Description
+Time	float	 
+Agent	agent	 
+Attributes and Effects
+The following attributes and effects determine how SetActiveDuration behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Sets the remaining time (in seconds) on the timer, if active. Use this function if the timer is set to use the same time for all agent's.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+SetActiveDuration<public>(Time:float)<varies><transacts><no_rollback>:void
+
+Parameters
+SetActiveDuration takes the following parameters:
+
+Name	Type	Description
+Time	float	 
+Attributes and Effects
+The following attributes and effects determine how SetActiveDuration behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+
+Sets the lap time indicator for Agent.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+SetLapTime<public>(Agent:agent)<varies><transacts><no_rollback>:void
+
+Parameters
+SetLapTime takes the following parameters:
+
+Name	Type	Description
+Agent	agent	 
+Attributes and Effects
+The following attributes and effects determine how SetLapTime behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+
+Sets the lap time indicator for all agents.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+SetLapTimeForAll<public>(Agent:agent)<varies><transacts><no_rollback>:void
+
+Parameters
+SetLapTimeForAll takes the following parameters:
+
+Name	Type	Description
+Agent	agent	 
+Attributes and Effects
+The following attributes and effects determine how SetLapTimeForAll behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Sets the lap time indicator for all agents.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+SetLapTimeForAll<public>()<varies><transacts><no_rollback>:void
+
+Parameters
+SetLapTimeForAll does not take any parameters.
+
+Attributes and Effects
+The following attributes and effects determine how SetLapTimeForAll behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Sets the maximum duration of the timer (in seconds).
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+SetMaxDuration<public>(Time:float)<varies><transacts><no_rollback>:void
+
+Parameters
+SetMaxDuration takes the following parameters:
+
+Name	Type	Description
+Time	float	 
+Attributes and Effects
+The following attributes and effects determine how SetMaxDuration behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Starts the timer for Agent.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Start<public>(Agent:agent)<varies><transacts><no_rollback>:void
+
+Parameters
+Start takes the following parameters:
+
+Name	Type	Description
+Agent	agent	 
+Attributes and Effects
+The following attributes and effects determine how Start behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+
+Starts the timer.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Start<public>()<varies><transacts><no_rollback>:void
+
+Parameters
+Start does not take any parameters.
+
+Attributes and Effects
+The following attributes and effects determine how Start behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Starts the timer for all agents.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+StartForAll<public>(Agent:agent)<varies><transacts><no_rollback>:void
+
+Parameters
+StartForAll takes the following parameters:
+
+Name	Type	Description
+Agent	agent	 
+Attributes and Effects
+The following attributes and effects determine how StartForAll behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Starts the timer for all agents.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+StartForAll<public>()<varies><transacts><no_rollback>:void
+
+Parameters
+StartForAll does not take any parameters.
+
+Attributes and Effects
+The following attributes and effects determine how StartForAll behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
