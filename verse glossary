@@ -1,0 +1,1657 @@
+Verse Glossary
+Ready to start learning Verse? This glossary is here to help!
+
+UEFNVerse Glossary
+Verse is a new programming language, so if you’re an experienced programmer and you see something you don’t fully get, check this glossary.
+
+If you’re new to programming, this glossary is also for you. We’ve added definitions for a lot of basic programming terms, and you might just find the answers you need here!
+
+JUMP TO:
+
+Numbers and Symbols
+A
+B
+C
+D
+E
+F
+G
+H
+I
+J
+K
+L
+M
+N
+O
+P
+Q
+R
+S
+T
+U
+V
+W
+X
+Y
+Z
+Numbers and Symbols
+A
+abstract class
+
+When a class or a class method has the abstract specifier, you cannot create an instance of the class. An abstract class is intended to be used as a superclass, where some members are implemented or specified but not all. Also referred to as a base class.
+
+abstraction
+
+A programming principle where unnecessary details are hidden from a user where the user doesn't need to understand the hidden complexities. For example, you can put money in a vending machine and get a treat out without understanding how the mechanics function.
+
+access level
+
+The permissions needed to access a member. These are specified using an specifier on the member.
+
+access specifier
+
+Access specifiers define the access level. The following are all the access specifiers you can use with classes:
+
+public: Unrestricted access.
+internal: Access limited to current module. This is the default access.
+protected: Access limited to current class and any subclasses.
+private: Access limited to current class.
+additive effect
+
+An additive effect is an effect that can be added to an exclusive effect. Additive effects include suspends and decides.
+
+agent
+
+An agent can represent either a player or an AI.
+
+algorithm
+
+An algorithm is a sequence of instructions written to solve a problem or accomplish a task. Think of it like a recipe for a dish. When you write code that solves a problem or accomplishes a task, that code is your algorithm.
+
+alternate integers
+
+See hexadecimal.
+
+any
+
+Verse has a special type, any, that is the supertype of all types (making all other types subtypes of any). Because of this, it supports very few operations, as all operations it supports would have to be supported for all values. While not much used, it is good to be aware of this type as it may come up when writing code that produces an error. It is most often encountered when several different expressions could be a result (such as the different paths of an if) and any is the only common supertype between them.
+
+API
+
+An acronym for Application Programming Interface, these are libraries that are generally grouped into sets of callable functions, types, and data structures that allow users to access and interact with Unreal and Fortnite systems.
+
+archetype
+
+An archetype is an instance of a class that is fully defined with values for its fields in a class.
+
+archetype instantiation
+
+The process of creating an archetype. Compare to constructor, which can also run logic or other functions.
+
+argument
+
+The value assigned to a parameter in a function signature mapped from a function call.
+
+array
+
+An array is a container where you can store elements of the same type. The elements of an array are in the order you insert them into that array, and you can access the elements by their position in the array, called their index.
+
+You can create an array by using the keyword array followed by {}. For example:
+
+Players : []player = array{Player1, Player2}
+For more info, see Array.
+
+assignment expression
+
+In Verse, an assignment expression stores a value at a mutable location, such as when initializing a variable or changing the value of a variable.
+
+async
+
+An async expression has the possibility of taking time to evaluate, but doesn’t necessarily have to. An async expression may or may not complete in the current simulation update, or in a later one. Async functions that are identified with with a suspends specifier are also called coroutines. Async expressions contrast with immediate expressions.
+
+async context
+
+The scope for where an async expression such as a coroutine call is permitted.
+
+atomic
+
+A single, complete unit of code that either executes completely or fails completely, without interruption or observation from other code. Atomic code cannot be interrupted. All adjacent, immediate, non-async expressions are considered to be atomic — their code is guaranteed to run without interruption with the same update, and without preemption or context switching.
+
+attribute
+
+An attribute is a property or other information associated with identifiers that can be referenced or analyzed in Verse, or in an application such as UEFN.
+
+The attribute syntax uses @ followed by the keyword for that attribute.
+
+B
+base-16
+
+Hexadecimal (from hexa-, meaning six, and decimal, meaning ten), base-16 (often shortened to hex), is a numbering system that uses 16 symbols, instead of the more familiar 10 symbols in base-10.
+
+bidirectional
+
+Functioning in two directions.
+
+bind
+
+In computer programming, to bind is to create a connection between two or more programming objects for a specified amount of time.
+
+block expression
+
+A block expression is a way to group expressions as a single expression or to nest a code block. Block expressions behave in a way similar to code blocks.
+
+body
+
+A block with its own scope that defines the sub-expressions of a language element, such as a function body or a loop body. For example, a function body contains expressions that define what the function does, and any variables declared in the function are local to that function body.
+
+Boolean
+
+See Boolean logic.
+
+Boolean logic
+
+A system of logic where the value expressed is either true or false, and which is often used to determine flow control in programming languages. This is named after George Boole (1815–1864), a mathematician who was a key contributor to the fields of logic and algebra.
+
+In Verse, this is the type used to represent true and false is logic. This Boolean logic is carried out through failable expressions in failure contexts.
+
+bound
+
+A variable that has had a bind performed on it. All Verse variables are bound immediately after they are defined — they cannot be in an unbound state.
+
+braces
+
+See brackets.
+
+brackets
+
+Brackets are used in Verse to specify different kinds of information in the code. Verse uses four sets of brackets. Their uses include but are not limited to:
+
+() Parentheses are used for setting parameters in a function signature and arguments in a function call, and for grouping expressions, tuples, and subclasses.
+[] Brackets (also called square brackets) are used for failable function calls, type specifiers for arrays and maps, and indexing into an array.
+{} Curly brackets (or curly braces) are used in archetype instantiation, code block formatting, and string interpolation.
+<> Angle brackets used to add specifiers to identifiers and functions.
+branch expression
+
+A branch expression starts a block of one or more async subexpressions. Any expression that follows is executed immediately.
+
+For more information, see Concurrency.
+
+break
+
+An expression that "breaks out" of the current loop and executes the next expression after the loop expression. For more info, see Loop and Break.
+
+bug
+
+A bug is an error in a computer program that causes it to produce an incorrect or unexpected result. Bugs occur during runtime, as opposed to compiler errors, which occur during Verse compile time. The process of identifying and removing bugs is called debugging.
+
+build
+
+To compile Verse code into instructions that a computer can execute.
+
+built-in
+
+In some programming languages, something that is built-in is something you can use directly within the language and its standard libraries.
+
+built-in type
+
+A built-in type cannot be broken down further, unlike a composite type.
+
+C
+C++
+
+A popular programming language used in many different applications — especially game engines such as Unreal Engine.
+
+cache
+
+A way to store data so that it can be accessed more quickly.
+
+call
+
+In a computer program, when an instruction is requested by the program, it is called. The call invokes (activates) a specific function. Calls can happen because of player interactions with objects, or because of time parameters.
+
+call graph
+
+A list of the methods in a call stack, with information about each call, such as execution time, time stamps, and the identifier for the function.
+
+call stack
+
+The call stack is what a program uses to keep track of calls — which functions are running, which have finished, and which are still to come.
+
+caller
+
+An expression that makes a call.
+
+canceled
+
+The state of a task that terminated before completion.
+
+case expression
+
+A case expression can control the flow of a program from a list of options. For more information, see Case.
+
+Ceil
+
+A math operation that rounds a rational value up to the closest integer. Compare to Floor.
+
+changelist
+
+A way of tracking changes to a file in Perforce between local files that are stored on your computer and files that are submitted to the server and merged with the source files for the project. A changelist is also called a CL.
+
+char
+
+A data type that stores a single character.
+
+character
+
+In Verse, a character can also refer to a single typographical element in a string.
+
+character encoding
+
+Character encoding is the mapping between a text character and data that the computer can understand, called a code point.
+
+CI/CD
+
+CI/CD is continuous integration and either continuous delivery or continuous deployment. CI/CD bridges development and application through automation in building, testing and deployment of applications.
+
+class
+
+A class is a template for creating objects with similar behaviors and properties (variables and methods), and must be instantiated to create an object with real values. Classes are hierarchical, which means that a class can inherit information from its parent (superclass) and share its information with its children (subclasses). Classes can be a custom type defined by the user. Compare to instance.
+
+code
+
+Code, sometimes called source code, is the instructions written by a programmer that tells a software program how to operate. Verse source code can be read by the programmer, but not by the computer. Before the computer can read or execute the program, it has to be converted to computer-executable instructions, called compiling. When a programmer says they are coding, they mean they are writing these instructions.
+
+code block
+
+A block, or code block, is a group of expressions that introduces a new body of code. You could also have a code block that contains zero expressions, but this is usually a placeholder that will be filled in with expressions at some later point.
+
+Code blocks come after an identifier.
+
+A code block has three possible formats in Verse. All of these formats are semantically the same in that the format does not change what the code actually does.
+
+A spaced format begins the block with :, and each expression follows on its own line with an indentation of four spaces:
+
+if (test-arg-block):
+    expression1
+    expression2
+Note that if (test-arg-block) is not part of the block, but the block starts at the end of that line with :. You can also use ; to separate multiple expressions on a single line:
+
+if (test-arg-block):
+    expression1; expression2; expression3
+In a multi-line braced format, the block is enclosed by {} (curly braces), and the expressions are on new lines:
+
+if (test-arg-block)
+{
+    expression1
+    expression2
+}
+As with the spaced format, you can also use ; to separate multiple expressions on a single line.
+
+if (test-arg-block)
+{
+    expression1;  expression2
+}
+The third format is the single-line braced format. Again, the block is enclosed by {}, but each expression is separated by ; instead of being placed on a new line. Note that you don't have to put the {} characters on separate lines.
+
+if (test-arg-block) {expression1; expression2}
+For more on this, see Code Blocks.
+
+code comment
+
+See comment.
+
+code point
+
+A value in the Unicode code space for character encoding.
+
+code sample
+
+A standalone program, module, or class that demonstrates one or more concepts, classes, functions, or some other aspect of a programming language. Compare to code snippet.
+
+code snippet
+
+A snippet is some code, often short, that's usually meant to showcase or implement a specific concept.
+
+Code snippets are not full, standalone programs. Code snippets can be copy-pasted into code blocks. Compare to code sample.
+
+code unit
+
+The minimal bit combination that can represent a unit of encoded text. UTF-8 uses 8-bits for its code unit.
+
+coercion
+
+The conversion of a value into different data type. Type conversions can be implicitly or explicitly made. Implicit conversion. also called coercion, is done automatically.
+
+comment
+
+A comment written by the programmer that explains something about the code or the programmer's reason for how something is programmed. While the code itself shows the how of the program, comments are usually added to explain the why.
+
+Code comments can appear anywhere in the code and begin with #. When the program runs, code comments are ignored.
+
+You can comment a single line by placing a # at the beginning of the line. The return at the end of the line terminates the comment.
+
+# A single line is commented this way.
+You can make a multi-line block comment by using <# to start the block, and #> to end it:
+
+<# You can make multi-line comments
+in your code by starting and ending 
+the comments as shown here.
+#>
+For other ways to add comments to your code, see the Verse Language Quick Reference.
+
+commit
+
+When code effects of a failable expression are made permanent after that expression succeeds.
+
+common type
+
+Common types are types that are built in and used frequently. Common types include any, comparable, float, int, logic, rational, and string.
+
+comparable
+
+A type that defines the operators for less than, greater than, and so on. Other types can inherit from comparable, and do comparison expressions.
+
+comparison expression
+
+In Verse, comparison expressions are when you compare two things using one of the inequality operators: <, >, <=, .=, <>.
+
+compile
+
+To convert programs from a human-readable language into computer-executable instructions.
+
+compile time
+
+When source code is converted into machine instructions. Compare to runtime.
+
+compiler
+
+Software that converts human-readable program instructions into computer-executable instructions, this is sometimes referred to as the parser. The time period when the compiler runs is known as compile time.
+
+compiler error
+
+A compiler error is caused by incorrect code use detected by the Verse compiler at compile time. Compare with bugs, which occur at runtime.
+
+completed
+
+The state of a task that ran through to completion.
+
+component
+
+A function or group of related functions in a program that can be reused.
+
+composite type
+
+A composite data type, sometimes called compound or aggregate, is any type that can be made up of fields or elements (usually named) of primitive types or other composite types. It usually has a fixed number of fields or elements for its lifespan. Verse currently uses the following composite types: struct, class, enum, interface, and module.
+
+computes
+
+This effect indicates that a function returns the same output when repeatedly presented with the same input.
+
+concatenate
+
+See concatenation.
+
+concatenation
+
+Concatenation is when a string is appended(added) to another string. You can use the operator + to concatenate strings.
+
+concrete class
+
+A class with a concrete specifier is a way to construct an instance of the class with an empty archetype, meaning that all fields for the class must be defined with an initial value.
+
+concurrent
+
+Multiple computations that execute in the same effective period of time are concurrent. This would be overlapping logical simulation updates, ticks, and frames, even if potentially spread over physical time, such as on a single processor, and not necessarily parallel.
+
+condition
+
+A condition is something that the program can check is true or false. A conditional expression can evaluate the condition and return a result of true or false.
+
+conditional
+
+An expression that evaluates a condition and executes instructions based on the result of the condition. An example of a conditional is an if expression.
+
+constant
+
+A constant is a location where a value is stored, and its value cannot change during the runtime of the program. It's called a constant because it constantly remains the same.
+
+Basic syntax for a constant is name : type = value. The name is a name you assign to the constant (known as the identifier). The : says that a type is coming. The = says a value is coming, then the value itself. For example:
+
+PlayerSpeed : float = 2.0
+This says that PlayerSpeed has a value of 2.0, represented as a decimal value that does not change while the program is running.
+
+sample constant
+Constants always have assigned values. The name and type is the declaration, and the initialization is where that value is expressed.
+
+Compare to variable.
+
+For more information, see Constants and Variables.
+
+constrained
+
+When an expression is constrained, it has set limits.
+
+constructor
+
+A constructor is a special function that creates an instance of of its associated class. It can be used to set initial values for the new object.
+
+You can add a constructor for a class by adding the constructor specifier on the function name. Instead of specifying a return type on the function, the function is assigned the class name followed by any initialization of fields. A class can have more than one constructor.
+
+container
+
+A container is a way of organizing data in code. See container type for more info.
+
+container type
+
+You can store multiple values together by using a container type such as array, map, tuple, and option.
+
+context
+
+The code scope that defines the lifetime of various language elements and constraints. This is usually the range between a code block begin and end.
+
+context switch
+
+A context switch is the process of storing the state of a process or thread so that it can be restored and resume execution at a later point, then restoring a different, previously saved, state.
+
+contract with the genie
+
+Writing code is sometimes compared to making a contract with the genie in the sense that a program will follow your instructions exactly, even when the result is not exactly what you're expecting. Also see program.
+
+control flow
+
+The order in which a computer executes instructions. Verse has different expressions you can use to control this flow within your program, such as block or loop expressions.
+
+converges
+
+The "smallest" effect set. It's code that is guaranteed to yield a value in a finite amount of time without diverging.
+
+coroutine
+
+A routine with a durational lifespan that either performs work over time or waits for various events and states to occur, or a combination of both. Coroutine is synonymous with async function.
+
+D
+data
+
+Generally, data refers to the values used in an expression.
+
+data member
+
+See member.
+
+data type
+
+See type.
+
+debugger
+
+A tool used for debugging, where you can see the program state at each execution step.
+
+debugging
+
+The process of identifying and resolving errors in your code.
+
+decides
+
+An effect that indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back as though the actions were never performed if there's a failure anywhere in the function.
+
+decision expression
+
+Decision expressions use the operators not, and, and or to give you control over the success and failure decision flow.
+
+declaration
+
+A declaration is an expression where an identifier is introduced, along with its type. It may or may not be implemented (used), and it may or may not have a value assigned (initialized).
+
+var name : type = expression is the syntax for the declaration of a variable. For example:
+
+var PlayerSpeed : float = 2.0
+This line of code declares that a variable named PlayerSpeed has a float value.
+
+In this example, the last part, = 2.0, is the initialization, which is separate from the declaration.
+
+declarative programming
+
+This programming paradigm focuses less on the step-by-step execution of a program, and more on the desired end result by specifying what is to be done instead of how it's done.
+
+declare
+
+You declare a variable or a function by specifying its identifier and type. Compare to initialize.
+
+decorate
+
+When writing code, to decorate means to wrap one piece of code with another.
+
+defer
+
+The defer expression delays the execution of code until the current scope exits. This expression is useful for cleanup tasks such as resetting variables.
+
+define
+
+See definition.
+
+definition
+
+A definition is when an identifier is implemented or has a value assigned, such as a function definition or a class definition. Compare to declaration.
+
+dependency
+
+Dependency is where a module depends on other modules for some functionality.
+
+deterministic
+
+A deterministic system is one where the same initial state or input will always produce the same results.
+
+deterministic destruction
+
+Deterministic destruction, found in some programming languages, is when objects are destroyed when a program exits their scope.
+
+developer
+
+In UEFN and Verse, users are called developers. This term includes Fortnite island creators, artists, and architects.
+
+digest
+
+An automatically-generated listing of all public symbols, such as modules, functions, classes, that the Verse compiler has processed. It also includes comments. You can read a digest file to see what API and functionality is in an associated module.
+
+dispatch
+
+To dispatch is to send something somewhere. In Verse, this could be to dispatch a call to a function or dispatch an event to a listener, for example.
+
+diverge
+
+A program's execution is said to diverge if it does not terminate (end) as expected. If it does yield a value within a finite amount of time without diverging, it converges.
+
+doc
+
+A generic note field that you'll find on classes and functions (but not function parameters) that contains helpful information about what the element it describes does or how to use it, and is used to populate that element's page in the Verse API Reference.
+
+domain
+
+Domain is the set of inputs accepted by a particular parameter. A type is one way to specify a domain, but domain is more encompassing than type.
+
+dynamic typing
+
+In a dynamically-typed programming language, variables and expressions do not have assigned types. This means that it cannot be verified until runtime. Compare to strongly-typed.
+
+E
+editable
+
+An attribute you can add to code to expose properties in UEFN. Tagging code with this attribute consists of adding an @attribute_name (in this case @editable) before a field identifier:
+
+@editable
+PropertyName : type = DefaultValue
+For example, the string field GreetingMessage is an editable property with the default value "Hello, stranger":
+
+expose_properties := class(creative_device):
+    @editable
+    GreetingMessage : string = "Hello, stranger"
+For more on how to use this, see Customize Your Device Properties in the Editor.
+
+effect
+
+An effect is a category of behavior that a function can exhibit.
+
+In the example below, the code says that a function is named IsCriticalHealth and takes an integer value as input through the Health parameter. Next, it says that the effects the function exhibits are decides and transacts, which means the function is a failure context and its actions can be rolled back if the function fails. If the Health value that is passed as input to the function is greater than 0.0 and less than or equal to 30.0, then the function succeeds. Otherwise the function fails, and the context that called the function must handle the failure.
+
+IsCriticalHealth(Health : float)<decides><transacts> : void =
+        ((Health > 0.0) && (Health <= 30.0))
+For more on this, see Specifiers and Attributes.
+
+effect hierarchy
+
+An effect is a category of behavior that a function can exhibit. The application of exclusive effects to a function has a hierarchy, with effects higher in the hierarchy permitting at least all the behavior of effects below them. The hierarchy is:
+
+transacts
+varies
+computes
+converges
+The transacts effect will include properties for the effects below, the varies effect includes the computes and converges effects but not transacts, and so on.
+
+element
+
+A single part in a larger group. For example, an array can contain different elements that can be stored and used individually.
+
+emoji
+
+Emoji are pictographs (pictorial symbols) that are typically presented in a colorful form and used inline in text. They represent things such as faces, weather, vehicles and buildings, food and drink, animals and plants, or icons that represent emotions, feelings, or activities. The standard for emoji is set by the Unicode Consortium.
+
+Both emoji and emojis are acceptable plural forms, depending on who you ask. 🤦
+
+empty block
+
+A code block that contains zero (no) expressions is an empty block. Empty blocks are generally used only as placeholders, and will be filled in later with code.
+
+empty string
+
+A string containing no characters "" is called an empty string.
+
+enum
+
+Short for enumeration, which means to name or list a series of things, this is a type in Verse that can be used for things like days of the week or compass directions.
+
+enum is a keyword.
+
+equality expression
+
+In Verse, equality expressions are when you compare if two things are equal using the = operator.
+
+escape character
+
+The Verse escape character is the backslash ( \ ), which creates an escape sequence within a string literal. This is used to alter control characters that would otherwise be interpreted differently. For example, if you're working with a string and want to include characters that have preset uses, such as { }, you need to include the escape character "" before the character in the string. This would make "\\{\\}" render as {} in the text.
+
+evaluate
+
+To evaluate is to execute an expression to produce a value.
+
+event
+
+An event is an action or occurrence that can be identified. For example, the Button device has the InteractedWithEvent, which occurs whenever a player interacts with the button. You can define behavior for whenever a specific event occurs by subscribing with an event handler.
+
+exclusive effect
+
+A few effects are considered to be exclusive effects to which additive effects can be added, but that cannot be used with other exclusive effects. Exclusive effects include computes, varies, and transacts. Additive effects include suspends and decides.
+
+execute
+
+To run a program.
+
+execution
+
+The process of a computer interpreting a program and performing the instructions from that program.
+
+expose
+
+A property is exposed in UEFN by assigning it the editable attribute in Verse code. This means you can edit the exposed property directly in the UEFN interface. Also see editable.
+
+expression
+
+An expression is the smallest unit of code (a combination of values and functions) that has a result when evaluated.
+
+The example below is an if ... else expression, meaning that if the value meets a named criteria, it's one thing, but if not, then it's something else.
+
+if (a > 5):
+    “Big!”
+else
+    “Small!”
+In Verse, everything is an expression, from literals to function calls or control flow.
+
+This compares to a statement, which is a standalone command that does not have a resulting value. In Verse, everything is an expression, and there is no distinction between statements and expressions that can evaluate to a value.
+
+For more in-depth info, see Expressions.
+
+F
+f
+
+See float.
+
+fail
+
+In Verse, any code the user writes cannot fail, by default. What this means is that instead of having a function that returns Booleans or options, it uses <decides> to either return a value, void, or fail.
+
+failable expression
+
+A failable expression is an expression that can either succeed and produce a value, or fail and return no value. Examples of failable expressions include indexing into an array because an invalid index will fail, and using operators such as comparing two values.
+
+failure
+
+Failure is more than a simple Boolean value in Verse. Failure drives the flow of control. A failable expression can succeed and yield a value, or fail and return no value, and failable expressions are only allowed in a failure context, unlike other programming languages, where control flow is decided through Boolean values.
+
+failure context
+
+A failure context is a context where it is allowable to execute expressions that could fail. The context defines what happens if the expression fails.
+
+field
+
+See member.
+
+final
+
+A specifier that can only be used on classes and members of classes:
+
+When a class has the final specifier, you cannot create a subclass of the class.
+
+When a field has the final specifier, you cannot override the field in a subclass.
+
+When a method has the final specifier, you cannot override the method in a subclass.
+
+fire-and-forget
+
+Fire-and-forget refers to an expression where you don't care when it completes, or whether it completes successfully. This is extremely rare.
+
+float
+
+A math type used for storing and handling floating point numbers. It is one of three major numeric types supported in Verse, along with int and rational.
+
+floating point number
+
+A term used in various programming languages to define a variable with a fractional value, or a number that contains a decimal point, such as 0.5, or 1.0. Numbers created using a float variable declaration will have digits on both sides of a decimal point.
+
+Floor
+
+A math operation that rounds a rational value down to the closest integer. Compare to Ceil.
+
+for expression
+
+A for expression, sometimes called a for loop, is the same as a loop expression, except that for expressions are constrained, which means that the number of iterations is known before the for loop is executed, and decisions on when to exit the loop are automated. For more info, see For.
+
+frame
+
+A frame is one fully rendered image (such as on a computer monitor or TV) representing a simulation at a given point in time. A frame is sometimes used synonymously with a simulation update (or tick) since they are usually in step, though new frames can occur at a different rate (more or less frequently) than a simulation update. The frame rate, or fps (frames per second) for short, is the number of frames that appear per second.
+
+function
+
+A function (also called a routine) is reusable code that provides instructions for performing an action, or creating an output based on input.
+
+To define a function, you must provide three key parts: a unique name, the type of information to expect as its result, and what the function will do when called.
+
+The following is the basic syntax for a function:
+
+name() : type =
+    codeblock
+The name() and type separated by a colon: This is the function signature, which is how you call and use the function, and the value that must be returned by the function is of the type you provide. This format is similar to how you create [constants}(#constant), except for the () after the name, which mimics how you call the function in your code.
+
+The function code block: You define what the function will do when it's called by providing =codeblock, where codeblock is any sequence of one or more expressions. Whenever you call the function, the expressions in the code block are executed.
+
+function syntax
+function call
+
+An expression that evaluates (known as calling or invoking) a function. Functional calls can have two forms, depending on whether the function has the decides effect: FunctionName() and FunctionName[]. The result type of the function call expression is defined in the function signature.
+
+function signature
+
+The function signature declares the function name (identifier), and the input (parameters) and output (result), of the function. Verse functions can also have specifiers that specify how to use or implement a function.
+
+functional logic programming
+
+The combination of functional and logic programming paradigms into a single language.
+
+functional programming
+
+A type of declarative programming that focuses on the use of functions. Functional programming aims to make testing and debugging easier by reducing side effects. Haskell is an example of a functional programming language.
+
+future
+
+A task that has started to execute but has suspended without canceling. It is future because it will complete at some point in the future.
+
+G
+game loop
+
+A game loop is code that runs repeatedly (loops) to respond to input — usually the player interacting with their controller or mouse — to update game state, and provide output that shows the player they affected the game state, like when they push a button that turns on a light. The loop usually ends when the game reaches a completion state, such as the player reaching a goal, or failure state, such as the player running out of time before making the goal."
+
+game state
+
+The state of a game or other simulation. It's made up of all data values that describe a system. Constant and variable values determine the system state.
+
+generator
+
+A generator produces a sequence of values, one at a time, and gives the value in the sequence a name.
+
+group
+
+The action of enclosing an expression in (). This explicitly specifies the order of evaluation. Grouping can also improve code readability.
+
+H
+handler
+
+A handler is the function that is called to respond to a bound event. For example, if you bind a function to a button's InteractedWithEvent, then each time a player interacts with that button, the handler associated with that event is called.
+
+head node
+
+The first node in a linked list is called the head node, and the last node is called the tail node.
+
+hexadecimal
+
+In Verse, you can use the hexadecimal (base-16) numeral system to represent integers, instead of the decimal numeral system that uses base-10. This means that hexadecimal values are represented with the digits 0–9 and the letters A–F. For example, 0x7F is the same as 127, and 0xFACE is the same as 64206.
+
+This is an alternate way of representing integers.
+
+hierarchical
+
+Having clear levels or hierarchies of rank, importance, or control. Common hierarchical relationships are parent/child or superclass/subclass.
+
+I
+IDE
+
+An integrated development environment (IDE) is a software that provides a user interface for creating and debugging programs.
+
+identifier
+
+An identifier is the name given to things in a program, such as variables or functions, to uniquely identify them.
+
+if expression
+
+With the if expression, you can make decisions that change the flow of the program. As with other programming languages, the Verse if expression supports conditional execution, but in Verse, the conditions use success and failure to drive the decision.
+
+immediate
+
+An immediate expression evaluates with no delay, meaning that the evaluation will complete within the current simulation update.
+
+immutable
+
+After an object has been created, its state cannot be modified. Compare to mutable.
+
+imperative programming
+
+A paradigm where the program explicitly describes how a program executes, step by step. C is an example of an imperative programming language.
+
+index
+
+An index represents the positions of items in a sequence by numerical representation. A sequence can be a list, a string of characters, or any arbitrary sequence of values.
+
+Indexes use zero-based counting. This means that the first position in the index is 0, and the fifth position would be 4.
+
+infer
+
+There are instances where you don't need to explicitly specify the type, such as when creating a constant. For example, in MyConstant := 0, the type for MyConstant is inferred to be int because an integer value is assigned to it. In instances like this, the type is inferred.
+
+infinite loop
+
+A loop block that will repeat forever. Also see loop and break.
+
+infix
+
+A format for an operator where there are two operands and the operator is between the operands.
+
+inheritance
+
+In Verse, you can create a class that extends another class's definition by adding or modifying the fields and methods of the other class. This is often called subclassing or inheritance, because one class inherits definitions from the other class.
+
+initialize
+
+To create a variable, specify its identifier and type, which is called declaring a variable, and assign a value to the variable, which is called initializing.
+
+instance
+
+An instance of a class is an object. An instance has the same behaviors defined by its class type but with real values.
+
+instantiate
+
+To create an instance or value of a data structure or type such as a class or structure. Also see archetype instantiation.
+
+int
+
+The type used in Verse for storing and handling integers like 1, -30, and 777. An int can contain a positive or negative number (or zero) with no fractional component. In Verse, an int can contain a positive or negative number (or zero) with no fractional component.
+
+integer
+
+An integer is a whole number (not a fractional number) that can be positive, negative, or zero.
+
+interface
+
+An interface is a type that provides a contract for how to interact with any class that implements the interface. An interface cannot be instantiated, but a class can inherit from the interface and implement its methods.
+
+internal class
+
+A class that's marked epic_internal, which means that you cannot create your own instance of the class. You can only use the APIs to access an internal object.
+
+interpolation
+
+The blendng of new values that lie between known values.
+
+interpreter
+
+A program that analyzes and executes a program line by line.
+
+invocation time
+
+The time it takes for an expression to be evaluated. An immediate invocation takes what is effectively no time. An async expression may complete immediately, or may be latent.
+
+invoke
+
+See call.
+
+is-a relationship
+
+The relationship between a parent class and a child class is called an "is-a" relationship. The child class in an is-a relationship inherits from the parent class.
+
+iterate
+
+To run code for each element in a sequence.
+
+J
+K
+key-value pair
+
+When a key is associated with a value, together they are a key-value pair. You can look up the value by using the key.
+
+keyword
+
+Keywords are reserved words that have a special meaning to the compiler. Examples of keywords are for and class. Keywords cannot be used as identifiers.
+
+L
+lifespan
+
+See lifetime.
+
+lifetime
+
+The time between an object's creation and its destruction. Synonymous with lifespan.
+
+linked list
+
+A linear data structure where each element stores a reference to the next element in the list.
+
+linked list node
+
+Each element in a [linked list(#linkedlist) is called a node. A node is a container that holds some data and a reference to the next node in the list.
+
+literal
+
+A fixed value in the Verse programming language, such as a number or a character. For example, 1 is an integer literal.
+
+local
+
+Refers to a constant or variable inside of a code block. These can't be used outside of the code block where they were created. Also see scope.
+
+locale
+
+In programming, a locale is a set of parameters that defines a user's language, region, and other aspects of the user interface. In Verse, locale specifically is a type that sets a context for when message should be localized, and affects the language for text and numbers based on locale.
+
+logic
+
+Verse uses logic as the type for the Boolean logic values true and false. To determine flow control, Verse often uses a combination of failure contexts and failable expressions instead of testing the state of a logic type.
+
+logic programming
+
+A programming paradigm that uses Boolean logic to control how facts and rules about the problems within the system are represented or expressed.
+
+loop
+
+A loop repeats the expressions in its code block. A loop expression will repeat forever unless you exit the loop (which is often acceptable in concurrent programming). For example:
+
+loop:
+    Sleep(1.0) # Sleep(1.0) waits for 1 second before proceeding to the next expression.
+    Platform.Hide()
+    Sleep(1.0) # Sleep(1.0) waits for 1 second before proceeding to the next expression.
+    Platform.Show() # The loop restarts immediately, calling Sleep(1.0) again.
+This block of code repeats the four expressions forever: wait one second, make a platform disappear, wait another second, and make the platform reappear.
+
+For an example of how a loop might be used in game development, see Disappearing Platform on Loop.
+
+M
+map
+
+A map is a container where you can store values associated with another value, called key-value pairs. Key-value pairs can be any combination of types as long as the key type is comparable. The elements of a map are in the order you insert the key-value pairs into the map, and you can access the elements by their unique keys. Also see container types.
+
+math expression
+
+In Verse, a math expression is an expression that uses one of the following operators: +, -, * or /.
+
+member
+
+A named variable or function that is a sub-part of a composite data structure (such as a Verse class, structure, interface or module). Member variables are often referred to as fields, and member functions as methods.
+
+message
+
+A message in Verse is a type that can contain locale-independent text. When you initialize a message variable with a string value, that string is the default text and language for the message.
+
+metaverse environment
+
+A persistent and globally consistent, real-time, 3D world with a runtime environment that executes concurrent, complex, interdependent user-written code with millions of simultaneously connected users.
+
+method
+
+A method is a function attached to a class and can only be called on an instance of that class.
+
+module
+
+A Verse module is an atomic unit of code that can be redistributed and depended upon, and can evolve over time without breaking dependencies. You can import a module into your Verse file to use code definitions from other Verse files.
+
+For more info, see Modules and Paths.
+
+mutable
+
+This refers to an object state that can still be modified after creation. In Verse, mutability is only possible with pointers.
+
+Compare to immutable.
+
+mutex
+
+A mutex is a synchronization primitive that grants exclusive access to a shared resource using only one thread. Also see mutual exclusion.
+
+mutual exclusion
+
+When more than one process accesses the same segment of code, that segment is called the critical section. Mutual exclusion is a way to ensure that no two processes can access a critical section at the same time.
+
+N
+NaN
+
+A value that represents Not a Number.
+
+native
+
+native indicates that the definition details of an element are implemented in C++. This specifier can auto-generate C++ definitions that a developer can then use. The native specifier is used on class, interface, enum, method, and data.
+
+native_callable
+
+Indicates that an instance method is both native (implemented in C++) and can be called by other C++ code. You can see this specifier used on an instance method. This specifier doesn't propagate to subclasses, so you don't need to add it to a definition when overriding a method that has this specifier
+
+nested
+
+When code is nested, one block of code is contained within another block of code that performs a broader function.
+
+no-rollback
+
+This effect indicates that a function's mutable data reads and writes cannot be undone, meaning the function cannot be invoked in a failure context (which has rollback behavior in the event of failure).
+
+node
+
+See linked list node.
+
+O
+object
+
+An instance of a class is an object. An instance has the same behaviors defined by its class type but with real values.
+
+The terms instance and object are synonymous.
+
+object-oriented programming
+
+Object-oriented programming (OOP) is a programming paradigm that relies on the concept of classes and objects.
+
+open world language
+
+A language in which interdependent modules written by many different users and organizations can evolve over time without breaking interface compatibility and persistent data compatibility by following clearly-defined subtyping rules.
+
+operand
+
+The quantity on which an operation is done. For example, in the expression 1 + 2, the + is an operator, and 1 and 2 are both operands.
+
+operation
+
+An action carried out by a program to accomplish a specific task. There are four basic groups of computer operation: input, process, output, and storage. An operation is a type of expression.
+
+operator
+
+A symbol that represents an action or process. For example, in 1 + 2, the + is the operator.
+
+operator precedence
+
+This refers to the built-in order of evaluation when combining operators in Verse. For example, if several operators are used in the same expression, the order in which they are evaluated matters.
+
+For example, 1 + 2 * 3 does not evaluate to 3 * 3 since multiplication takes precedence over addition.
+
+Operator precedence can be overridden by grouping expressions.
+
+option
+
+In Verse, an option can contain one or no value for a type.
+
+order of evaluation
+
+Refers to the operator precedence — the order in which certain operations should be performed in an expression.
+
+overload
+
+Overloading a function or operator means the same function name or operator symbol can have different parameters. For example, if you say a 3D vector equals another 3D vector, like (1,2,3), that's pretty clear. But you could use the equals operator to say your 3D vector equals a single number, like 1. In that case, maybe the 3D Vector gets set to (1,1,1), but the overloading part is that there are multiple "3D Vector =" operators with different parameters. The language would have to look at the context to see which one to use.
+
+override
+
+In Verse, you can override fields from a superclass and assign initial values. For example:
+
+tank := class(player_character):
+    StartingShields<override> : int = 100
+    MaxShields<override> : int = 200
+    AllowOvershield<override> : logic = true
+    DamageReduction : int = 50
+
+CreateTankPlayerCharacter() : tank =
+    return tank{}
+The tank class will have values for StartingShields, MaxShields, and AllowOvershield that are different from the default class values.
+
+You can also override method values the same way.
+
+For more on this, see subclass.
+
+P
+paradigm
+
+A typical pattern or model for something. In programming, a paradigm is a way that a programming language is organized. There are four major paradigms for programming languages:
+
+Imperative
+Logic
+Functional
+Object-oriented
+There are also multi-paradigm languages, like Verse.
+
+parallel
+
+Multiple computations that execute in the same physical time period, such as on separate processors, are parallel.
+
+parameter
+
+An input variable that includes a a domain such as a type, and an optional default value that's defined in a function signature, which is then used in the body of the function. Compare to argument.
+
+parametric type
+
+A type that can take a parameter.
+
+parse
+
+To parse, in computer science, is where a string of commands — usually a program — is separated into more easily processed components, which are analyzed for correct syntax then attached to tags that define each component.
+
+parser
+
+A program for parsing code.
+
+path
+
+Verse paths provide a global namespace for identifying things, and borrow from the idea of web domains. These paths are persistent, unique, and discoverable by any Verse programmer.
+
+Perforce
+
+Perforce (P4) is a software tool that provides revision control (also known as source code control or version control), which is a way to track and manage changes to software code. This is useful when you have teams of programmers working on the same project. If someone makes a mistake, version control makes it possible to compare earlier versions of the code to find and correct the problem without interrupting everyone else’s work.
+
+player
+
+A type in Verse that represents a human player. Compare to agent.
+
+playspace
+
+A Verse API module that you can use to get an array of players or teams, or the team for a particular player. It also lets you subscribe to player-added and player-removed events.
+
+pointer
+
+A pointer is a way to reference a mutable "box" that can hold a specified value type. With a pointer, you can change the specific value in that box. Compare to value.
+
+pointer variable
+
+A pointer variable points to a memory location where a value is stored. After you create a pointer variable, you can’t change the memory location of the pointer variable, but you can change the value stored at that memory location.
+
+polling
+
+Polling refers to actively sampling the status of an external device by a client program as a synchronous activity. Polling is most often used in terms of input/output (I/O), and is also referred to as polled I/O or software-driven I/O.
+
+polymorphic
+
+Polymorphic comes from poly-, meaning many, and -morph, meaning form. Polymorphic behavior occurs when a variable can have different values under different conditions.
+
+postfix
+
+A format for an operator where there is only one operand and the operator is after the operand.
+
+precedence
+
+The order in which certain operations need to be performed in an expression.
+
+predicate
+
+In Verse, a predicate is something that either succeeds or fails.
+
+preemption
+
+Temporarily interrupting an executing task with the intention of resuming it at a later time is called preemption. This is usually done by an external scheduler with no assistance or cooperation from the task.
+
+prefix
+
+A format for an operator where there is only one operand and the operator is before the operand.
+
+primitive type
+
+A primitive is any type that is not created from other types. This means that a primitive is not a composite, and cannot be broken down further. Examples of built-in primitive types include void, logic, int, float, rational, and char. Primitives are built into the Verse language.
+
+Compare to container type.
+
+program
+
+A program is a set of instructions that tells the computer how to do something. The basics of any program are showing how the computer will receive input and return output.
+
+A program solves problems. But programs are very literal. It's like making a contract with a genie. The genie (the program) will give you exactly what you ask for. Exactly. Errors occur when the programmer makes assumptions about what should happen instead of precisely describing what input can be received and what output will result.
+
+programming
+
+The act of writing instructions (a program) that can be compiled and executed by the computer.
+
+programming language
+
+A formal language used to write computer programs. There are lots of programming languages, and each has its own exact rules. Examples would be Scratch, a visual programming language used for developing interactive stories, games and animations, or C++, a text-based language that is frequently used in game development. Verse is a programming language developed by Epic Games for Creators who want to learn more about using development tools.
+
+propagate
+
+Propagate in a function is what occurs if the caller doesn't have to handle what happens in the case of failure. For example, a function with a decides effect could be called from another function with a decides effect. Whatever called the caller would then have to handle the failure.
+
+property
+
+A property is a member(field) that makes it possible to return values and expose those values.
+
+pseudocode
+
+Pseudocode (pronounced SOO-doh-kohd) is a detailed description in plain language (not programming language) of what an algorithm should do. Pseudo- means not true or real, so you could say that pseudocode is fake code, but it's useful for working out what an algorithm should accomplish.
+
+You can also think of pseudocode as a high-level outline. Pseudocode is usually written to plan out a large or complex part of a program before writing real code.
+
+public member
+
+A member that is visible to other modules.
+
+pure
+
+Declares that a function will always give the exact same output given the same input, and has no side effects (writes to mutable variables, IO effects, and so on).
+
+Q
+qualify
+
+To define an identifier within a scope that allows the identifier to be "reused". For example, you could have a constant that is named "cat." You could use the same name for a class field named "sarah.cat". Both include "cat" in the name, but "sarah.cat" has been qualified.
+
+query
+
+Query expressions use the operator ? to check if a logic or optional value is true.
+
+R
+race
+
+In a race expression, all expressions in the race block run concurrently, but as soon as one expression completes, the other expressions are canceled and the race expression yields control back. race is a structured concurrency expression.
+
+race condition
+
+A race condition is when a program attempts to perform two or more operations at the same time for operations that must be done in sequence to be done correctly.
+
+RAII
+
+An acronym for resource acquision is initialization, RAII describes when an object acquires resources between initialization and finalization only, as a way to manage resources more effectively.
+
+raise
+
+When a function emits a signal, it raises an event. Interested parties are notified that an event occurred, such as interacting with a button, and all the event handlers are called.
+
+range expression
+
+Range expressions contain all the numbers between and including two specified values, with .. between the values; for example, 1..5. Range expressions can only be used in specific places, such as in for expressions.
+
+rational
+
+One of three major numeric types supported in Verse, along with int and float. You will only see the rational types in results of integer division, and must convert the value back to an integer by rounding the value up with Ceil() or down with Floor().
+
+rational number
+
+A number that can be expressed as a simple fraction using two integers. For example, 1.75 can also be expressed as 7/4, but the square root of 2 (√2) cannot be expressed as a fraction, and so is considered an irrational number. Another example of an irrational number is Pi, which starts as 3.14159... and continues infinitely.
+
+recursion
+
+Recursion is when a function calls itself.
+
+refactor
+
+To change the structure of code without changing its functionality. For example, a block of code that is repeated multiple times throughout a program could be refactored into a function call instead. Refactoring can increase code readability and reduce code complexity without changing the way the code behaves.
+
+REPL
+
+Read-Evaluate-Print Loop, or REPL, is a computer environment where you can input code and have it read and evaluated, then see the results. A REPL gives you a chance to explore a language and see what works (or fails to work) without breaking anything.
+
+result
+
+When an expression executes, then outputs a value , that value is a result.
+
+return
+
+An expression that instructs a program to leave a subroutine and go back to the return address. The return address is where the subroutine was called from.
+
+Instead of relying on the last expression in a function code block to produce the right value, you can also explicitly specify the result using a return expression. When the return expression is executed, it will exit out of the function's code block immediately. This means if you place the return expression before other code, the code that follows won't execute.
+
+rollback
+
+To restore a program to a previously defined state, usually to recover from a failed expression.
+
+routine
+
+See function.
+
+runtime
+
+Refers to the time spent running the game, simulation, or application. Compare to compile time, which refers to the time spent compiling, or development time, which refers to the time spent developing, compiling, and debugging.
+
+It's common to differentiate between things that happen at runtime and things that happen at compile time.
+
+rush
+
+In a rush expression, all expressions in the rush block run concurrently, but as soon as one expression completes, the rush expression yields control back and the other expressions continue to run independently. rush is a structured concurrency expression.
+
+S
+scope
+
+Scope refers to the part of the program where the association of a name to a value is valid, and where that name can be used to refer to the value. For example, any constants or variables that you create within a function only exist in the context of the function. This means that the lifetime of objects is limited to the scope they’re created in and cannot be used outside of that code block.
+
+script
+
+A self-contained amount of executable Verse code that is associated with an object.
+
+self variable
+
+Self is a special identifier in Verse that can be used in a class method to refer to the instance of the class that the method was called on. You can refer to other fields of the instance the method was called on without using Self, but if you need to refer to the instance as a whole, you must use Self.
+
+semantic error
+
+See compiler error.
+
+semantics
+
+The meaning of an expression. Compare to syntax.
+
+semaphore
+
+A semaphore is like a mutex except that while a mutex locks other threads out of available resources, a semaphore only signals that the resource is in use.
+
+sequential execution
+
+Code is generally executed line by line, in the order the expressions appear. This is called sequential execution.
+
+set
+
+A keyword that can be used to change the value of a variable while the program is running.
+
+The syntax for this is set name = value. The set is the keyword, name is the name of the variable to be changed, and the value is what it should be changed to.
+
+use the set keyword to change a variable value while the program is running.
+This is called assignment.
+
+shadowing
+
+Shadowing is when an identifier hides another identifier. Shadowing is an error in Verse, and will prevent the code from compiling.
+
+side effect
+
+A side effect occurs when some code, such as a function or an expression, modifies some state outside of its scope.
+
+signed integer
+
+A signed integer is a value that can hold a negative or positive number, or zero. It's called a signed integer because it can use a + or - sign on the far left to indicate whether the number is positive or negative. An unsigned integer can only be a positive number or zero.
+
+simulation
+
+A simulation is the representation of the behavior or characteristics of one system through the use of another system. In Verse, this would be a computer program that runs over time. This term is broader than the term game, which is one type of simulation. In addition to games, simulations include such things as interactive experiences, art, medical visualization, architectural visualization, AI, driving/flying/military simulators, and so on. Simulations can be used on different mediums, such as virtual reality (VR) and augmented reality (AR).
+
+simulation update
+
+A recurring round, step or increment of logic, behavior and other calculations for a simulation. It is often shortened to update or used synonymously with tick or frame. A simulation update generally has an elapsed time that can be constant or varied. This is often referred to as delta time, which may or may not coincide with the actual passage of time. For example, a simulation update can be faster, the same as, or slower than real time.
+
+A simulation update often tends to be in 1:1 step with rendering a frame — this is the default for Verse. However, a simulation update may be less or more frequent than a frame, such as when an online game client goes out of sync with the server or the physics systems while doing several iterations of the changes of a simulated object. It is also possible that a simulation would not be visually rendered at all.
+
+snippet
+
+See code snippet.
+
+spawn expression
+
+A spawn expression starts an async function. Any expression that follows the spawn executes immediately without waiting for the spawn expression to complete. The spawn continues independently until it completes.
+
+specifier
+
+A specifier applies additional information to a definition. For example, the decides effect specifier on a function definition marks the function as failable.
+
+Specifiers fall into one of two subcategories: access specifiers and effect specifiers.
+
+speculative execution
+
+Verse takes advantage of failure context to let you try out actions without committing them. This is called speculative execution. When an expression succeeds, the effect of the expression is committed, such as changing the value of a variable. If the expression fails, the effects of the expression are rolled back, as though the expression never happened.
+
+splat
+
+When a tuple is used as a single element to a function, it will be as though that function were called with each of the tuple's elements separately. This is called tuple expansion or splatting.
+
+standard library
+
+A series of functions, constants, and other language definitions available in Verse. This library provides implementations for common programming needs. It's a resource for things programmers will use frequently, like math functions.
+
+state
+
+A state is the combination of original values in an object plus any modifications made.
+
+statement
+
+A standalone command that does not have a resulting value. Verse does not use statements. Instead, it uses expressions.
+
+static checking
+
+An automated check during compilation that can catch a bug based on the semantics of the code.
+
+STM
+
+Software transactional memory (STM) is a concurrency control mechanism analogous to database transactions for controlling access to shared memory in concurrent programming. Eventually, Verse will feature STM because it unlocks performance gains for large distributed simulations, among other motivations.
+
+string
+
+A string is a literal type in Verse, where any characters between two quotes are a string literal. For example, “Hello world” is a common string. A string in Verse can contain letters, numbers, punctuation, spaces, and even emojis.
+
+strongly-typed
+
+A programming language is strongly typed when a type is assigned to every identifier. When the type is not explicitly provided, it is inferred. This means that the language won't produce unpredictable results during runtime because the type for those identifiers and how operations affect those types are known. Also see static checking.
+
+struct
+
+Struct is short for structure, and is a way to group several related variables together. The variables can be of any type.
+
+structis a keyword in Verse.
+
+structured concurrency
+
+Structured concurrency describes concurrent operations within a lifespan that's constrained to a specific concurrent command and async context scope. This is a structured flow control like if, for or return that constrains to an associated scope.
+
+In Verse, structured concurrency expressions include sync, race, rush, and branch.
+
+subclass
+
+A class that inherits the members (methods and data) of its superclass (parent class). In Verse, you're able to extend the class with new members, or with modified inherited members.
+
+subexpression
+
+An expression that's nested inside a code block.
+
+submodule
+
+A Verse module within another Verse module. You can think of it like folders and subfolders — each submodule adds another /NameOfModule to the path as it goes further down.
+
+subroutine
+
+A set of instructions within a computer program designed to perform a frequently used operation. Subroutines are similar to functions, except that a function performs some calculations and returns the result to the caller. Subroutines do their job without reporting back to the calling program.
+
+subscribe
+
+Subscribing is a way to specify the function you want to call when an event is raised. This is referred as binding to an event. The bound function is referred to as a handler.
+
+subtype
+
+A type that supports all the operations of its supertype. The subtype keyword can be used with parentheses to specify that a type is constrained to a certain type. For example, several Verse array methods use subtype to define that all elements of the array must have the supertype comparable for the method to work.
+
+(Input:[]t where t:subtype(comparable)).RemoveFirstElement<public>
+(ElementToRemove:t)<computes><decides>:[]t
+RemoveFirstElement
+This needs the array elements to have a supertype of comparable so that it can determine if any of the elements in the array are equal to the ElementToRemove argument.
+
+succeed
+
+When an expression completes without failing, it succeeds. Compare to failure context.
+
+superclass
+
+Classes can inherit from a superclass, which includes all fields of the superclass in the inheriting class. Such classes are said to be a subclass of the superclass.
+
+supertype
+
+A supertype is a type that has at least one subtype. Any operations that a supertype supports must also be supported by any subtypes. In Verse, any is the supertype over all other types, and all other types are subtypes to any. The comparable type is a supertype of all types that are comparable in Verse such as int and float.
+
+suspends
+
+An effect that temporarily stops (suspends) a function without cancelling it. A suspends expression allows async functions to suspend and cooperatively transfer control to other concurrent expressions before it completes.
+
+For more information, see Concurrency.
+
+sync
+
+In a sync expression, all expressions in the sync block run concurrently and must complete before the sync expression yields control back. sync is a structured concurrency expression.
+
+syntax
+
+The rules or grammar of the programming language.
+
+Compare to semantics.
+
+syntax error
+
+See compiler error.
+
+T
+tail node
+
+The first node in a linked list is called the head node, and the last node is called the tail node.
+
+task
+
+A task is an object used to represent the state of a currently-executing async function. Task objects are used to identify where an async function is suspended, and the values of local variables at that suspend point.
+
+thread
+
+The smallest unit of processing that can be performed in an operating system.
+
+tick
+
+See simulation update which is used synonymously with tick, and, occasionally, frame.
+
+tile
+
+A section of a grid on a surface such as a floor or wall.
+
+time flow
+
+Time-flow control is at the heart of Verse programming language, and is accomplished with concurrent expressions.
+
+Time flow is a type of flow control, but where control flow is about the order in which a computer executes instructions based on the order of expressions in the program, time flow controls the execution in time, not sequence, based on how concurrency expressions are used.
+
+Time flow is another way of saying concurrency.
+
+top-level expression
+
+A top-level expression is an expression that is not nested inside a code block. Top-level expressions can also be compound expressions, such as nested code blocks.
+
+transacts
+
+When a function has the transacts effect, it means the function can read and write data, but those actions can be rolled back if the function also has the decides effect. This effect is an exclusive effect.
+
+A function with no exclusive effect specified, can read and write data, but cannot be rolled back.
+
+tuple
+
+A tuple is a grouping of two or more expressions that are treated as a single expression.
+
+The elements of a tuple are in the order you insert them into the tuple, and you can access the elements by their position in the tuple, called their index. Because the expressions in a tuple are grouped, they can be treated as a single expression.
+
+Note: The word tuple is a back formation from quadruple, quintuple, sextuple, and so on. Compare to array.
+
+type
+
+Type defines which operations can be performed on data, and how that data, or values, are stored for that type. There are common types, such as integer and string, composite types, and custom types. Also see primitive type and container type. The type keyword can be used with curly braces to define an expected type. Function declarations and numeric ranges are currently supported as declarations. For example, the Subscribe() function for the subscribable interface uses the type keyword to define that its Callback parameter must be a function with a void return type.
+
+`Subscribe<public>(Callback:type {__(:t):void})<transacts>:cancelable`
+type alias
+
+A type alias is a way to make a new name for an existing type. When you declare a type alias, you can then use the aliased name instead of the existing type. A type alias does not create a new type, but only provides a new name for an existing type.
+
+type casting
+
+You can convert a class to one of its subclasses (called type casting) by using the syntax NewReference := type_to_cast_to[Reference], where type_to_cast_to is the type you want to use. This is a failable expression because the type conversion will fail if the object can’t be converted to that type — for example, if the class is a different type from the subclass.
+
+The following example shows how to convert TaggedDevice, which has the type creative_device_base, to a customizable_light_device type so you can use its specific functions. If the TaggedDevice isn't a Customizable Light device, then it won't call TurnOn().
+
+ if (LightDevice := customizable_light_device[TaggedDevice]):
+    LightDevice.TurnOn()
+type checker
+
+Type checking is used to check a program before execution. This verifies data type values and syntax. The main purpose of a type system in a programming language is to reduce the likelihood of bugs in a program due to type errors.
+
+U
+Unicode
+
+A character-encoding standard developed by the Unicode Consortium to provide comparable support for characters across languages, platforms, and devices.
+
+unique
+
+The unique specifier can be applied to a class to make it a unique class. To construct an instance of a unique class, Verse allocates a unique identity for the resulting instance. This allows instances of unique classes to be compared for equality by comparing their identities. Classes without the unique specifier don't have any such identity, and so can only be compared for equality based on the values of their fields. This means that unique classes can be compared with the = and <> operators, and are subtypes of the comparable type.
+
+unset
+
+No value is assigned. Compare to set.
+
+unstructured concurrency
+
+Concurrent expressions with a lifespan that is not logically constrained to a specific concurrent command or async context scope. This lifespan potentially extends beyond the scope where it was executed. It is similar to unstructured flow control, such as the goto or assembly jump command.
+
+UTF-8
+
+The Unicode character-encoding scheme — a standard developed by the Unicode Consortium to provide comparable support for characters across languages, platforms, and devices.
+
+Emojis look like images or icons, but they are not. They are letters (characters) from the UTF-8 (Unicode) character set.
+
+UTF-8 covers almost all of the characters and symbols in the world.
+
+V
+value
+
+A value is the information your program uses to operate. Examples of values are numbers or text.
+
+variable
+
+A value that can be changed while a program is running. It's called a variable because it can vary.
+
+Sometimes the term "variable" refers to variables and constants collectively, but while variables and constants are similar, they have one important difference — the value of a constant cannot be changed while a program is running.
+
+Basic syntax for a variable is var name : type = value. The varis a keyword that says this is a variable, and name is a name you assign to the variable (known as the identifier). The : says that a type is coming. The = says a value is coming, then the value itself. For example:
+
+PlayerSpeed : float = 2.0
+This says that PlayerSpeed has a value of 2.0, represented as a decimal value that does not change while the program is running.
+
+sample variable
+The name and type is the declaration, and the initialization is where that value is expressed. A variable does not have to have an assigned value when initialized, but it's good practice to do so.
+
+Variables differ from constants in that you can change the value of a variable at any time. This is done with an assignment expression.
+
+Compare to constant. Also see set.
+
+varies
+
+This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+
+verbosity
+
+A setting to limit how much additional information will show up when a log is generated.
+
+Verse
+
+Verse is a statically-checked programming language with an emphasis on gameplay programming.
+
+Verse Explorer
+
+A tool in Unreal Editor for Fortnite (UEFN) that creates new Verse files from templates, organizes your files with submodules, and supports renaming and deleting files.
+
+Verse path
+
+See path.
+
+Verse-authored device
+
+A device for use in Unreal Editor for Fortnite (UEFN) that is programmed directly using Verse.
+
+visual programming language
+
+A type of programming language where the programmer uses visual elements by dragging them around and connecting them with other elements to achieve a specific sequence of program instructions.
+
+Visual Studio Code
+
+Visual Studio Code, also referred to as VS Code, is a source-code editor made by Microsoft for Windows, Linux and macOS.
+
+void
+
+Void takes any value and returns false. This allows the body of a function that returns void to implicitly yield any value, without having to be careful to convert the result of any last expression in a block.
+
+VPL
+
+See visual programming language.
+
+W
+X
+Y
+Z
+zero-based numbering
+
+A way of numbering where the first element in a sequence would be assigned as 0, rather than 1. This means that the zero position in an index represents 1, the first position represents 2, and so on. Numbering sequences that start at 0 are common in mathematic notation. In programming, that first position in an array is sometimes termed the zeroth position.
+
+ecosystem
