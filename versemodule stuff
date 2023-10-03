@@ -1,0 +1,3489 @@
+A Verse module is an atomic unit of code that can be redistributed and depended upon, and can evolve over time without breaking dependencies. You can import a module into your Verse file to use code definitions from other Verse files.
+
+A Verse module is specified by the folder in the file hierarchy of the project, and the module's name is the name of the folder. All .verse files in the same folder as the file are part of that Verse module, and can access definitions from the other Verse files in the module without explicitly importing the module.
+
+A module is identified by its path; for example, /Verse.org/Verse. Verse paths provide a global namespace for identifying things, and borrow from the idea of web domains. These paths are persistent and unique, and discoverable by any Verse programmer.
+
+For a list of existing Verse modules, see the Verse API Reference.
+
+Module Members
+You can create modules within a .verse file using the following syntax:
+
+module1 := module:
+    ...
+
+# Similar to classes and function, bracket syntax is also supported
+module2 := module
+{
+    ...
+}
+A module defined in the Verse file can contain anything that is contained at the top level of a .verse file. This includes functions, constants, various types, as well as other module definitions. For example:
+
+module := module:
+    submodule<public> := module:
+        submodule_class<public> := class {}
+    module_class<public> := class{}
+The contents of a submodule can be referred to using the name of the module qualified with the name of the base module. For example, class1 can be referred to outside of module1 as module1.module2.class1.
+
+Importing Definitions from Other Verse Files
+To use the contents of a Verse module, you must import the module by its path. For example, the following code imports the Random module, identified by the path /Verse.org/Random:
+
+using { /Verse.org/Random }
+When the Random module is imported into your Verse file, you can use its code definitions, such as the function GetRandomInt().
+
+Other common module examples include the Devices, Simulation, and Diagnostics modules, all of which are imported by default when you create a new Verse file through UEFN.
+
+using { /Fortnite.com/Devices }
+using { /Verse.org/Simulation }
+using { /UnrealEngine.com/Temporary/Diagnostics }
+To import modules from other Verse files, you can use either a local path such as using { /YourVerseFolder/your_module }, or if the file is in the same directory, just using { your_module }.
+
+You can import nested modules either by importing base modules before submodule modules, or by using dotted notation. For instance, given the modules:
+
+base_module<public> := module:
+    submodule<public> := module:
+        submodule_class := class:
+            ...
+If you want to access members in submodule, you can either import it by importing base_module before submodule, or by importing base_module.submodule. Note that importing submodule before base_module will produce an error.
+
+# Works and imports both base and submodules
+using { base_module }
+using { submodule }
+
+# Works and imports only the submodule
+using { base_module.submodule }
+
+# Does not work
+using { submodule }
+using { base_module }
+When you create a subfolder in a Verse project, a module is automatically created for that folder. For example, if base_module was defined in a folder module_folder, then module_folder would have its own module that contains base_module.
+
+Another way to view this is that the file structure module_folder/base_module is the same as the following:
+
+module_folder := module:
+    base_module := module:
+        submodule := module:
+            submodule_class := class:
+                ...
+Note that the module for module_folder would need to be imported before base_module.
+
+# Imports the folder containing base_module and its submodule
+using { module_folder }
+using { base_module }
+using { submodule }
+Access of Definitions in a Module
+The access of a module and its contents from other Verse files are set using access specifiers, such as public and internal.
+
+By default, the access for definitions are internal, which means they're only discoverable within their own module. This is also true for modules introduced by folders in a project.
+
+Because the default access specifier is internal, you can't access module members outside of the module without making them public. For instance:
+
+# This module and its members are not accesible from other Verse Files.
+private_module := module:
+    SecretInt:int = 1
+    ...
+
+# But this module, its submodule, and its members are.
+public_module<public> := module:
+    public_submodule<public> := module:
+        PublicInt<public>:int = 1
+        ...
+Note both the module and its members need to be public to access them in a different scope.
+
+Verse API version: 26.20.
+
+Welcome to the Verse API Reference! This is an automatically generated reference manual from the modules that currently exist in Verse. You can find all modules and their members here, organized hierarchically. We recommend you begin by browsing the modules, or using the left-side search bar to filter for a known term, such as a class or function name.
+
+To get started, browse the following expanded, hierarchical list of all Verse modules. Everything that you can use in the Verse API exists within one of these modules. You can click on any module to go to its page, where you will find links to all of its direct members (such as classes, enumerated types, and so on), as well as related modules. You can also use the left-side content panel to browse through all API members.
+
+Verse Module List
+Verse.org (Top Level Module)
+
+Verse
+
+Simulation
+
+Assets
+
+Random
+
+Colors
+
+Native
+
+Concurrency
+
+UnrealEngine.com (Top Level Module)
+
+Temporary
+Fortnite.com (Top Level Module)
+
+UI
+
+Devices
+
+InterpolationTypes
+Vehicles
+
+Teams
+
+Playspaces
+
+Game
+
+FortPlayerUtilities
+
+Characters
+
+AI
+
+
+AI module
+Learn technical details about the AI module.
+
+UEFNAI module
+Module import path: /Fortnite.com/AI
+
+Fortnite.com
+
+AI
+
+Classes and Structs
+Name	Description
+navigation_target	
+Interfaces
+Name	Description
+focus_interface	
+fort_leashable	
+navigatable	
+Functions
+Name	Description
+MakeNavigationTarget	
+Generate a navigation_target from any position
+
+MakeNavigationTarget	
+Generate a navigation_target from an agent
+
+Enumerations
+Name	Description
+navigation_result	
+Result of a navigation request
+
+ocus_interface interface
+Learn technical details about the focus_interface interface.
+
+UEFNfocus_interface interface
+ 	 
+Verse using statement	using { /Fortnite.com/AI }
+Members
+This interface has functions, but no data members.
+
+Functions
+Function Name	Description
+MaintainFocus	
+Look At specified location. Will never complete unless interrupted.
+
+MaintainFocus	
+Look At specified Agent. Will never complete unless interrupted.
+
+Look At specified location. Will never complete unless interrupted.
+
+ 	 
+Verse using statement	using { /Fortnite.com/AI }
+MaintainFocus<public>(Location:vector3)<suspends><varies><transacts><no_rollback>:void
+
+Parameters
+MaintainFocus takes the following parameters:
+
+Name	Type	Description
+Location	vector3	 
+Attributes and Effects
+The following attributes and effects determine how MaintainFocus behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+suspends	Indicates that the function is async. Creates an async context for the body of the function.
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Look At specified Agent. Will never complete unless interrupted.
+
+ 	 
+Verse using statement	using { /Fortnite.com/AI }
+MaintainFocus<public>(Agent:agent)<suspends><varies><transacts><no_rollback>:void
+
+Parameters
+MaintainFocus takes the following parameters:
+
+Name	Type	Description
+Agent	agent	 
+Attributes and Effects
+The following attributes and effects determine how MaintainFocus behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+suspends	Indicates that the function is async. Creates an async context for the body of the function.
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Verse using statement	using { /Fortnite.com/AI }
+Members
+This interface has functions, but no data members.
+
+Functions
+Function Name	Description
+SetLeashPosition	
+Set custom leash position. 'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters). 'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
+
+SetLeashAgent	
+Set the agent to be the new center of the leash. 'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters). 'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
+
+ClearLeash	
+Removes the current leash.
+
+Removes the current leash.
+
+ 	 
+Verse using statement	using { /Fortnite.com/AI }
+ClearLeash<public>()<varies><transacts><no_rollback>:void
+
+Parameters
+ClearLeash does not take any parameters.
+
+Attributes and Effects
+The following attributes and effects determine how ClearLeash behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Set the agent to be the new center of the leash. 'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters). 'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
+
+ 	 
+Verse using statement	using { /Fortnite.com/AI }
+SetLeashAgent<public>(Agent:agent, InnerRadius:float, OuterRadius:float)<varies><transacts><no_rollback>:void
+
+Parameters
+SetLeashAgent takes the following parameters:
+
+Name	Type	Description
+Agent	agent	 
+InnerRadius	float	 
+OuterRadius	float	 
+Attributes and Effects
+The following attributes and effects determine how SetLeashAgent behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+
+
+Set custom leash position. 'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters). 'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
+
+ 	 
+Verse using statement	using { /Fortnite.com/AI }
+SetLeashPosition<public>(Location:vector3, InnerRadius:float, OuterRadius:float)<varies><transacts><no_rollback>:void
+
+Parameters
+SetLeashPosition takes the following parameters:
+
+Name	Type	Description
+Location	vector3	 
+InnerRadius	float	 
+OuterRadius	float	 
+Attributes and Effects
+The following attributes and effects determine how SetLeashPosition behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Get the focus_interface interface for the specified character.
+
+ 	 
+Verse using statement	using { /Fortnite.com/AI }
+(InCharacter:fort_character).GetFocusInterface<native><public>()<decides><varies><transacts>:focus_interface
+
+Parameters
+GetFocusInterface takes the following parameters:
+
+Name	Type	Description
+InCharacter	fort_character	 
+Attributes and Effects
+The following attributes and effects determine how GetFocusInterface behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+native	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+decides	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Get the current fort_leashable interface for the specified character.
+
+ 	 
+Verse using statement	using { /Fortnite.com/AI }
+(InCharacter:fort_character).GetFortLeashable<native><public>()<decides><varies><transacts>:fort_leashable
+
+Parameters
+GetFortLeashable takes the following parameters:
+
+Name	Type	Description
+InCharacter	fort_character	 
+Attributes and Effects
+The following attributes and effects determine how GetFortLeashable behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+native	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+decides	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Get the navigatable interface for the specified character.
+
+ 	 
+Verse using statement	using { /Fortnite.com/AI }
+(InCharacter:fort_character).GetNavigatable<native><public>()<decides><varies><transacts>:navigatable
+
+Parameters
+GetNavigatable takes the following parameters:
+
+Name	Type	Description
+InCharacter	fort_character	 
+Attributes and Effects
+The following attributes and effects determine how GetNavigatable behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+native	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+decides	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Generate a navigation_target from any position
+
+ 	 
+Verse using statement	using { /Fortnite.com/AI }
+MakeNavigationTarget<native><public>(Position:vector3)<varies><transacts><no_rollback>:navigation_target
+
+Parameters
+MakeNavigationTarget takes the following parameters:
+
+Name	Type	Description
+Position	vector3	 
+Attributes and Effects
+The following attributes and effects determine how MakeNavigationTarget behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+native	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Generate a navigation_target from an agent
+
+ 	 
+Verse using statement	using { /Fortnite.com/AI }
+MakeNavigationTarget<native><public>(Target:agent)<varies><transacts><no_rollback>:navigation_target
+
+Parameters
+MakeNavigationTarget takes the following parameters:
+
+Name	Type	Description
+Target	agent	 
+Attributes and Effects
+The following attributes and effects determine how MakeNavigationTarget behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+native	Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Verse using statement	using { /Fortnite.com/AI }
+Members
+This interface has functions, but no data members.
+
+Functions
+Function Name	Description
+GetCurrentDestination	
+Return the current destination of the NPC
+
+NavigateTo	
+Navigate toward the specified target
+
+StopNavigation	
+Stop navigation
+
+Wait	
+Wait for a specific duration
+
+
+
+Return the current destination of the NPC
+
+ 	 
+Verse using statement	using { /Fortnite.com/AI }
+GetCurrentDestination<public>()<decides><varies><transacts>:vector3
+
+Parameters
+GetCurrentDestination does not take any parameters.
+
+Attributes and Effects
+The following attributes and effects determine how GetCurrentDestination behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+decides	Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+Navigate toward the specified target
+
+ 	 
+Verse using statement	using { /Fortnite.com/AI }
+NavigateTo<public>(Target:navigation_target, ReachRadius:float, AllowPartialPath:logic)<suspends><varies><transacts><no_rollback>:navigation_result
+
+Parameters
+NavigateTo takes the following parameters:
+
+Name	Type	Description
+Target	navigation_target	 
+ReachRadius	float	 
+AllowPartialPath	logic	 
+Attributes and Effects
+The following attributes and effects determine how NavigateTo behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+suspends	Indicates that the function is async. Creates an async context for the body of the function.
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Stop navigation
+
+ 	 
+Verse using statement	using { /Fortnite.com/AI }
+StopNavigation<public>()<varies><transacts><no_rollback>:void
+
+Parameters
+StopNavigation does not take any parameters.
+
+Attributes and Effects
+The following attributes and effects determine how StopNavigation behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+
+
+Wait for a specific duration
+
+ 	 
+Verse using statement	using { /Fortnite.com/AI }
+Wait<public>(Duration:float)<suspends><varies><transacts><no_rollback>:void
+
+Parameters
+Wait takes the following parameters:
+
+Name	Type	Description
+Duration	float	 
+Attributes and Effects
+The following attributes and effects determine how Wait behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+suspends	Indicates that the function is async. Creates an async context for the body of the function.
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+Result of a navigation request
+
+ 	 
+Verse using statement	using { /Fortnite.com/AI }
+Enumerators
+The navigation_result enumeration includes the following enumerators:
+
+Name	Description
+Reached	
+The destination has been reached
+
+PartiallyReached	
+The destination has been partially reached (AllowPartialPath was used)
+
+Interrupted	
+Navigation has been interrupted before completion
+
+Blocked	
+The navigating agent is blocked
+
+Unreachable	
+The destination cannot be reached
+
+navigation_target class
+Learn technical details about the navigation_target class.
+
+UEFNnavigation_target class
+ 	 
+Verse using statement	using { /Fortnite.com/AI }
+
+Characters module
+Learn technical details about the Characters module.
+
+UEFNCharacters module
+Module import path: /Fortnite.com/Characters
+
+Fortnite.com
+
+Characters
+
+Classes and Structs
+Name	Description
+character_modifier	
+stasis_args	
+Parameters for fort_character.PutInStasis function.
+
+Interfaces
+Name	Description
+fort_character	
+Main API implemented by Fortnite characters.
+
+Verse using statement	using { /Fortnite.com/Characters }
+OnCharacterSpawned<native_callable><public>(Character:fort_character)<varies><transacts><no_rollback>:void
+
+Parameters
+OnCharacterSpawned takes the following parameters:
+
+Name	Type	Description
+Character	fort_character	 
+Attributes and Effects
+The following attributes and effects determine how OnCharacterSpawned behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+
+Attribute	Meaning
+native_callable	Indicates that an instance method is both native (implemented in C++) and may be called by other C++ code. You can see this specifier used on an instance method. This specifier doesn’t propagate to subclasses and so you don’t need to add it to a definition when overriding a method that has this specifier.
+public	The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+Effect	Meaning
+varies	This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts	This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback	This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+
+fort_character interface
+Learn technical details about the fort_character interface.
+
+UEFNfort_character interface
+Main API implemented by Fortnite characters.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Characters }
+Exposed Interfaces
+This interface exposes the following interfaces:
+
+Name	Description
+positional	
+Implemented by objects to allow reading position information.
+
+healable	
+Implemented by Fortnite objects that can be healed.
+
+healthful	
+Implemented by Fortnite objects that have health state and can be eliminated.
+
+damageable	
+Implemented by Fortnite objects that can be damaged.
+
+shieldable	
+Implemented by Fortnite objects that have shields. A shield is a method of protection that can take incoming damage while leaving the health state unchanged.
+
+game_action_instigator	
+Implemented by Fortnite objects that initiate game actions, such as damage and heal. For example, player or agents. Event listeners often use game_action_instigators to calculate player damage scores.
+
+game_action_causer	
+Implemented by Fortnite objects that can be passed through game action events, such as damage and heal. For example: player, vehicle, or weapon.
+
+Event Listeners often use game_action_causer to pass along additional information about what weapon caused the damage. Systems will then use that information for completing quests or processing game specific event logic.
+
+Members
+This interface has functions, but no data members.
+
+Functions
+Function Name	Description
+GetAgent	
+Returns the agent associated with this fort_character. Use this when interacting with APIs that require an agent reference.
+
+EliminatedEvent	
+Signaled when this fort_character is eliminated from the match.
+
+GetViewRotation	
+Returns the rotation where this fort_character is looking or aiming at.
+
+GetViewLocation	
+Returns the location where this fort_character is looking or aiming from.
+
+JumpedEvent	
+Signaled when this fort_character jumps. Returns a listenable with a payload of this fort_character.
+
+CrouchedEvent	
+Signaled when this fort_character changes crouch state. Sends tuple payload:
+
+0: the fort_character that changed crouch states.
+1: true if the character is crouching. false if the character is not crouching.
+SprintedEvent	
+Signaled when this fort_character changes sprint state. Sends tuple payload:
+
+0: the fort_character that changed sprint state.
+1: true if the character is sprinting. false if the character stopped sprinting.
+IsActive	
+Succeeds if this fort_character is in the world and has not been eliminated. Most fort_character actions will silently fail if this fails. Please test IsActive if you want to handle these failure cases rather than allow them to silently fail.
+
+IsDownButNotOut	
+Succeeds if this fort_character is in the 'Down But Not Out' state. In this state the character is down but can still be revived by teammates for a period of time.
+
+IsCrouching	
+Succeeds if this fort_character is crouching.
+
+IsOnGround	
+Succeeds if this fort_character is standing on the ground.
+
+IsInAir	
+Succeeds if this fort_character is standing in the air.
+
+IsInWater	
+Succeeds if this fort_character is inside water volume.
+
+IsFalling	
+Succeeds if this fort_character is in falling locomotion state.
+
+IsGliding	
+Succeeds if this fort_character is in gliding locomotion state.
+
+IsFlying	
+Succeeds if this fort_character is in flying locomotion state.
+
+PutInStasis	
+Puts this fort_character into stasis, preventing certain types of movement specified by Args.
+
+ReleaseFromStasis	
+Release this fort_character from stasis.
+
+Show	
+Sets this fort_character visibility to visible.
+
+Hide	
+Sets this fort_character visibility to invisible.
+
+SetVulnerability	
+Control if this fort_character can be damaged.
+
+IsVulnerable	
+Succeeds if this fort_character can be damaged. Fails if this fort_character cannot be damaged.
+
+TeleportTo	
+Teleports this fort_character to the provided Position and applies the yaw of Rotation. Will fail if the Position specified is e.g. outside of the playspace or specifies a place where the character cannot fit.
+
+
+
+
+Module import path: /Fortnite.com/Devices
+
+Fortnite.com
+
+Devices
+
+Animation
+
+CreativeAnimation
+
+Classes and Structs
+Name	Description
+creative_device	
+Inherit from this to create a custom creative device. Inherited classes will appear in the UEFN content browser the next time Verse compiles. Instances of your derived creative_device can then be placed in the island by dragging them from the content browser into the scene.
+
+creative_device_base	
+Base class for creative_device.
+
+creative_device_asset	
+Internal asset for representing creative devices.
+
+creative_object	
+Base class for creative devices and props.
+
+creative_prop	
+A Fortnite prop that has been placed or spawned in the island.
+
+creative_prop_asset	
+Asset used to spawn creative_prop instances.
+
+device_ai_interaction_result	
+Payload of device_event_ai_interaction.
+
+visual_effect_powerup_device	
+Used to trigger a visual effect (a glow or an outline) when agents pick it up.
+
+vending_machine_device	
+Holds and spawns items, with an optional cost for each item. Can hold up to three items, and agents can cycle between these by hitting the machine with their pickaxe.
+
+trigger_device	
+Used to relay events to other linked devices.
+
+trigger_base_device	
+Base class for various specialized trigger devices. See also: trigger_device perception_trigger_device * attribute_evaluator_device
+
+trick_tile_device	
+A trap device that destroys the tile it's placed on when activated.
+
+tracker_device	
+Allows creation and HUD tracking of custom objectives for agents to complete.
+
+timer_device	
+Provides a way to keep track of the time something has taken, either for scoreboard purposes, or to trigger actions. It can be configured in several ways, either acting as a countdown to an event that is triggered at the end, or as a stopwatch for an action that needs to be completed before a set time runs out.
+
+timed_objective_device	
+Configures game modes where players can start or stop timers to advance gameplay objectives, such as Attack/Defend Bomb objectives.
+
+teleporter_device	
+Customizable rift that allows agents to move instantly between locations. You can use this to move players around your island, or create multi-island experiences with teleporters that take players from one island to another.
+
+team_settings_and_inventory_device	
+Provides team and inventory configurations that go beyond the choices the My Island settings provide. Can also be used to customize individual devices and create variations in team setup.
+
+sword_in_the_stone_device	
+Used to place the Infinity Blade on your island. When placed, the Infinity Blade becomes available to any player regardless of team affiliation.
+
+support_a_creator_device	
+DEPRECATED This device is no longer supported.Used to inform players of other content made by a creator using a Support-A-Creator code. When players activate the device, it will bring up the same Support-A-Creator dialog box they would see in the Creative hub. The Support-A-Creator information shows when the dialog box opens for the player.
+
+storm_controller_device	
+Base class for various specialized storm devices. See also: basic_storm_controller_device advanced_storm_controller_device
+
+shooting_range_target_track_device	
+A set of customizable pop up targets that can be hit by players to trigger various events.
+
+shooting_range_target_device	
+A single customizable pop up target that can be hit by agents to trigger various events.
+
+score_manager_device	
+Used to manipulate scores using in-experience triggers. If Activating Team is set to a specific team, then you should use the agent overloads of each function. The agent's team will be used to determine if that agent is allowed to affect the state of the device.
+
+round_settings_device	
+Used to customize gameplay for any round-based game. It generally defines what happens to theagent's inventory and rewards in each round.
+
+rng_device	
+Used to generate random numbers between a minimum and maximum value. Events are signaled when numbers are generated.
+
+Value Limit 1 is the minimum value for generation.
+Value Limit 2 is the maximum value for generation.
+radio_device	
+Used to play curated music from the device or one or more registered agents.
+
+pulse_trigger_device	
+A device used to damage players who collide with it. Can also be used as a trigger to activate other devices.
+
+prop_spawner_base_device	
+Base class for devices that spawn a prop object.
+
+prop_o_matic_manager_device	
+Allows customization of the Prop-o-Matic weapon functions and how the game reacts to players using it.
+
+powerup_device	
+Base class for various powerup devices offering common events like ItemPickedUpEvent.
+
+pinball_flipper_device	
+Used to move, damage, and give scores to players that interact with it. By default, it is activated by any player touching its front face, which rotates it counterclockwise and knocks those players away from it and slightly upward.
+
+pinball_bumper_device	
+A triggered bumper that can knock players back, damage them, and award points.
+
+perception_trigger_device	
+Specialized trigger_base_device that will fire output events based on line of sight between agents and the device.
+
+objective_device	
+Provides a collection of destructible devices that you can select from to use as objectives in your game.
+
+movement_modulator_device	
+Used to temporarily modify the speed of agents and vehicles.
+
+matchmaking_portal_device	
+Used to take players to different islands and to link experiences together.
+
+map_indicator_device	
+Used to create custom points of interest and markers on the minimap and overview map.
+
+lock_device	
+Used to customize the state and accessibility of doors. lock_device only works with assets that have a door attached.
+
+item_spawner_device	
+Used to configuration and spawn items that players can pick up and use.
+
+item_granter_device	
+Used to grant items to agents. Items can either be dropped at the agent's location or added directly to their inventory.
+
+hud_message_device	
+Used to show custom HUD messages to one or more agents.
+
+holoscreen_device	
+Used to create a holographic screen that displays a clock or other curated images.
+
+grind_powerup_device	
+Used to let agents slide on any surface with accompanying visual and audio effects.
+
+fuel_pump_device	
+Used to provide fuel sources for vehicles. Can also be used to deal considerable damage to agents and the environment when destroyed.
+
+explosive_device	
+Hazard which deals damage in a radius around it when destroyed or triggered.
+
+experience_settings_device	
+Used to customize high level properties of the game mode.
+
+elimination_manager_device	
+Used to spawn items when an agent or specified target is eliminated.
+
+damage_amplifier_powerup_device	
+Used to amplify an agent's damage temporarily. This applies to any weapon the agent is using at the time of the powerup.
+
+conditional_button_device	
+Used to create a specialized button which can only be activated when agents are carrying specific items.
+
+color_changing_tiles_device	
+Used to create a tile that changes colors when agents interact with it.
+
+collectible_object_device	
+Used to place a collectible item into the world.
+
+class_designer_device	
+Used together with class_selector_device to create class based gameplay. Defines custom class attributes and inventory loadouts.
+
+class_and_team_selector_device	
+Used together with class_designer_device to control how/when created classes can be accessed by agents.
+
+capture_item_spawner_device	
+Spawns and tracks a single item as a game objective (e.g. flag).
+
+capture_area_device	
+Used to create a zone that can trigger effects once players enter it. Can be set up to be capturable by a team, to provide a score while held, or to require a specific item as a drop-off.
+
+button_device	
+Used to create a button which can trigger other devices when an agent interacts with it.
+
+billboard_device	
+Used to display custom text messages on a billboard.
+
+beacon_device	
+Used to show an in world visual effect and/or a HUD marker at the desired location.
+
+basic_storm_controller_device	
+A simplified storm device that provides a way to create a single-phase storm and control its basic behaviors. To control multiple phases of the storm see advanced_storm_controller_device.
+
+base_item_spawner_device	
+Base class for devices that spawn items.
+
+ball_spawner_device	
+Used to spawn various types of balls. Can be used to control HUD elements related to the spawned balls.
+
+attribute_evaluator_device	
+Evaluates attributes for agent when signaled from other devices. Acts as branching logic, checking whether the agent associated with the signal passes all of the tests setup in this device, then sends a signal on either PassEvent or FailEvent.
+
+air_vent_device	
+Used to boost agents, vehicles, and other objects upwards into the air.
+
+advanced_storm_controller_device	
+Used to control a Battle Royale-style storm with up to 50 phases.
+
+Like basic_storm_controller_devices, you can use this storm to keep players inside a playable area, but unlike the basic_storm_controller_device, this device generates multiple storm phases. When used in conjunction with advanced_storm_beacon_devices, you can customize each phase of the storm by applying one or more beacons and setting customization options for the specific phase you assign to that beacon.
+
+advanced_storm_beacon_device	
+Used in conjunction with advanced_storm_controller_device to customize individual storm phases.
+
+player_reference_device	
+Used to relay agent statistics to other devices and agents. Can transmit statistics such as elimination count, eliminated count, or scores when certain conditions are met. Can also project a hologram of the agent and display text that can be altered in various positions and curvatures.
+
+player_spawner_device	
+Used to spawn an agent on an island. Use multiple player_spawner_devices to spawn multiple agents.
+
+vehicle_spawner_octane_device	
+Spawns a lightweight vehicle made for defying gravity with its rocket boosting, jumping, and aerial maneuverability capabilities.
+
+animated_mesh_device	
+Used to select, spawn, and configure a skeletal mesh to play a specific animation.
+
+automated_turret_device	
+Used to create a customizable turret that can search for nearby targets.
+
+cinematic_sequence_device	
+Used to trigger level sequences that allow coordination of cinematic animation, transformation, and audio tracks.
+
+vehicle_spawner_heavy_turret_device	
+Specialized vehicle_spawner_device that allows an anti-vehicle turret to be configured and spawned.
+
+crowd_volume_device	
+Spawns a crowd to cheer you on.
+
+wilds_plant_device	
+Used to create plants with explosive pods that players can detonate and launch.
+
+guard_spawner_device	
+Used to spawn guards that can patrol and attack other agents.
+
+accolades_device	
+Used to set up islands so players will earn Battle Pass XP when they interact with your island. Accolades are achievements or accomplishments that players can complete to earn XP.
+
+campfire_device	
+Used to place a campfire in the world that an agent can use to heal themselves.
+
+class_selector_ui_device	
+Used to allow players to select their Class from a Class Selector UI.
+
+player_marker_device	
+Used to mark an agent's position on the minimap and configure the information shown for marked agents.
+
+Example configuration options:
+
+Health and shield bars for marked players.
+Distance to a marked player.
+Example marker appearance options:
+
+Customized text label displayed on marked players.
+Alternative minimap icon and icon color.
+item_remover_device	
+Used to cause agents to drop or lose items from their inventory. For example, if an agent is Down But Not Out, they could drop items from their inventory, and other agents could then pick up those items.
+
+physics_tree_device	
+Physics tree that can be chopped down, and damage players, vehicles, creatures, and structures.
+
+physics_object_base_device	
+Base class for various physics-based gameplay elements (e.g. boulders/trees).
+
+physics_boulder_device	
+Physics boulder that can be dislodged and damage agents, vehicles, creatures, and structures.
+
+popup_dialog_device	
+Used to create HUD text boxes that give players information, and allows responses to be customized to player choices.
+
+vehicle_spawner_siege_cannon_device	
+Specialized vehicle_spawner_device that allows a siege cannon to be configured and spawned.
+
+skydive_volume_device	
+Used to create a zone where players are put into a skydive state. Can customize the amount of force used to push the player, and how fast players are launched into the air. The direction of the push is in relation to the device, so you can rotate and overlap several devices, then use variable speeds to create pneumatic tubes that propel players in different directions. You can even create unique traversal (traveling) options, where players can use these zones to reach places on your island they couldn't reach any other way.
+
+mutator_zone_device	
+Used to specify a zone where custom gameplay effects can be applied (e.g. gravity, no build, no weapons).
+
+fire_volume_device	
+Used to specify an area which allows (or prevents) various objects, terrain, or buildings from being set on fire.
+
+effect_volume_device	
+Base class for types of volumes with special gameplay properties.
+
+damage_volume_device	
+Used to specify an area volume which can damage agents, vehicles, and creatures.
+
+barrier_device	
+Creates an impenetrable zone that can block agent movement and weapon fire.
+
+vehicle_spawner_sports_car_device	
+Specialized vehicle_spawner_device that allows a Whiplash sports car to be configured and spawned.
+
+vehicle_spawner_device	
+Base class for various specialized vehicle spawners which allow specific vehicle types to be spawned and configured with specialized options.
+
+vehicle_spawner_taxi_device	
+Specialized vehicle_spawner_device that allows a taxi to be configured and spawned.
+
+vehicle_spawner_surfboard_device	
+Specialized vehicle_spawner_device that allows a surfboard to be configured and spawned.
+
+vehicle_spawner_shopping_cart_device	
+Specialized vehicle_spawner_device that allows a shopping cart to be configured and spawned.
+
+vehicle_spawner_quadcrasher_device	
+Specialized vehicle_spawner_device that allows a Quadcrasher to be configured and spawned.
+
+vehicle_spawner_sedan_device	
+Specialized vehicle_spawner_device that allows a Prevalent sedan to be configured and spawned.
+
+vehicle_spawner_big_rig_device	
+Specialized vehicle_spawner_device that allows a Mudflap semi truck to be configured and spawned.
+
+vehicle_spawner_driftboard_device	
+Specialized vehicle_spawner_device that allows a Driftboard to be configured and spawned.
+
+vehicle_spawner_cannon_device	
+Specialized vehicle_spawner_device that allows a cannon to be configured and spawned.
+
+vehicle_spawner_boat_device	
+Specialized vehicle_spawner_device that allows a boat to be configured and spawned.
+
+vehicle_spawner_biplane_device	
+Specialized vehicle_spawner_device that allows a Stormwing biplane to be configured and spawned.
+
+vehicle_spawner_pickup_truck_device	
+Specialized vehicle_spawner_device that allows a pickup truck to be configured and spawned.
+
+vehicle_spawner_baller_device	
+Specialized vehicle_spawner_device that allows a Baller vehicle to be configured and spawned.
+
+vehicle_spawner_atk_device	
+Specialized vehicle_spawner_device that allows an ATK (all terrain kart) to be configured and spawned.
+
+vehicle_spawner_ufo_device	
+Specialized vehicle_spawner_device that allows a UFO to be configured and spawned.
+
+real_time_clock_device	
+Used to trigger in game events based on real world time.
+
+vehicle_spawner_helicopter_device	
+Specialized vehicle_spawner_device that allows a helicopter to be configured and spawned.
+
+player_checkpoint_device	
+Used to set an agent's spawn point when activated. This can also clear the agent's inventory.
+
+vehicle_spawner_tank_device	
+Specialized vehicle_spawner_device that allows a tank to be configured and spawned.
+
+wildlife_spawner_device	
+Used to spawn various wildlife that players can herd, hunt, or tame.
+
+prop_mover_device	
+Used to move around a building or prop, and customize responses to various collision event types.
+
+switch_device	
+Used to allow agents to turn other linked devices on/off or other custom state changes.
+
+crash_pad_device	
+Used to place a crash pad that can bounce players and protect them from fall damage.
+
+character_device	
+Used to configure a single interactive mannequin, that can visualize characters, clothing, and perform emotes.
+
+vehicle_spawner_armored_battle_bus_device	
+Specialized vehicle_spawner_device that allows an armored battle bus to be configured and spawned.
+
+fishing_zone_device	
+Used to add fishing mechanics to experiences, such as:
+
+Fishing competitions between players.
+Collecting fish as a resource.
+Fishing minigames with their own rewards.
+changing_booth_device	
+Allows players to change their outfit in game!
+
+health_powerup_device	
+Used to regenerate an agent's health and/or shields.
+
+signal_remote_manager_device	
+Used to trigger a custom response to a Primary or Secondary signal, sent by a Signal Remote item.
+
+end_game_device	
+Used to configure rules that can end the current round or game.
+
+dance_mannequin_device	
+Used to project a hologram of a character performing dance emotes.
+
+elimination_feed_device	
+Used to send custom messages to the elimination feed.
+
+firefly_spawner_device	
+Used to spawn fireflies that can be collected by agents.
+
+prop_manipulator_device	
+Used to manipulate the properties of one or more props in a specified area (e.g. Visibility/Destructibility).
+
+analytics_device	
+Used to track agent events used to generate analytics.
+
+vehicle_spawner_nitro_drifter_sedan_device	
+Specialized vehicle_spawner_device that allows a Nitro Drifter sedan to be configured and spawned.
+
+creature_spawner_device	
+Used to spawn one or more waves of creatures of customizable types at selected time intervals.
+
+creature_placer_device	
+Used to spawn a creature at a specified location.
+
+creature_manager_device	
+Used to customize one creature type at a time. Place multiple creature_manager_devices for each type of creature on your island.
+
+item_placer_device	
+Allows pickup items to be placed in the world..
+
+video_player_device	
+Used to display curated videos onto in-game screens or player HUDs.
+
+bouncer_device	
+Used to create a bouncer that can launch players, vehicles, and more into the air with optional effects.
+
+vehicle_spawner_dirtbike_device	
+Specialized vehicle_spawner_device that allows a dirtbike to be configured and spawned.
+
+audio_player_device	
+Used to configure and play audio from the device location or from registered agents.
+
+ai_patrol_path_device	
+Used to create patrolling behavior for guards spawned with the guard_spawner_device.
+
+customizable_light_device	
+Used to create a light which can have its color and brightness manipulated in response to in-game events.
+
+player_counter_device	
+Used to track and react to how many players are in a particular area, and optionally display that information in game.
+
+chair_device	
+Creates a chair where Agents can sit.
+
+vehicle_spawner_getaway_device	
+Specialized vehicle_spawner_device that allows a GetAway Car to be configured and spawned.
+
+down_but_not_out_device	
+Used to customize (or prevent) the 'down but not out' player state between 'healthy' and 'removed from game'.
+
+supply_drop_spawner_device	
+Used to spawn and configure an aerial supply drop that can provide players with customized weapons/supplies.
+
+vehicle_spawner_sportbike_device	
+Specialized vehicle_spawner_device that allows a sportbike to be configured and spawned.
+
+vine_rail_device	
+Used to create a customizable vine version of the Grind Rails.
+
+grind_rail_device	
+Used to create customizable Grind Rails.
+
+vfx_spawner_device	
+Used to place visual effects around your island. You can use these effects to enhance the overall theme and experience of your game.
+
+hud_controller_device	
+Used to show or hide parts of the HUD for players or teams. Use this with other devices such as the hud_message_device, map_indicator_device, and billboard_device to control exactly how much information players can see during a game, as well as how and when they see that information.
+
+water_device	
+Used to create and manipulate volumes of water where players can swim, fish, or drive boats.
+
+race_manager_device	
+Used with the race_checkpoint_device to create more advanced racing modes.
+
+race_checkpoint_device	
+Used in tandem with race_manager_device to define the route players must traverse.
+
+skydome_device	
+Controls how the sky looks, as well as giving you options for changing the sun, clouds, stars or other objects in the sky above your island. You can control the sun and moon, and add other atmospheric elements like stars, fog and clouds. You can change the color of your light source, and blend different colors for your island's sky to create the perfect atmosphere for your game.
+
+vfx_creator_device	
+Used to create and customize your own visual effects. This is more flexible than the vfx_spawner_device, which gives you a selection of pre-made visual effects to choose from but limits how much you can customize or change those effects.
+
+item_shop_device	
+Allows the item shop to be opened when activated
+
+sentry_device	
+Generates an AI bot that spawns in a location and usually attacks players when they come in range.
+
+Interfaces
+Name	Description
+creative_object_interface	
+Functions
+Name	Description
+GetCreativeObjectsWithTag	
+Returns an array containing all creative objects which have been marked with the specified Tag.
+
+GetCreativeObjectsWithTags	
+Returns an array containing creative objects which have tag(s) matching the specified SearchCriteria.
+
+SpawnProp	
+Spawns a creative_prop at the specified Position and Rotation. Position and Rotation units are in cm. Returns tuple: 0: Instance of a creative_prop. False if no creative_prop could be created. See spawn_prop_result for failure cases. 1: Success or failure results.
+
+SpawnProp	
+Spawns a creative_prop at the specified Transform. Units are in cm. Returns tuple: 0: Instance of a creative_prop. False if no creative_prop could be created. See spawn_prop_result` for failure cases. 1: Success or failure results.
+
+Enumerations
+Name	Description
+spawn_prop_result	
+Results for SpawnProp.
+
+move_to_result	
+Results for MoveTo.
+
+Data
+Name	Description
+DefaultCreativePropAsset	 
+
+
+Used to create patrolling behavior for guards spawned with the guard_spawner_device.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+Members
+This class has both data members and functions.
+
+Data
+Data Member Name	Type	Description
+NextNodeUnreachableEvent	listenable(payload)	
+Signaled when a guard cannot reach the next ai_patrol_path_device.
+
+NodeReachedEvent	listenable(payload)	
+Signaled when a guard reaches this device.
+
+PatrolPathStartedEvent	listenable(payload)	
+Signaled when a guard starts moving on the patrol path.
+
+PatrolPathStoppedEvent	listenable(payload)	
+Signaled when a guard stops moving on the patrol path.
+
+Functions
+Function Name	Description
+Assign	
+Assign an AI to this patrol path.
+
+Disable	
+Disables this device.
+
+Enable	
+Enables this device.
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+GoToNextPatrolGroup	
+Commands patroller to follow the Next Patrol Path Group instead of the default Patrol Path Group.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+
+
+
+CreativeAnimation module
+Learn technical details about the CreativeAnimation module.
+
+UEFNCreativeAnimation module
+Module import path: /Fortnite.com/Devices/CreativeAnimation
+
+Fortnite.com
+
+Devices
+
+CreativeAnimation
+
+InterpolationTypes
+Classes and Structs
+Name	Description
+cubic_bezier_parameters	
+A structure for defining Bezier interpolation parameters. See https://en.wikipedia.org/wiki/B%C3%A9zier_curve for more info on Bezier curves.
+
+keyframe_delta	
+Instead of specifying the actual keyframe positions, we specify the keyframe deltas. This allows us to treat the initial position of the prop as keyframe 0 and avoid the question of how to get the prop to its initial location. For a animation_mode.Loop animation, the net rotation and translation must both be zero. Each delta is interpreted as a world-space transformation to be concatenated onto the previous transform(s).
+
+animation_controller	
+Used to move and animate the position of creative_prop objects.
+
+See creative_prop.GetAnimationController for information on acquiring an instance of an animation_controller for a given creative_prop.
+See SetAnimation for details on authoring movement and animations.
+Enumerations
+Name	Description
+animation_mode	
+Animation play modes.
+
+animation_controller_state	
+animation_controller states.
+
+await_next_keyframe_result	
+Results for animation_controller.AwaitNextKeyframe function.
+
+
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+Members
+This class has both data members and functions.
+
+Data
+Data Member Name	Type	Description
+DestroyedEvent	listenable(payload)	
+Signaled when this device has been destroyed by an agent. Sends the agent that destroyed this device.
+
+Functions
+Function Name	Description
+ActivateObjectivePulse	
+Activates an objective pulse at Agent's location pointing toward this device.
+
+DeactivateObjectivePulse	
+Deactivates the objective pulse at Agent's location.
+
+Destroy	
+Destroys the objective item. This is done regardless of the visibility or health of the item.
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+Hide	
+Hides this device from the world.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+Show	
+Shows this device in the world.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+Used to temporarily modify the speed of agents and vehicles.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+Members
+This class has both data members and functions.
+
+Data
+Data Member Name	Type	Description
+ActivationEvent	listenable(payload)	
+Signaled when this device is activated by an agent. Sends the agent that activated this device.
+
+Functions
+Function Name	Description
+Activate	
+Activates this device's movement effect on Agent.
+
+Disable	
+Disables this device.
+
+Enable	
+Enables this device.
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+
+mutator_zone_device class
+Learn technical details about the mutator_zone_device class.
+
+UEFNmutator_zone_device class
+Used to specify a zone where custom gameplay effects can be applied (e.g. gravity, no build, no weapons).
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+effect_volume_device	
+Base class for types of volumes with special gameplay properties.
+
+Members
+This class has both data members and functions.
+
+Data
+Data Member Name	Type	Description
+AgentBeginsEmotingEvent	listenable(payload)	
+Signaled when an agent in this zone begins emoting. This will not signal if the agent is on the Safe Team or if Affects Players is disabled. Sends the agent that started emoting.
+
+AgentEndsEmotingEvent	listenable(payload)	
+Signaled when an agent in this zone ends emoting. This will not signal if the agent is on the Safe Team or if Affects Players is disabled. Sends the agent that stopped emoting.
+
+AgentEntersEvent	listenable(payload)	
+Signaled when an agent enters this zone. Sends the agent entering this zone.
+
+AgentExitsEvent	listenable(payload)	
+Signaled when an agent exits this zone. Sends the agent exiting this zone.
+
+Functions
+Function Name	Description
+Disable	
+Disables this device.
+
+Enable	
+Enables this device.
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+IsInVolume	
+Is true when Agent is in the zone.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+UpdateSelectedClass	
+Updates Selected Class to Agent's class.
+
+UpdateSelectedTeam	
+Updates Selected Team to Agent's team.
+
+
+hysics boulder that can be dislodged and damage agents, vehicles, creatures, and structures.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+prop_spawner_base_device	
+Base class for devices that spawn a prop object.
+
+physics_object_base_device	
+Base class for various physics-based gameplay elements (e.g. boulders/trees).
+
+Members
+This class has both data members and functions.
+
+Data
+Data Member Name	Type	Description
+BalancedBoulderDestroyedEvent	listenable(payload)	
+Signaled when the balanced boulder is destroyed.
+
+BalancedBoulderSpawnedEvent	listenable(payload)	
+Signaled when the balanced boulder is spawned on the base.
+
+BaseDestroyedEvent	listenable(payload)	
+Signaled when the base of the boulder is destroyed.
+
+RollingBoulderDestroyedEvent	listenable(payload)	
+Signaled when the rolling boulder is destroyed.
+
+Functions
+Function Name	Description
+DestroyAllSpawnedObjects	
+Destroys all props spawned from this device.
+
+DestroyBase	
+Destroys the boulder's base.
+
+DestroyRollingBoulder	
+Destroys the current rolling boulder.
+
+Disable	
+Disables this device.
+
+Enable	
+Enables this device.
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+ReleaseRollingBoulder	
+Releases the boulder sitting on the base, if there is one.
+
+SpawnObject	
+Spawns the prop associated with this device.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+
+
+player_checkpoint_device class
+Learn technical details about the player_checkpoint_device class.
+
+UEFNplayer_checkpoint_device class
+Used to set an agent's spawn point when activated. This can also clear the agent's inventory.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+Members
+This class has both data members and functions.
+
+Data
+Data Member Name	Type	Description
+FirstActivationEvent	listenable(payload)	
+Signaled when this device is first activated by any agent. Sends the agent that activated this device.
+
+FirstActivationPerAgentEvent	listenable(payload)	
+Signaled each time a new agent activates this device. Sends the agent that activated this device.
+
+Functions
+Function Name	Description
+Disable	
+Disables this device.
+
+Enable	
+Enables this device.
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+Register	
+Registers this checkpoint for Agent. This sets the respawn point and can clear Agent's inventory depending on this device's settings. Multiple agents can be registered to this device at one time.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+
+
+player_counter_device class
+Learn technical details about the player_counter_device class.
+
+UEFNplayer_counter_device class
+Used to track and react to how many players are in a particular area, and optionally display that information in game.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+Members
+This class has both data members and functions.
+
+Data
+Data Member Name	Type	Description
+CountedEvent	listenable(payload)	
+Signaled when a valid player enters the zone and is counted. The frequency of evaluation against the Target Player Count can be controlled through the device settings. Sends the agent that is now being counted.
+
+CountFailsEvent	listenable(payload)	
+Signaled when the player count does not match Target Player Count. The frequency of evaluation against Target Player Count can be controlled through the device settings.
+
+CountSucceedsEvent	listenable(payload)	
+Signaled when the player count matches Target Player Count. The frequency of evaluation against Target Player Count can be controlled through the device settings.
+
+RemovedEvent	listenable(payload)	
+Signaled when a player is no longer counted by this device, such as when they leave the zone, leave the game, or are assigned to a different team or class. Sends the agent that is no longer being counted.
+
+Functions
+Function Name	Description
+CompareToTarget	
+Triggers an evaluation of the current count vs Target Player Count, signaling CountSucceedsEvent or CountFailsEvent based on the evaluation result.
+
+DecrementTargetCount	
+Decrements Target Player Count by 1. Immediately triggers a new comparison.
+
+Disable	
+Disables this device.
+
+Enable	
+Enables this device.
+
+GetCount	
+Returns the number of players currently counted by this device
+
+GetTargetCount	
+Returns the number of players required for this counter to succeed.
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+HideInfoPanel	
+Hide this device info panel from the world.
+
+IncrementTargetCount	
+Increments Target Player Count by 1. Immediately triggers a new comparison.
+
+IsCounted	
+Is true if Agent is currently counted by this device.
+
+IsPassingTest	
+Is true if the device is currently succeeding in its comparison.
+
+IsShowingInfoPanel	
+Returns whether this device is represented in the world as an info panel showing Current + Required player counts.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+Register	
+Adds the player to the registered player list. Track Registered Players determines how registered players are counted.
+
+Reset	
+Resets Target Player Count to the default value defined in the device settings. If Target Player Count was previously incremented or decremented, this reset immediately triggers a new comparison.
+
+SetTargetCount	
+Sets the number of players required for this counter to succeed. Immediately triggers a new comparison.
+
+ShowInfoPanel	
+Show this device in the world as an info panel showing Current + Required player counts.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+TransmitForAllCounted	
+Triggers CountedEvent for all agents currently being counted.
+
+Unregister	
+Removes the player from the registered player list. Track Registered Players determines how registered players are counted.
+
+UnregisterAll	
+Clears all players from the list of registered players. Track Registered Players determines how registered players are counted.
+
+
+player_marker_device class
+Learn technical details about the player_marker_device class.
+
+UEFNplayer_marker_device class
+Used to mark an agent's position on the minimap and configure the information shown for marked agents.
+
+Example configuration options:
+
+Health and shield bars for marked players.
+Distance to a marked player.
+Example marker appearance options:
+
+Customized text label displayed on marked players.
+Alternative minimap icon and icon color.
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+Members
+This class has both data members and functions.
+
+Data
+Data Member Name	Type	Description
+FirstItemValueChangedEvent	listenable(payload)	
+Signaled when the first item type monitored on marked agents has changed. Sends the marked agent.
+
+FirstItemValueReachedEvent	listenable(payload)	
+Signaled when a marked agent meets the quantity condition for the first monitored item type (e.g. Fewer Than, Equal To, More Than X). Sends the marked agent.
+
+SecondItemValueChangedEvent	listenable(payload)	
+Signaled when the second item type monitored on marked agents has changed. Sends the marked agent.
+
+SecondItemValueReachedEvent	listenable(payload)	
+Signaled when a marked agent meets the quantity condition for the second monitored item type (e.g. Fewer Than, Equal To, More Than X). Sends the marked agent.
+
+Functions
+Function Name	Description
+Attach	
+Attaches a marker to Agent.
+
+Detach	
+Detaches a marker from Agent.
+
+DetachFromAll	
+Detaches markers from all marked agents.
+
+Disable	
+Disables this device.
+
+Enable	
+Enables this device.
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+
+player_reference_device class
+Learn technical details about the player_reference_device class.
+
+UEFNplayer_reference_device class
+Used to relay agent statistics to other devices and agents. Can transmit statistics such as elimination count, eliminated count, or scores when certain conditions are met. Can also project a hologram of the agent and display text that can be altered in various positions and curvatures.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+Members
+This class has both data members and functions.
+
+Data
+Data Member Name	Type	Description
+ActivatedEvent	listenable(payload)	
+Signaled when this device is activated. Sends the agent stored in the device.
+
+AgentReplacedEvent	listenable(payload)	
+Signaled when the agent tracked by this device is replaced. Sends the new agent stored in the device.
+
+AgentUpdatedEvent	listenable(payload)	
+Signaled when the agent tracked by this device is updated. Sends the new agent stored in the device.
+
+AgentUpdateFailsEvent	listenable(payload)	
+Signaled when the agent tracked by this fails to be updated. Sends the agent that attempted to be stored in this device.
+
+TrackedStatChangedEvent	listenable(payload)	
+Signaled when a stat tracked by this device is updated. Sends the agent stored in the device.
+
+Functions
+Function Name	Description
+Activate	
+Ends the round/game.
+
+Clear	
+Clears the state of this device.
+
+Disable	
+Disables this device.
+
+Enable	
+Enables this device.
+
+GetAgent	
+Returns the agent currently referenced by the device.
+
+GetStatValue	
+Returns the stat value that this device is currently tracking
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+IsReferenced	
+Is true when Agent is the player being referenced by the device.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+Register	
+Registers Agent as the agent being tracked by this device.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+
+
+player_spawner_device class
+Learn technical details about the player_spawner_device class.
+
+UEFNplayer_spawner_device class
+Used to spawn an agent on an island. Use multiple player_spawner_devices to spawn multiple agents.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+Members
+This class has both data members and functions.
+
+Data
+Data Member Name	Type	Description
+SpawnedEvent	listenable(payload)	
+Signaled when an agent is spawned from this device. Sends the agent that spawned.
+
+Functions
+Function Name	Description
+Disable	
+Disables this device.
+
+Enable	
+Enables this device.
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+
+powerup_device class
+Learn technical details about the powerup_device class.
+
+UEFNpowerup_device class
+Base class for various powerup devices offering common events like ItemPickedUpEvent.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+Members
+This class has both data members and functions.
+
+Data
+Data Member Name	Type	Description
+ItemPickedUpEvent	listenable(payload)	
+Signaled when the powerup is picked up by an agent. Sends the agent that picked up the powerup.
+
+Functions
+Function Name	Description
+Despawn	
+Despawns this powerup from the experience.
+
+GetDuration	
+Returns the Duration that this powerup will be active for on any player it is applied to.
+
+GetRemainingTime	
+If the Agent has the effect applied to them, this will return the remaining time the effect has. Returns -1.0 if the effect has an infinite duration. Returns 0 if the Agent does not have the effect applied.
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+HasEffect	
+Returns the Agent has the powerup's effect (or another of the same type) applied to them.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+Pickup	
+Grants this powerup to Agent.
+
+Pickup	
+Grants this powerup without an agent reference. Requires Apply To set to All Players.
+
+SetDuration	
+Updates the Duration for this powerup, clamped to the Min and Max defined in the device. Will not apply to any currently applied effects.
+
+Spawn	
+Spawns the powerup into the experience so users can interact with it.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+
+
+prop_manipulator_device class
+Learn technical details about the prop_manipulator_device class.
+
+UEFNprop_manipulator_device class
+Used to manipulate the properties of one or more props in a specified area (e.g. Visibility/Destructibility).
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+Members
+This class has both data members and functions.
+
+Data
+Data Member Name	Type	Description
+DamagedEvent	listenable(payload)	
+Signaled when props affected by this device are damaged. Sends the agent that damaged the prop.
+
+DestroyedEvent	listenable(payload)	
+Signaled when props affected by this device are destroyed. Sends the agent that destroyed the prop.
+
+HarvestingEvent	listenable(payload)	
+Signaled when prop resource nodes affected by this device are harvested. Sends the agent that harvested resources from the prop.
+
+ResourceDepletionEvent	listenable(payload)	
+Signaled when prop resource nodes affected by this device are completely depleted of energy. Sends the agent that depleted the prop's energy.
+
+Functions
+Function Name	Description
+Disable	
+Disables this device.
+
+DisableResourceNodeOverrides	
+Sets the Override Resource option to No.
+
+Enable	
+Enables this device.
+
+ExhaustResources	
+Empties the resources of all props affected by this device.
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+HideProps	
+Hides all props affected by this device.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+RestockResources	
+Restocks the resources of all props affected by this device.
+
+RestoreHealth	
+Restores health of all props affected by this device.
+
+SetResourceOverridesActive	
+Sets the Override Resource option to Yes.
+
+ShowProps	
+Shows all props affected by this device.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+
+prop_spawner_base_device class
+Learn technical details about the prop_spawner_base_device class.
+
+UEFNprop_spawner_base_device class
+Base class for devices that spawn a prop object.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+Members
+This class has functions, but no data members.
+
+Functions
+Function Name	Description
+DestroyAllSpawnedObjects	
+Destroys all props spawned from this device.
+
+Disable	
+Disables this device.
+
+Enable	
+Enables this device.
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+SpawnObject	
+Spawns the prop associated with this device.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+
+A device used to damage players who collide with it. Can also be used as a trigger to activate other devices.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+Members
+This class has functions, but no data members.
+
+Functions
+Function Name	Description
+Begin	
+Starts the damage sequence.
+
+Disable	
+Disables this device.
+
+Enable	
+Enables this device.
+
+End	
+Stops the damage sequence.
+
+GetDamage	
+Returns the damage to be applied to those hit by an active wave. Clamped between 0 <= GetDamage <= 100000.
+
+GetLoopCount	
+Returns the total number of waves this sequence will complete before ending its sequence. 0 indicates the sequence will continue indefinitely.
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+GetWaveSpeed	
+Returns the speed (in meters per second) at which the waves generated by this sequencer will travel.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+ResumeSequence	
+Resumes the damage sequence from the last position where it was stopped.
+
+SetDamage	
+Sets the damage to be applied to those hit by an active wave. Clamped between 0 <= GetDamage <= 100000. Wave visuals will change to reflect whether the wave causes damage or not.
+
+SetLoopCount	
+Sets the total number of waves this sequence will complete before ending its sequence. LoopCount = 0 indicates the sequence should continue indefinitely.
+
+SetWaveSpeed	
+Sets the speed (in meters per second) at which the waves generated by this sequencer will travel.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+
+score_manager_device class
+Learn technical details about the score_manager_device class.
+
+UEFNscore_manager_device class
+Used to manipulate scores using in-experience triggers. If Activating Team is set to a specific team, then you should use the agent overloads of each function. The agent's team will be used to determine if that agent is allowed to affect the state of the device.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+Members
+This class has both data members and functions.
+
+Data
+Data Member Name	Type	Description
+MaxTriggersEvent	listenable(payload)	
+Signaled when the this device reaches its maximum number of triggers as defined by Times Can Trigger. Sends the agent who last triggered the device.
+
+ScoreOutputEvent	listenable(payload)	
+Signaled when the this device awards points to an agent. Sends the agent who received the points.
+
+Functions
+Function Name	Description
+Activate	
+Grant points to Agent.
+
+Activate	
+Grants points.
+
+Decrement	
+Decrements the score quantity to be awarded by the next activation by 1.
+
+Decrement	
+Decrements the score quantity to be awarded by the next activation by 1.
+
+Disable	
+Disables this device.
+
+Disable	
+Disables this device.
+
+Enable	
+Enables this device.
+
+Enable	
+Enables this device.
+
+GetCurrentScore	
+Returns the current score for Agent.
+
+GetScoreAward	
+Returns the score to be awarded by the next activation.
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+Increment	
+Increments the score quantity to be awarded by the next activation by 1.
+
+Increment	
+Increments the score quantity to be awarded by the next activation by 1.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+Reset	
+Resets this device to its original state.
+
+Reset	
+Resets this device to its original state.
+
+SetScoreAward	
+Sets the score to be awarded by the next activation to Value.
+
+SetToAgentScore	
+Sets the score to be awarded by the next activation to Agent's current score.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+
+signal_remote_manager_device class
+Learn technical details about the signal_remote_manager_device class.
+
+UEFNsignal_remote_manager_device class
+Used to trigger a custom response to a Primary or Secondary signal, sent by a Signal Remote item.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+Members
+This class has both data members and functions.
+
+Data
+Data Member Name	Type	Description
+PrimarySignalEvent	listenable(payload)	
+Signaled when a player has triggered the Primary signal using a Signal Remote item. Sends the agent that triggered the signal.
+
+SecondarySignalEvent	listenable(payload)	
+Signaled when a player has triggered the Secondary signal using a Signal Remote item. Sends the agent that triggered the signal.
+
+Functions
+Function Name	Description
+Disable	
+Disables this device.
+
+Enable	
+Enables this device.
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+
+switch_device class
+Learn technical details about the switch_device class.
+
+UEFNswitch_device class
+Used to allow agents to turn other linked devices on/off or other custom state changes.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+Members
+This class has both data members and functions.
+
+Data
+Data Member Name	Type	Description
+ClearEvent	listenable(payload)	
+Signaled when the persistent data is cleared by the specified agent. Sends the agent that cleared persistent data on the device.
+
+IfOffWhenCheckedEvent	listenable(payload)	
+Signaled if the switch is off when the state is checked.
+
+IfOnWhenCheckedEvent	listenable(payload)	
+Signaled if the switch is on when the state is checked.
+
+StateChangesEvent	listenable(payload)	
+Signaled when the switch state changes.
+
+StateLoadEvent	listenable(payload)	
+Signaled when the switch state is loaded by the specified agent. Sends the agent that loaded the state on the device.
+
+StateSaveEvent	listenable(payload)	
+Signaled when the switch state is saved.
+
+TurnedOffEvent	listenable(payload)	
+Signaled when the switch is turned off by the specified agent. Sends the agent that turned off the device.
+
+TurnedOnEvent	listenable(payload)	
+Signaled when the switch is turned on by the specified agent. Sends the agent that turned on the device.
+
+Functions
+Function Name	Description
+CheckState	
+Checks the device state with Agent acting as the instigator of the action.
+
+ClearAllPersistenceData	
+Clears persistence data for all agents.
+
+ClearPersistenceData	
+Clears persistence data for Agent.
+
+Disable	
+Disables this device.
+
+Enable	
+Enables this device.
+
+GetCurrentResetTime	
+Returns the time before the switch will reset itself to default. Returns -1.0 if Store State Per Player is Yes or if there is no active reset timer.
+
+GetCurrentResetTime	
+Returns the time before the switch will reset itself to default for Agent. Returns -1.0 if there is no active reset timer.
+
+GetCurrentState	
+Returns the current state of this switch: true (on) or false (off). Use this overload of GetCurrentState when this device has Store State Per Player set to Yes.
+
+GetCurrentState	
+Returns the current state of this switch: true (on) or false (off). Use this overload of GetCurrentState when this device has Store State Per Player set to No.
+
+GetInteractionTime	
+Returns the Interaction Time required to activate this device (in seconds).
+
+GetStateResetTime	
+Returns the value of State Reset Time for the device. Returns -1.0 if State Reset Time is not used.
+
+GetStateResetTime	
+Returns the value of State Reset Time for the device, for a specific player. Returns -1.0 if State Reset Time is not used.
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+IsStatePerAgent	
+Query whether this device has a single global on/off state, or has a personalized on/off state for each individual agent.
+
+LoadState	
+Loads the device state with Agent acting as the instigator of the action.
+
+LoadStateForAll	
+Loads the device state for all players.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+SaveState	
+Saves the device state with Agent acting as the instigator of the action.
+
+SaveStateForAll	
+Saves the device state for all players
+
+SetInteractionTime	
+Sets the Interaction Time required to activate this device (in seconds).
+
+SetState	
+Sets the state of the switch to a specific value for a specific Agent. Use when the device has Store State Per Player set to Yes.
+
+SetState	
+Sets the state of the switch to a specific value. Use when the device has Store State Per Player set to No.
+
+SetStateResetTime	
+Updates the State Reset Time for the device, clamped to the Min and Max defined in the device. This will not apply to any state reset timers currently in effect. Set to 0.0 to disable the State Reset Time. Set to less than 0.0 to reset to default.
+
+SetStateResetTime	
+Updates the State Reset Time for the device, for a specific player (if Store State Per Player is Yes), clamped to the Min and Max defined in the device. This will not apply to any state reset timers currently in effect. Set to 0.0 to disable the State Reset Time. Set to less than 0.0 to reset to default.
+
+SetTurnOffInteractionText	
+Sets the Turn Off Text to be displayed to a user when the switch is currently on, and offers an interaction to switch it off. Clamped to 150 characters.
+
+SetTurnOnInteractionText	
+Sets the Turn On Text to be displayed to a user when the switch is currently off, and offers an interaction to switch it on. Clamped to 150 characters.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+ToggleState	
+Toggles between TurnOn and TurnOff with Agent acting as the instigator of the action.
+
+TurnOff	
+Turns off the device with Agent acting as the instigator of the action.
+
+TurnOn	
+Turns on this device with Agent acting as the instigator of the action.
+
+
+team_settings_and_inventory_device class
+Learn technical details about the team_settings_and_inventory_device class.
+
+UEFNteam_settings_and_inventory_device class
+Provides team and inventory configurations that go beyond the choices the My Island settings provide. Can also be used to customize individual devices and create variations in team setup.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+Members
+This class has both data members and functions.
+
+Data
+Data Member Name	Type	Description
+EnemyEliminatedEvent	listenable(payload)	
+Signaled when an enemy of Team is eliminated by a team member. Sends the agent team member who eliminated the enemy.
+
+TeamMemberEliminatedEvent	listenable(payload)	
+Signaled when a member of Team is eliminated. Sends the agent that was eliminated.
+
+TeamMemberSpawnedEvent	listenable(payload)	
+Signaled when a member of Team is spawned.Sends the agent that has spawned.
+
+TeamOutOfRespawnsEvent	listenable(payload)	
+Signaled when Team runs out of respawns.
+
+Functions
+Function Name	Description
+EndRound	
+Ends the round and Team wins the round.
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+IsOnTeam	
+Is true if Agent is on Team.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+
+timer_device class
+Learn technical details about the timer_device class.
+
+UEFNtimer_device class
+Provides a way to keep track of the time something has taken, either for scoreboard purposes, or to trigger actions. It can be configured in several ways, either acting as a countdown to an event that is triggered at the end, or as a stopwatch for an action that needs to be completed before a set time runs out.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+Members
+This class has both data members and functions.
+
+Data
+Data Member Name	Type	Description
+FailureEvent	listenable(payload)	
+Signaled when the timer completes or ends with failure. Sends the agent that activated the timer, if any.
+
+StartUrgencyModeEvent	listenable(payload)	
+Signaled when the timer enters Urgency Mode. Sends the agent that activated the timer, if any.
+
+SuccessEvent	listenable(payload)	
+Signaled when the timer completes or ends with success. Sends the agent that activated the timer, if any.
+
+Functions
+Function Name	Description
+ClearPersistenceData	
+Clears this device's saved data for Agent.
+
+ClearPersistenceDataForAll	
+Clears this device's saved data for all agents.
+
+ClearPersistenceDataForAll	
+Clears this device's saved data for all agents.
+
+Complete	
+Completes the timer for Agent.
+
+Complete	
+Completes the timer.
+
+CompleteForAll	
+Completes the timer for all agents.
+
+CompleteForAll	
+Completes the timer for all agents.
+
+Disable	
+Disables this device for Agent. While disabled this device will not receive signals.
+
+Disable	
+Disables this device. While disabled this device will not receive signals.
+
+Enable	
+Enables this device for Agent.
+
+Enable	
+Enables this device.
+
+GetActiveDuration	
+Returns the remaining time (in seconds) on the timer for Agent.
+
+GetActiveDuration	
+Returns the remaining time (in seconds) on the timer if it is set to be global.
+
+GetMaxDuration	
+Returns the maximum duration of the timer (in seconds).
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+IsStatePerAgent	
+Succeeds if this device is tracking timer state for each individual agent independently. Fails if state is being tracked globally for all agent's.
+
+Load	
+Loads this device's saved data for Agent.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+Pause	
+Pauses the timer for Agent.
+
+Pause	
+Pauses the timer.
+
+PauseForAll	
+Pauses the timer for all agents.
+
+PauseForAll	
+Pauses the timer for all agents.
+
+Reset	
+Resets the timer back to its base time and stops it for Agent.
+
+Reset	
+Resets the timer back to its base time and stops it.
+
+ResetForAll	
+Resets the timer back to its base time and stops it for all agents.
+
+ResetForAll	
+Resets the timer back to its base time and stops it for all agents.
+
+Resume	
+Resumes the timer for Agent.
+
+Resume	
+Resumes the timer.
+
+ResumeForAll	
+Resumes the timer for all agents.
+
+ResumeForAll	
+Resumes the timer for all agents.
+
+Save	
+Saves this device's data for Agent.
+
+SetActiveDuration	
+Sets the remaining time (in seconds) on the timer, if active, on Agent.
+
+SetActiveDuration	
+Sets the remaining time (in seconds) on the timer, if active. Use this function if the timer is set to use the same time for all agent's.
+
+SetLapTime	
+Sets the lap time indicator for Agent.
+
+SetLapTimeForAll	
+Sets the lap time indicator for all agents.
+
+SetLapTimeForAll	
+Sets the lap time indicator for all agents.
+
+SetMaxDuration	
+Sets the maximum duration of the timer (in seconds).
+
+Start	
+Starts the timer for Agent.
+
+Start	
+Starts the timer.
+
+StartForAll	
+Starts the timer for all agents.
+
+StartForAll	
+Starts the timer for all agents.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+
+
+
+tracker_device class
+Learn technical details about the tracker_device class.
+
+UEFNtracker_device class
+Allows creation and HUD tracking of custom objectives for agents to complete.
+
+ 	 
+Verse using statement	using { /Fortnite.com/Devices }
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with creative_object:
+
+Name	Description
+creative_object	
+Base class for creative devices and props.
+
+creative_device_base	
+Base class for creative_device.
+
+Members
+This class has both data members and functions.
+
+Data
+Data Member Name	Type	Description
+CompleteEvent	listenable(payload)	
+Signaled when the tracked value reaches GetTarget for an agent. Sends the agent that reached GetTarget for their tracked value.
+
+Functions
+Function Name	Description
+Assign	
+Assigns the device to Agent (and any agents sharing progress).
+
+AssignToAll	
+Assigns this device to all valid agents.
+
+ClearPersistence	
+Clears tracked progress for Agent. Only valid if Use Persistence is set to Use.
+
+Complete	
+The objective immediately completes.
+
+DecreaseTargetValue	
+Decreases the target value for Agent by 1.
+
+Decrement	
+Decrease the tracked value by Amount to Change on Received Signal for Agent.
+
+GetTarget	
+Returns the target value that must be achieved in order for CompleteEvent to trigger. Clamped to 0 <= GetTarget <= 10000.
+
+GetTransform	
+Returns the transform of the creative_object with units in cm. You must check creative_object.IsValid before calling this if there is a possibility the object has been disposed or destroyed by gameplay. Otherwise a runtime error will result.
+
+GetValue	
+Returns the current total tracked value for all players.
+
+GetValue	
+Returns the current total tracked value for the team at TeamIndex.
+
+GetValue	
+Returns the current tracked value for Agent.
+
+HasReachedTarget	
+Is true if Agent has reached the TargetValue for the tracker.
+
+IncreaseTargetValue	
+Increases the target value for Agent by 1.
+
+Increment	
+Increases the tracked value by Amount to Change on Received Signal for Agent.
+
+IsActive	
+Is true if Agent currently has the quest active.
+
+Load	
+Loads tracked progress for Agent. Only valid if Use Persistence is set to Use.
+
+LoadForAll	
+Loads tracked progress for all valid agents. Only valid if Use Persistence is set to Use.
+
+MoveTo	
+Moves the creative_object to the specified Position and Rotation over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+MoveTo	
+Moves the creative_object to the specified Transform over the specified time. If an animation is currently playing on the creative_object it will be stopped and put into the AnimationNotSet state.
+
+Remove	
+Removes this device from Agent (and any agents sharing progress).
+
+RemoveFromAll	
+Removes this device from all valid agents.
+
+Reset	
+Resets the progress for Agent (and any agents sharing progress).
+
+Save	
+Saves tracked progress for Agent. Only valid if Use Persistence is set to Use.
+
+SetDescriptionText	
+Sets a description for the tracker_device, which is displayed if Show on HUD is enabled. Text has a 64 character limit.
+
+SetTarget	
+Sets the target value that must be achieved in order for CompleteEvent to trigger. Clamped to 0 <= TargetValue <= 10000.
+
+SetTitleText	
+Sets the title for the tracker_device, which is displayed if Show on HUD is enabled. Text has a 32 character limit.
+
+SetValue	
+Sets the current tracked value for the device for all active players.
+
+SetValue	
+Sets the current tracked value for the device for the Team at the TeamIndex. If Sharing is set to Individual, this will set the value for all team members. If Sharing is set to All, this will set the value for all players.
+
+SetValue	
+Sets the current tracked value for the device for a specific 'Agent'. If Sharing is set to Team, this will set the value for their team. If Sharing is set to All, this will set the value for everyone.
+
+TeleportTo	
+Teleports the creative_object to the specified Position and Rotation.
+
+TeleportTo	
+Teleports the creative_object to the specified location defined by Transform, also applies rotation and scale accordingly.
+
+
+Game module
+Learn technical details about the Game module.
+
+UEFNGame module
+Module import path: /Fortnite.com/Game
+
+Fortnite.com
+
+Game
+
+Classes and Structs
+Name	Description
+elimination_result	
+Result data for fort_character elimination events.
+
+damage_args	
+Parameters for common damage functions on Fortnite objects.
+
+damage_result	
+Results for damage events on Fortnite objects.
+
+healing_args	
+Parameters for common healing functions on Fortnite objects.
+
+healing_result	
+Results for healing events on Fortnite objects.
+
+Interfaces
+Name	Description
+positional	
+Implemented by objects to allow reading position information.
+
+healthful	
+Implemented by Fortnite objects that have health state and can be eliminated.
+
+shieldable	
+Implemented by Fortnite objects that have shields. A shield is a method of protection that can take incoming damage while leaving the health state unchanged.
+
+damageable	
+Implemented by Fortnite objects that can be damaged.
+
+healable	
+Implemented by Fortnite objects that can be healed.
+
+game_action_instigator	
+Implemented by Fortnite objects that initiate game actions, such as damage and heal. For example, player or agents. Event listeners often use game_action_instigators to calculate player damage scores.
+
+game_action_causer	
+Implemented by Fortnite objects that can be passed through game action events, such as damage and heal. For example: player, vehicle, or weapon.
+
+Event Listeners often use game_action_causer to pass along additional information about what weapon caused the damage. Systems will then use that information for completing quests or processing game specific event logic.
+
+
+
+Playspaces module
+Learn technical details about the Playspaces module.
+
+UEFNPlayspaces module
+Module import path: /Fortnite.com/Playspaces
+
+Fortnite.com
+
+Playspaces
+
+Interfaces
+Name	Description
+fort_playspace	
+A nested container that scopes objects, style, gameplay rules, visuals, etc. All objects and players in an experience will belong to a fort_playspace. There is typically one fort_playspace for an entire experience, though this may change in the future as the platform evolves.
+
+To access the fort_playspace for a creative_device use creative_device.GetPlayspace.
+
+
+Teams module
+Learn technical details about the Teams module.
+
+UEFNTeams module
+Module import path: /Fortnite.com/Teams
+
+Fortnite.com
+
+Teams
+
+Interfaces
+Name	Description
+fort_team_collection	
+Collection used to manage teams and agents on those teams. Use fort_playspace.GetTeamCollection() to get the team_collection for the active experience.
+
+Enumerations
+Name	Description
+team_attitude	
+A generic set of team attitudes. Use this enum to model relationship behavior between your experience's agents/teams.
+
+
+UI module
+Learn technical details about the UI module.
+
+UEFNUI module
+Module import path: /Fortnite.com/UI
+
+Fortnite.com
+
+UI
+
+Classes and Structs
+Name	Description
+text_button_base	
+Button with text message common base class. Displays a button with a custom message string.
+
+button_loud	
+Text button with big and loud styling applied.
+
+button_regular	
+Text button with normal styling applied.
+
+button_quiet	
+Text button with quiet styling applied.
+
+creative_hud_identifier_all	
+creative_hud_identifier_build_menu	
+creative_hud_identifier_crafting_resources	
+creative_hud_identifier_elimination_counter	
+creative_hud_identifier_equipped_item	
+creative_hud_identifier_experience_level	
+creative_hud_identifier_experience_supercharged	
+creative_hud_identifier_experience_ui	
+creative_hud_identifier_health	
+creative_hud_identifier_health_numbers	
+creative_hud_identifier_hud_info	
+creative_hud_identifier_interaction_prompts	
+creative_hud_identifier_map_prompts	
+creative_hud_identifier_mimimap	
+creative_hud_identifier_minimap	
+creative_hud_identifier_pickup_stream	
+creative_hud_identifier_player_count	
+creative_hud_identifier_player_inventory	
+creative_hud_identifier_round_info	
+creative_hud_identifier_round_timer	
+creative_hud_identifier_shield_numbers	
+creative_hud_identifier_shileds	
+creative_hud_identifier_shields	
+creative_hud_identifier_storm_notifications	
+creative_hud_identifier_storm_timer	
+creative_hud_identifier_team_info	
+player_hud_identifier_all	
+hud_identifier_world_resource_wood	
+hud_identifier_world_resource_stone	
+hud_identifier_world_resource_metal	
+hud_identifier_world_resource_permanite	
+hud_identifier_world_resource_gold_currency	
+hud_identifier_world_resource_ingredient	
+hud_element_identifier	
+Used to identify a HUD element.
+
+slider_regular	
+Slider with a text value. Displays a slider, its progress bar and value.
+
+text_block	
+Text block widget. Displays text to the user.
+
+Interfaces
+Name	Description
+fort_hud_controller	
+A HUD controller that allows for showing and hiding of HUD elements.
+
+
+fort_hud_controller interface
+Learn technical details about the fort_hud_controller interface.
+
+UEFNfort_hud_controller interface
+A HUD controller that allows for showing and hiding of HUD elements.
+
+ 	 
+Verse using statement	using { /Fortnite.com/UI }
+Members
+This interface has functions, but no data members.
+
+Functions
+Function Name	Description
+ShowElements	
+Shows a set of HUD elements.
+
+HideElements	
+Hides a set of HUD elements.
+
+ResetElementVisibility	
+Resets the visibility for a set of HUD elements.
+
+
+Copyright Epic Games, Inc. All Rights Reserved. ############################################### Generated Digest of Verse API DO NOT modify this manually! Generated from build: ++Fortnite+Release-26.20-CL-27950014 ###############################################
+
+UnrealEngine.com
+
+Temporary
+
+UI
+
+Diagnostics
+
+Curves
+
+SpatialMath
+
+Verse.org
+
+Verse
+
+Simulation
+
+Assets
+
+Random
+
+Colors
+
+Native
+
+Concurrency
+
+
+
+Colors module
+Learn technical details about the Colors module.
+
+UEFNColors module
+Module import path: /Verse.org/Colors
+
+Verse.org
+
+Colors
+
+NamedColors
+Classes and Structs
+Name	Description
+color	
+Represents colors as RGB triples in the ACES 2065-1 color space. Component values are linear (i.e. *gamma* = 1.0).
+
+Functions
+Name	Description
+operator'+'	
+Makes an ACES 2065-1 color from the component-wise sum of c0 and c1.
+
+operator'-'	
+Makes an ACES 2065-1 color from the component-wise difference of c0 and c1.
+
+operator'*'	
+Makes an ACES 2065-1 color from the component-wise product of c0 and c1.
+
+operator'*'	
+Makes an ACES 2065-1 color from each component of c scaled by factor.
+
+operator'*'	
+Makes an ACES 2065-1 color from each component of c scaled by factor.
+
+operator'*'	
+Makes an ACES 2065-1 color from each component of c scaled by factor.
+
+operator'*'	
+Makes an ACES 2065-1 color from each component of c scaled by factor.
+
+operator'/'	
+Makes an ACES 2065-1 color from each component of c divided by factor.
+
+operator'/'	
+Makes an ACES 2065-1 color from each component of c divided by factor.
+
+MakeColorFromSRGB	
+Makes an ACES 2065-1 color from sRGB components Red, Green, and Blue. Normal sRGB component values are between 0.0 and 1.0, but this can handle larger values.
+
+MakeSRGBFromColor	
+Makes an sRGB tuple by converting InColor from an ACES 2065-1 color to sRGB.
+
+MakeColorFromSRGBValues	
+Makes an ACES 2065-1 color from the integer sRGB components Red, Green, and Blue. Valid sRGB component values are between '0' and '255', inclusive.
+
+MakeColorFromHex	
+Makes an ACES 2065-1 color from a CSS-style sRGB hexString. Supported formats are:
+
+RGB
+RRGGBB
+RRGGBBAA
+RGB
+RRGGBB
+RRGGBBAA
+An invalid hex string will return Black.
+
+MakeColorFromHSV	
+Makes an ACES 2065-1 color from Hue, Saturation, and Value components. Components use the HSV color model in the sRGB color space. Expected ranges:
+
+0.0 <= Hue <= 360.0
+0.0 <= Saturation <= 1.0
+0.0 <= Value <= 1.0 Values out of expected ranges will undergo range reduction and conversion.
+MakeHSVFromColor	
+Makes an HSV tuple by converting InColor from an ACES 2065-1 color to sRGB and applying the HSV color model.
+
+MakeColorFromTemperature	
+Makes an ACES 2065-1 color from the chromaticity of a blackbody radiator at Temperature Kelvin. Temperature is clamped such that 0 <= Temperature.
+
+
+Copyright Epic Games, Inc. All Rights Reserved. ############################################### Generated Digest of Verse API DO NOT modify this manually! Generated from build: ++Fortnite+Release-26.20-CL-27950014 ###############################################
+
+Verse.org
+
+Simulation
+
+Tags
+Classes and Structs
+Name	Description
+agent	
+player	
+session	
+Type for which there is a single instance per round. Use GetSession to get the current round's session instance. May be used with weak_map to implement global variables. Note: may be changed in a future release to a single instance per game. Round-local behavior should not be relied upon.
+
+team	
+Functions
+Name	Description
+GetSession	
+Returns the session corresponding to the current round. The result can be used with weak_map to implement global variables. Note: may be changed in a future release to return a single instance per game. Round-local behavior should not be relied upon.
+
+Sleep	
+Waits specified number of seconds and then resumes. If Seconds = 0.0 then it waits until next tick/frame/update. If Seconds = Inf then it waits forever and only calls back if canceled - such as via race. If Seconds < 0.0 then it completes immediately and does not yield to other aysnc expressions. Waiting until the next update (0.0) is especially useful in a loop of a coroutine that needs to do some work every update and this yields to other coroutines so that it doesn't hog a processor's resources. Waiting forever (Inf) will have any expression that follows never be evaluated. Occasionally it is desireable to have a task never complete such as the last expression in a race subtask where the task must never win the race though it still may be canceled earlier. Immediately completing (less than 0) is useful when you want programmatic control over whether an expression yields or not.
+
+GetSimulationElapsedTime	
+Get the seconds that have elapsed since the world began simulating
+
+
+Concurrency module
+Learn technical details about the Concurrency module.
+
+UEFNConcurrency module
+Module import path: /Verse.org/Concurrency
+
+Verse.org
+
+Concurrency
+
+Classes and Structs
+Name	Description
+task(t)	
+Functions
+Name	Description
+awaitable	
+A parametric interface implemented by events with a payload that can be waited on. Matched with signalable.
+
+awaitable	
+task	
+
+
+
+Assets module
+Learn technical details about the Assets module.
+
+UEFNAssets module
+Module import path: /Verse.org/Assets
+
+Verse.org
+
+Assets
+
+Classes and Structs
+Name	Description
+material	
+mesh	
+texture
+
+
+
+Verse module
+Learn technical details about the Verse module.
+
+UEFNVerse module
+Module import path: /Verse.org/Verse
+
+Verse.org
+
+Verse
+
+Classes and Structs
+Name	Description
+event(t)	
+A recurring, successively signaled parametric event with a payload allowing a simple mechanism to coordinate between concurrent tasks:
+
+Await suspends tasks to wait on this event,
+another task Signals this event and resumes the suspended tasks in FIFO order.
+locale	
+Used for message localization.
+
+message	
+A localizable text message.
+
+Interfaces
+Name	Description
+cancelable	
+Implemented by classes that allow users to cancel an operation. For example, calling subscribable.Subscribe with a callback returns a cancelable object. Calling Cancel on the return object unsubscribes the callback.
+
+disposable	
+Implemented by classes whose instances have limited lifetimes.
+
+invalidatable	
+Implemented by classes whose instances can become invalid at runtime.
+
+Functions
+Name	Description
+operator'='	
+operator'<>'	
+prefix'-'	
+operator'+'	
+operator'-'	
+operator'*'	
+operator'/'	
+operator'+='	
+operator'-='	
+operator'*='	
+Abs	
+operator'>'	
+operator'>='	
+operator'<'	
+operator'<='	
+Ceil	
+Floor	
+prefix'-'	
+operator'+'	
+operator'-'	
+operator'*'	
+operator'/'	
+operator'+='	
+operator'-='	
+operator'*='	
+operator'/='	
+Abs	
+operator'*'	
+operator'*'	
+operator'>'	
+operator'>='	
+operator'<'	
+operator'<='	
+operator'?'	
+operator'+'	
+operator'+='	
+operator'()'	
+operator'()'	
+operator'()'	
+ConcatenateMaps	
+operator'()'	
+operator'()'	
+weak_map	
+operator'?'	
+Concatenate	
+Makes a flattened array by concatenating the elements of Arrays.
+
+Err	
+Halts the Verse runtime with error Message.
+
+event	
+A recurring, successively signaled parametric event with a payload allowing a simple mechanism to coordinate between concurrent tasks:
+
+Await suspends tasks to wait on this event,
+another task Signals this event and resumes the suspended tasks in FIFO order.
+event	
+A recurring, successively signaled event allowing a simple mechanism to coordinate between concurrent tasks.
+
+Ceil	
+Returns the smallest int that is greater than or equal to Val. Fails if not IsFinite(Val).
+
+Floor	
+Returns the largest int that is less than or equal to Val. Fails if not IsFinite(Val).
+
+Round	
+Returns Val rounded to the nearest int. When the fractional part of Val is 0.5, rounds to the nearest even int (per the IEEE-754 default rounding mode). Fails if not IsFinite(Val).
+
+Int	
+Returns the int that equals Val without the fractional part. Fails if not IsFinite(val).
+
+ToString	
+Makes a string representation of Val.
+
+ToString	
+Makes a printable string representation of Val.
+
+listenable	
+A parametric interface combining awaitable and subscribable.
+
+listenable	
+A parameterless interface combining awaitable and subscribable.
+
+Localize	
+Makes a string by localizing Message based on the current locale.
+
+Clamp	
+Constrains the value of Val between A and B. Robustly handles different argument orderings. Returns the median of Val, A, and B, such that comparisons with NaN operate as if NaN > +Inf.
+
+Clamp	
+Constrains the value of Val between A and B. Robustly handles different argument orderings. Returns the median of Val, A, and B.
+
+Min	
+Returns the minimum of X and Y.
+
+Max	
+Returns the maximum of X and Y.
+
+Min	
+Returns the minimum of X and Y unless either are NaN. Returns NaN if either X or Y are NaN.
+
+Max	
+Returns the maximum of X and Y unless either are NaN. Returns NaN if either X or Y are NaN.
+
+Sqrt	
+Returns the square root of X if X >= 0.0. Returns NaN if X < 0.0.
+
+Sin	
+Returns the sine of X if IsFinite(X). Returns NaN if `not IsFinite(X)
+
+Cos	
+Returns the cosine of X if IsFinite(X). Returns NaN if `not IsFinite(X)
+
+Tan	
+Returns the tangent of X if IsFinite(X). Returns NaN if `not IsFinite(X).
+
+ArcSin	
+Returns the inverse sine (arcsine) of X if -1.0 <= X <= 1.0.
+
+ArcCos	
+Returns the inverse cosine (arccosine) of X if -1.0 <= X <= 1.0.
+
+ArcTan	
+Returns the inverse tangent (arctangent) of X such that:-PiFloat/2.0 <= ArcTan(x) <= PiFloat/2.0.
+
+ArcTan	
+Returns the angle in radians at the origin between a ray pointing to (X, Y) and the positive X axis such that -PiFloat < ArcTan(Y, X) <= PiFloat. Returns 0.0 if X=0.0 and Y=0.0.
+
+Sinh	
+Returns the hyperbolic sine of X.
+
+Cosh	
+Returns the hyperbolic cosine of X.
+
+Tanh	
+Returns the hyperbolic tangent of X.
+
+ArSinh	
+Returns the inverse hyperbolic sine of X if IsFinite(X).
+
+ArCosh	
+Returns the inverse hyperbolic cosine of X if 1.0 <= X.
+
+ArTanh	
+Returns the inverse hyperbolic tangent of X if IsFinite(X).
+
+Pow	
+Returns A to the power of B.
+
+Quotient	
+Returns the quotient X/Y as defined by Euclidean division, i.e.:
+
+Quotient[X/Y] = Floor[X/Y] when Y > 0
+Quotient[X/Y] = Ceil[X/Y] when Y < 0
+Quotient[X/Y] * Y + Mod[X,Y] = X Fails if Y = 0.
+Mod	
+Returns the remainder of X/Y as defined by Euclidean division, i.e.:
+
+Mod[X,Y] = X - Quotient(X/Y)*Y
+0 <= Mod[X,Y] < Abs(Y) Fails if Y=0.
+Exp	
+Returns the natural exponent of X.
+
+Ln	
+Returns the natural logarithm of X.
+
+Log	
+Returns the base B logarithm of X.
+
+Lerp	
+Used to linearly interpolate/extrapolate between From (when Parameter = 0.0) and To (when Parameter = 1.0). Expects that all arguments are finite. Returns From*(1 - Parameter) + To*Parameter.
+
+Sgn	
+Returns the sign of Val:
+
+1 if Val > 0
+0 if Val = 0
+-1 if Val < 0
+Sgn	
+Returns the sign of Val:
+
+1.0 if Val > 0.0
+0.0 if Val = 0.0
+-1.0 if Val < 0.0
+NaN if Val = NaN
+IsAlmostEqual	
+Succeeds if Val1 and Val2 are within AbsoluteTolerance of each other.
+
+Print	
+Writes Message to a dedicated Print log while displaying it in Color on the client screen for Duration seconds. By default, Color is NamedColors.White and Duration is 2.0 seconds.
+
+signalable	
+A parametric interface implemented by events with a payload that can be signaled. Can be used with awaitable, subscribable, or both (see: listenable).
+
+Join	
+Makes a string by concatenating Separator between the elements of Strings.
+
+ToString	
+Returns String without modification.
+
+ToString	
+Makes a string from Character.
+
+subscribable	
+A parametric interface implemented by events with a payload that can be subscribed to. Matched with signalable.
+
+subscribable	
+A parameterless interface implemented by events that can be subscribed to.
+
+Data
+Name	Description
+Inf	 
+NaN	 
+PiFloat
+
+
+
