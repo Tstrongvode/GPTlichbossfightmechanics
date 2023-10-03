@@ -1,0 +1,89 @@
+using { /Fortnite.com/Devices }
+using { /Verse.org/Simulation }
+
+game_manager := class(creative_device):
+
+    @editable var Enemies : []creative_prop = array{}
+    @editable var Granter : item_granter_device = item_granter_device{}
+    @editable var PropManipulator : prop_manipulator_device = prop_manipulator_device{}
+    @editable var EndDevice : end_game_device = end_game_device{}
+
+    var Players : []player = array{}
+    
+    var CurrentKillCount : int = 0
+    TotalKillsRequired : int = 10
+
+    GameUI : game_ui = game_ui{}
+
+    OnBegin<override>()<suspends>:void=
+        InitPlayers()
+        InitEnemies()
+    
+    InitPlayers():void=
+        set Players = GetPlayspace().GetPlayers()
+        if (Player := Players[0]):
+            GameUI.CreateUIForPlayer(Player)
+            Granter.GrantItem(Player)
+
+    InitEnemies():void=
+        PropManipulator.DestroyedEvent.Subscribe(OnPropDestroyed)
+        if (Player := Players[0]):
+            for (X := 0..Enemies.Length -1):
+                if (Enemy := Enemies[X]):
+                    spawn:
+                        FollowPlayer(Enemy, Player)
+
+    OnPropDestroyed(Agent : agent):void=
+        set CurrentKillCount += 1
+        if (CurrentKillCount >= TotalKillsRequired) { EndDevice.Activate(Agent)}
+        GameUI.UpdateKillCount(CurrentKillCount)
+
+
+game_ui := class():
+
+    SpiderKillsText<localizes>(Kills : int) : message = "Spiders Killed : {Kills}"
+    KillCountWidget : button_loud = button_loud{}
+
+    UpdateKillCount(TotalKills : int):void=
+        KillCountWidget.SetText(SpiderKillsText(TotalKills))
+
+    CreateUIForPlayer(Player : player): void=
+        if (PlayerUI := GetPlayerUI[Player]):
+            KillCountWidget.SetText(SpiderKillsText(0))
+            MyCanvas : canvas = canvas:
+                Slots := array:
+                    canvas_slot:
+                        Anchors := anchors{Minimum := vector2{X := 0.5, Y := 0.0}, Maximum := vector2{X := 0.5, Y := 0.0}}
+                        Offsets := margin{Top := 100.0, Left := 0.0, Right := 0.0, Bottom := 0.0}
+                        Alignment := vector2{X := 0.5, Y := 0.5}
+                        SizeToContent := true
+                        Widget := KillCountWidget
+            PlayerUI.AddWidget(MyCanvas)
+
+FollowPlayer(Enemy : creative_prop, Player : player)<suspends>:void=
+    var PreviousTime : float = GetSimulationElapsedTime()
+        MoveSpeed := 0.1
+        loop:
+            Sleep(0.0)
+            CurrentTime := GetSimulationElapsedTime()
+            DeltaTime := CurrentTime - PreviousTime
+            set PreviousTime = CurrentTime
+            if (PlayerCharacter := Player.GetFortCharacter[], Enemy.IsValid[]):
+
+                PropLocation := Enemy.GetTransform().Translation
+                PlayerLocation := PlayerCharacter.GetTransform().Translation
+
+                if (LookDirection := (PlayerLocation - PropLocation).MakeUnitVector[]):
+
+                    Yaw := RadiansToDegrees(ArcTan(LookDirection.Y, LookDirection.X)) - 90.0
+                    Pitch := 0.0 #RadiansToDegrees(ArcTan(LookDirection.Z, Sqrt((LookDirection.X * LookDirection.X) + (LookDirection.Y * LookDirection.Y))))
+                    Roll := 0.0
+
+                    NewRotation := MakeRotationFromYawPitchRollDegrees(Yaw, Pitch, Roll)
+
+                    # Movement
+                    LerpLocation := Lerp(PropLocation, PlayerLocation, DeltaTime * MoveSpeed)
+                    FinalLocation := vector3{X := LerpLocation.X, Y := LerpLocation.Y, Z := 0.0}
+
+                    if:
+                        Enemy.TeleportTo[FinalLocation, NewRotation]
