@@ -1,0 +1,15 @@
+using { /Fortnite.com/Devices }
+using { /Fortnite.com/Characters }
+using { /Verse.org/Simulation }
+using { /UnrealEngine.com/Temporary/Diagnostics }
+using { /UnrealEngine.com/Temporary/SpatialMath }            
+    
+    GetClosestPlayerToProp(AllPlayers: []fort_character, Prop : creative_prop): ?fort_character =
+        var ClosestPlayer : ?fort_character = false
+        var ClosestDistance: float = 1000000000.0 # initialize with a large number
+        for (Player : AllPlayers):
+            EDistance := Distance(Prop.GetTransform().Translation, Player.GetTransform().Translation)
+            if (EDistance < ClosestDistance):
+                set ClosestPlayer = option{Player}
+                set ClosestDistance = EDistance
+        return ClosestPlayer
