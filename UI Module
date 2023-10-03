@@ -1,0 +1,1031 @@
+UI module
+
+Learn technical details about the UI module.
+UEFN
+UI module
+
+Module import path: /Fortnite.com/UI
+
+    Fortnite.com
+
+    UI
+
+Classes and Structs
+Name 	Description
+text_button_base 	
+
+Button with text message common base class. Displays a button with a custom message string.
+button_loud 	
+
+Text button with big and loud styling applied.
+button_regular 	
+
+Text button with normal styling applied.
+button_quiet 	
+
+Text button with quiet styling applied.
+creative_hud_identifier_all 	
+creative_hud_identifier_build_menu 	
+creative_hud_identifier_crafting_resources 	
+creative_hud_identifier_elimination_counter 	
+creative_hud_identifier_equipped_item 	
+creative_hud_identifier_experience_level 	
+creative_hud_identifier_experience_supercharged 	
+creative_hud_identifier_experience_ui 	
+creative_hud_identifier_health 	
+creative_hud_identifier_health_numbers 	
+creative_hud_identifier_hud_info 	
+creative_hud_identifier_interaction_prompts 	
+creative_hud_identifier_map_prompts 	
+creative_hud_identifier_mimimap 	
+creative_hud_identifier_minimap 	
+creative_hud_identifier_pickup_stream 	
+creative_hud_identifier_player_count 	
+creative_hud_identifier_player_inventory 	
+creative_hud_identifier_round_info 	
+creative_hud_identifier_round_timer 	
+creative_hud_identifier_shield_numbers 	
+creative_hud_identifier_shileds 	
+creative_hud_identifier_shields 	
+creative_hud_identifier_storm_notifications 	
+creative_hud_identifier_storm_timer 	
+creative_hud_identifier_team_info 	
+player_hud_identifier_all 	
+hud_identifier_world_resource_wood 	
+hud_identifier_world_resource_stone 	
+hud_identifier_world_resource_metal 	
+hud_identifier_world_resource_permanite 	
+hud_identifier_world_resource_gold_currency 	
+hud_identifier_world_resource_ingredient 	
+hud_element_identifier 	
+
+Used to identify a HUD element.
+slider_regular 	
+
+Slider with a text value. Displays a slider, its progress bar and value.
+text_block 	
+
+Text block widget. Displays text to the user.
+Interfaces
+Name 	Description
+fort_hud_controller 	
+
+A HUD controller that allows for showing and hiding of HUD elements.
+
+
+Text button with big and loud styling applied.
+ 
+ 
+Verse using statement
+using { /Fortnite.com/UI }
+
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with widget:
+Name
+Description
+widget
+Base class for all UI elements drawn on the player's screen.
+text_button_base
+Button with text message common base class. Displays a button with a custom message string.
+
+Members
+This class has both data members and functions.
+Data
+Data Member Name
+Type
+Description
+DefaultText
+message
+The text to display to the user. Used only during initialization of the widget and not modified by SetText.
+
+Functions
+Function Name
+Description
+GetParentWidget
+Returns the widget's parent widget. Fails if no parent exists, such as if this widget is not in the player_ui or is itself the root widget.
+GetRootWidget
+Returns the widget that added this widget to the player_ui. The root widget will return itself. Fails if this widget is not in the player_ui.
+GetText
+Gets the text currently in the widget.
+GetVisibility
+Returns the current widget_visibility state.
+IsEnabled
+true if this widget can be modified interactively by the player.
+OnClick
+Subscribable event that fires when the button is clicked.
+SetEnabled
+Enables or disables whether the player can interact with this widget.
+SetText
+Sets the text displayed in the widget.
+SetVisibility
+Shows or hides the widget without removing itself from the containing player_ui. See widget_visibility for details.
+
+
+
+
+Text button with quiet styling applied.
+ 
+ 
+Verse using statement
+using { /Fortnite.com/UI }
+
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with widget:
+Name
+Description
+widget
+Base class for all UI elements drawn on the player's screen.
+text_button_base
+Button with text message common base class. Displays a button with a custom message string.
+
+Members
+This class has both data members and functions.
+Data
+Data Member Name
+Type
+Description
+DefaultText
+message
+The text to display to the user. Used only during initialization of the widget and not modified by SetText.
+
+Functions
+Function Name
+Description
+GetParentWidget
+Returns the widget's parent widget. Fails if no parent exists, such as if this widget is not in the player_ui or is itself the root widget.
+GetRootWidget
+Returns the widget that added this widget to the player_ui. The root widget will return itself. Fails if this widget is not in the player_ui.
+GetText
+Gets the text currently in the widget.
+GetVisibility
+Returns the current widget_visibility state.
+IsEnabled
+true if this widget can be modified interactively by the player.
+OnClick
+Subscribable event that fires when the button is clicked.
+SetEnabled
+Enables or disables whether the player can interact with this widget.
+SetText
+Sets the text displayed in the widget.
+SetVisibility
+Shows or hides the widget without removing itself from the containing player_ui. See widget_visibility for details.
+
+
+
+
+Text button with normal styling applied.
+ 
+ 
+Verse using statement
+using { /Fortnite.com/UI }
+
+Inheritance Hierarchy
+This class is derived from the following hierarchy, starting with widget:
+Name
+Description
+widget
+Base class for all UI elements drawn on the player's screen.
+text_button_base
+Button with text message common base class. Displays a button with a custom message string.
+
+Members
+This class has both data members and functions.
+Data
+Data Member Name
+Type
+Description
+DefaultText
+message
+The text to display to the user. Used only during initialization of the widget and not modified by SetText.
+
+Functions
+Function Name
+Description
+GetParentWidget
+Returns the widget's parent widget. Fails if no parent exists, such as if this widget is not in the player_ui or is itself the root widget.
+GetRootWidget
+Returns the widget that added this widget to the player_ui. The root widget will return itself. Fails if this widget is not in the player_ui.
+GetText
+Gets the text currently in the widget.
+GetVisibility
+Returns the current widget_visibility state.
+IsEnabled
+true if this widget can be modified interactively by the player.
+OnClick
+Subscribable event that fires when the button is clicked.
+SetEnabled
+Enables or disables whether the player can interact with this widget.
+SetText
+Sets the text displayed in the widget.
+SetVisibility
+Shows or hides the widget without removing itself from the containing player_ui. See widget_visibility for details.
+
+
+
+Inheritance Hierarchy
+This class is derived from hud_element_identifier.
+Name
+Description
+hud_element_identifier
+Used to identify a HUD element.
+
+
+Verse using statement
+using { /Fortnite.com/UI }
+
+
+
+Inheritance Hierarchy
+This class is derived from hud_element_identifier.
+Name
+Description
+hud_element_identifier
+Used to identify a HUD element.
+
+
+Verse using statement
+using { /Fortnite.com/UI }
+
+
+
+Inheritance Hierarchy
+This class is derived from hud_element_identifier.
+Name
+Description
+hud_element_identifier
+Used to identify a HUD element.
+
+
+Verse using statement
+using { /Fortnite.com/UI }
+
+
+
+creative_hud_identifier_equipped_item class
+
+Learn technical details about the creative_hud_identifier_equipped_item class.
+UEFN
+creative_hud_identifier_equipped_item class
+  	 
+Verse using statement 	using { /Fortnite.com/UI }
+Inheritance Hierarchy
+
+This class is derived from hud_element_identifier.
+Name 	Description
+hud_element_identifier 	
+
+Used to identify a HUD element.
+
+
+
+Inheritance Hierarchy
+This class is derived from hud_element_identifier.
+Name
+Description
+hud_element_identifier
+Used to identify a HUD element.
+
+
+Verse using statement
+using { /Fortnite.com/UI }
+
+
+
+Inheritance Hierarchy
+This class is derived from hud_element_identifier.
+Name
+Description
+hud_element_identifier
+Used to identify a HUD element.
+
+
+Verse using statement
+using { /Fortnite.com/UI }
+
+
+
+Inheritance Hierarchy
+This class is derived from hud_element_identifier.
+Name
+Description
+hud_element_identifier
+Used to identify a HUD element.
+
+
+Verse using statement
+using { /Fortnite.com/UI }
+
+
+
+Inheritance Hierarchy
+This class is derived from hud_element_identifier.
+Name
+Description
+hud_element_identifier
+Used to identify a HUD element.
+
+
+Verse using statement
+using { /Fortnite.com/UI }
+
+
+
+Inheritance Hierarchy
+This class is derived from hud_element_identifier.
+Name
+Description
+hud_element_identifier
+Used to identify a HUD element.
+
+
+Verse using statement
+using { /Fortnite.com/UI }
+
+
+
+Inheritance Hierarchy
+This class is derived from hud_element_identifier.
+Name
+Description
+hud_element_identifier
+Used to identify a HUD element.
+
+
+Verse using statement
+using { /Fortnite.com/UI }
+
+
+
+A HUD controller that allows for showing and hiding of HUD elements.
+ 
+ 
+Verse using statement
+using { /Fortnite.com/UI }
+
+Members
+This interface has functions, but no data members.
+Functions
+Function Name
+Description
+ShowElements
+Shows a set of HUD elements.
+HideElements
+Hides a set of HUD elements.
+ResetElementVisibility
+Resets the visibility for a set of HUD elements.
+
+
+
+HideElements<public>(HUDElements:[]hud_element_identifier)<varies><transacts><no_rollback>:void
+Parameters
+HideElements takes the following parameters:
+Name
+Type
+Description
+HUDElements
+[]hud_element_identifier
+ 
+
+Attributes and Effects
+The following attributes and effects determine how HideElements behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute
+Meaning
+public
+The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+
+Effect
+Meaning
+varies
+This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts
+This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback
+This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+
+Verse using statement
+using { /Fortnite.com/UI }
+
+
+
+Resets the visibility for a set of HUD elements.
+ 
+ 
+Verse using statement
+using { /Fortnite.com/UI }
+
+ResetElementVisibility<public>(HUDElements:[]hud_element_identifier)<varies><transacts><no_rollback>:void
+Parameters
+ResetElementVisibility takes the following parameters:
+Name
+Type
+Description
+HUDElements
+[]hud_element_identifier
+ 
+
+Attributes and Effects
+The following attributes and effects determine how ResetElementVisibility behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute
+Meaning
+public
+The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+
+Effect
+Meaning
+varies
+This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts
+This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback
+This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+
+
+Shows a set of HUD elements.
+ 
+ 
+Verse using statement
+using { /Fortnite.com/UI }
+
+ShowElements<public>(HUDElements:[]hud_element_identifier)<varies><transacts><no_rollback>:void
+Parameters
+ShowElements takes the following parameters:
+Name
+Type
+Description
+HUDElements
+[]hud_element_identifier
+ 
+
+Attributes and Effects
+The following attributes and effects determine how ShowElements behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute
+Meaning
+public
+The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+
+Effect
+Meaning
+varies
+This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts
+This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback
+This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+
+
+Get the fort_hud_controller for the current fort_playspace.
+ 
+ 
+Verse using statement
+using { /Fortnite.com/UI }
+
+(Playspace:fort_playspace).GetHUDController<native><public>()<varies><transacts><no_rollback>:fort_hud_controller
+Parameters
+GetHUDController takes the following parameters:
+Name
+Type
+Description
+Playspace
+fort_playspace
+ 
+
+Attributes and Effects
+The following attributes and effects determine how GetHUDController behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute
+Meaning
+native
+Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public
+The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+
+Effect
+Meaning
+varies
+This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts
+This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback
+This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+
+
+Deprecated. This function affects all players. Please use fort_playspace.GetHUDController().HideElements(). Hides a set of HUD elements.
+ 
+ 
+Verse using statement
+using { /Fortnite.com/UI }
+
+(PlayerUI:player_ui).HideHUDElements<native><public>(HUDElements:[]hud_element_identifier)<varies><transacts><no_rollback>:void
+Parameters
+HideHUDElements takes the following parameters:
+Name
+Type
+Description
+PlayerUI
+player_ui
+ 
+HUDElements
+[]hud_element_identifier
+ 
+
+Attributes and Effects
+The following attributes and effects determine how HideHUDElements behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute
+Meaning
+native
+Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public
+The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+
+Effect
+Meaning
+varies
+This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts
+This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback
+This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+
+
+
+slider_regular class
+
+Learn technical details about the slider_regular class.
+UEFN
+slider_regular class
+
+Slider with a text value. Displays a slider, its progress bar and value.
+  	 
+Verse using statement 	using { /Fortnite.com/UI }
+Inheritance Hierarchy
+
+This class is derived from widget.
+Name 	Description
+widget 	
+
+Base class for all UI elements drawn on the player's screen.
+Members
+
+This class has both data members and functions.
+Data
+Data Member Name 	Type 	Description
+DefaultMaxValue 	float 	
+
+The maximum value that the slider can haver. Used only during initialization of the widget and not modified by SetMaxValue.
+DefaultMinValue 	float 	
+
+The minimum value that the slider can haver. Used only during initialization of the widget and not modified by SetMinValue.
+DefaultStepSize 	float 	
+
+The amount to adjust the value by, when using a controller or keyboard. Used only during initialization of the widget and not modified by SetStepSize.
+DefaultValue 	float 	
+
+The value to display to the user. Used only during initialization of the widget and not modified by SetValue.
+Functions
+Function Name 	Description
+GetMaxValue 	
+
+Gets the maximum value of the slider.
+GetMinValue 	
+
+Gets the minimum value of the slider.
+GetParentWidget 	
+
+Returns the widget's parent widget. Fails if no parent exists, such as if this widget is not in the player_ui or is itself the root widget.
+GetRootWidget 	
+
+Returns the widget that added this widget to the player_ui. The root widget will return itself. Fails if this widget is not in the player_ui.
+GetStepSize 	
+
+Gets the amount to adjust the value by.
+GetValue 	
+
+Gets the value of the slider.
+GetVisibility 	
+
+Returns the current widget_visibility state.
+IsEnabled 	
+
+true if this widget can be modified interactively by the player.
+OnValueChanged 	
+
+Subscribable event that fires when the value of the slider has changed.
+SetEnabled 	
+
+Enables or disables whether the player can interact with this widget.
+SetMaxValue 	
+
+Sets the maximum value of the slider, will enforce that the sliders maximum value is always larger than or equal to the minimum value.
+SetMinValue 	
+
+Sets the minimum value of the slider, will enforce that the sliders maximum value is always larger than or equal to the minimum value.
+SetStepSize 	
+
+Sets the amount to adjust the value by, when using a controller or keyboard.
+SetValue 	
+
+Sets the value of the slider, will clamp the value to be within the sliders minimum and maximum value.
+SetVisibility 	
+
+Shows or hides the widget without removing itself from the containing player_ui. See widget_visibility for details.
+
+
+
+
+
+text_block class
+
+Learn technical details about the text_block class.
+UEFN
+text_block class
+
+Text block widget. Displays text to the user.
+  	 
+Verse using statement 	using { /Fortnite.com/UI }
+Inheritance Hierarchy
+
+This class is derived from the following hierarchy, starting with widget:
+Name 	Description
+widget 	
+
+Base class for all UI elements drawn on the player's screen.
+text_base 	
+
+Base widget for text widget.
+Members
+
+This class has both data members and functions.
+Data
+Data Member Name 	Type 	Description
+DefaultJustification 	text_justification 	
+
+The justification to display to the user. Used only during initialization of the widget and not modified by SetJustification.
+DefaultOverflowPolicy 	text_overflow_policy 	
+
+The policy that determine what happens when the text is longer than its allowed length. Used only during initialization of the widget and not modified by SetOverflowPolicy.
+DefaultShadowColor 	color 	
+
+The color of the shadow. Used only during initialization of the widget and not modified by SetShadowColor.
+DefaultShadowOffset 	?vector2 	
+
+The direction the shadow is cast. Used only during initialization of the widget and not modified by SetShadowOffset.
+DefaultText 	message 	
+
+The text to display to the user. Used only during initialization of the widget and not modified by SetText.
+DefaultTextColor 	color 	
+
+The color of the displayed text. Used only during initialization of the widget and not modified by SetTextColor.
+DefaultTextOpacity 	float 	
+
+The opacity of the displayed text. Used only during initialization of the widget and not modified by SetTextOpacity.
+Functions
+Function Name 	Description
+GetJustification 	
+
+Gets the text justification in the widget.
+GetOverflowPolicy 	
+
+Gets the policy that determine what happens when the text is longer than its allowed length.
+GetParentWidget 	
+
+Returns the widget's parent widget. Fails if no parent exists, such as if this widget is not in the player_ui or is itself the root widget.
+GetRootWidget 	
+
+Returns the widget that added this widget to the player_ui. The root widget will return itself. Fails if this widget is not in the player_ui.
+GetShadowColor 	
+
+Gets the color of the shadow.
+GetShadowOffset 	
+
+Gets the direction the shadow is cast.
+GetShadowOpacity 	
+
+Gets the opacity of the shadow.
+GetText 	
+
+Gets the text currently in the widget.
+GetTextColor 	
+
+Gets the color of the displayed text.
+GetTextOpacity 	
+
+Gets the opacity of the displayed text.
+GetVisibility 	
+
+Returns the current widget_visibility state.
+IsEnabled 	
+
+true if this widget can be modified interactively by the player.
+SetEnabled 	
+
+Enables or disables whether the player can interact with this widget.
+SetJustification 	
+
+Sets the text justification in the widget.
+SetOverflowPolicy 	
+
+Sets the policy that determine what happens when the text is longer than its allowed length.
+SetShadowColor 	
+
+Sets the color of the shadow.
+SetShadowOffset 	
+
+Sets the direction the shadow is cast.
+SetShadowOpacity 	
+
+Sets the opacity of the shadow.
+SetText 	
+
+Sets the text displayed in the widget.
+SetTextColor 	
+
+Sets the color of the displayed text.
+SetTextOpacity 	
+
+Sets the opacity of the displayed text.
+SetVisibility 	
+
+Shows or hides the widget without removing itself from the containing player_ui. See widget_visibility for details.
+
+
+
+
+text_button_base class
+
+Learn technical details about the text_button_base class.
+UEFN
+text_button_base class
+
+Button with text message common base class. Displays a button with a custom message string.
+  	 
+Verse using statement 	using { /Fortnite.com/UI }
+Inheritance Hierarchy
+
+This class is derived from widget.
+Name 	Description
+widget 	
+
+Base class for all UI elements drawn on the player's screen.
+Members
+
+This class has both data members and functions.
+Data
+Data Member Name 	Type 	Description
+DefaultText 	message 	
+
+The text to display to the user. Used only during initialization of the widget and not modified by SetText.
+Functions
+Function Name 	Description
+GetParentWidget 	
+
+Returns the widget's parent widget. Fails if no parent exists, such as if this widget is not in the player_ui or is itself the root widget.
+GetRootWidget 	
+
+Returns the widget that added this widget to the player_ui. The root widget will return itself. Fails if this widget is not in the player_ui.
+GetText 	
+
+Gets the text currently in the widget.
+GetVisibility 	
+
+Returns the current widget_visibility state.
+IsEnabled 	
+
+true if this widget can be modified interactively by the player.
+OnClick 	
+
+Subscribable event that fires when the button is clicked.
+SetEnabled 	
+
+Enables or disables whether the player can interact with this widget.
+SetText 	
+
+Sets the text displayed in the widget.
+SetVisibility 	
+
+Shows or hides the widget without removing itself from the containing player_ui. See widget_visibility for details.
+
+
+
+Vehicles module
+
+Learn technical details about the Vehicles module.
+UEFN
+Vehicles module
+
+Module import path: /Fortnite.com/Vehicles
+
+    Fortnite.com
+
+    Vehicles
+
+Interfaces
+Name 	Description
+fort_vehicle 	
+
+Main API implemented by Fortnite vehicles.
+
+
+
+fort_vehicle interface
+
+Learn technical details about the fort_vehicle interface.
+UEFN
+fort_vehicle interface
+
+Main API implemented by Fortnite vehicles.
+  	 
+Verse using statement 	using { /Fortnite.com/Vehicles }
+Exposed Interfaces
+
+This interface exposes the following interfaces:
+Name 	Description
+positional 	
+
+Implemented by objects to allow reading position information.
+healthful 	
+
+Implemented by Fortnite objects that have health state and can be eliminated.
+damageable 	
+
+Implemented by Fortnite objects that can be damaged.
+game_action_causer 	
+
+Implemented by Fortnite objects that can be passed through game action events, such as damage and heal. For example: player, vehicle, or weapon.
+
+Event Listeners often use game_action_causer to pass along additional information about what weapon caused the damage. Systems will then use that information for completing quests or processing game specific event logic.
+Members
+
+This interface has functions, but no data members.
+Functions
+Function Name 	Description
+IsOnGround 	
+
+Succeeds if this fort_vehicle is standing on ground.
+IsInAir 	
+
+Succeeds if this fort_vehicle is standing in air.
+IsInWater 	
+
+Succeeds if this fort_vehicle is standing in water.
+GetPassengers 	
+
+Returns an array with all the passengers of the vehicle.
+
+
+GetPassengers<public>()<varies><transacts><no_rollback>:[]fort_character
+Parameters
+GetPassengers does not take any parameters.
+Attributes and Effects
+The following attributes and effects determine how GetPassengers behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute
+Meaning
+public
+The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+
+Effect
+Meaning
+varies
+This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts
+This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+no_rollback
+This is the default effect when no exclusive effect is specified. The no_rollback effect indicates that any actions performed by the function cannot be undone and so the function cannot be used in a failure context. This effect cannot be manually specified.
+
+
+Verse using statement
+using { /Fortnite.com/Vehicles }
+
+
+
+Succeeds if this fort_vehicle is standing in air.
+ 
+ 
+Verse using statement
+using { /Fortnite.com/Vehicles }
+
+IsInAir<public>()<decides><varies><transacts>:void
+Parameters
+IsInAir does not take any parameters.
+Attributes and Effects
+The following attributes and effects determine how IsInAir behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute
+Meaning
+public
+The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+
+Effect
+Meaning
+decides
+Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+varies
+This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts
+This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+
+
+Succeeds if this fort_vehicle is standing in water.
+ 
+ 
+Verse using statement
+using { /Fortnite.com/Vehicles }
+
+IsInWater<public>()<decides><varies><transacts>:void
+Parameters
+IsInWater does not take any parameters.
+Attributes and Effects
+The following attributes and effects determine how IsInWater behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute
+Meaning
+public
+The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+
+Effect
+Meaning
+decides
+Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+varies
+This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts
+This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+
+
+
+Succeeds if this fort_vehicle is standing on ground.
+ 
+ 
+Verse using statement
+using { /Fortnite.com/Vehicles }
+
+IsOnGround<public>()<decides><varies><transacts>:void
+Parameters
+IsOnGround does not take any parameters.
+Attributes and Effects
+The following attributes and effects determine how IsOnGround behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute
+Meaning
+public
+The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+
+Effect
+Meaning
+decides
+Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+varies
+This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts
+This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+
+
+Returns the fort_vehicle for InCharacter. Fails if InCharacter is not associated with a fort_vehicle.
+ 
+ 
+Verse using statement
+using { /Fortnite.com/Vehicles }
+
+(InCharacter:fort_character).GetVehicle<native><public>()<decides><varies><transacts>:fort_vehicle
+Parameters
+GetVehicle takes the following parameters:
+Name
+Type
+Description
+InCharacter
+fort_character
+ 
+
+Attributes and Effects
+The following attributes and effects determine how GetVehicle behaves and how you can use it in your programs. For the complete list of attribute and effect specifiers, see the Specifiers Page.
+Attribute
+Meaning
+native
+Indicates that the definition details of the element are implemented in C++. Verse definitions with the native specifier auto-generate C++ definitions that a developer can then fill out its implementation. You can use this specifier on classes, interfaces, enums, methods, and data.
+public
+The identifier is universally accessible. You can use this on modules, classes, interfaces, structs, enums, methods, and data.
+
+
+Effect
+Meaning
+decides
+Indicates that the function can fail, and that calling this function is a failable expression. Function definitions with the decides effect must also have the transacts effect, which means the actions performed by this function can be rolled back (as if the actions were never performed), if there’s a failure anywhere in the function.
+varies
+This effect indicates that the same input to the function may not always produce the same output. The varies effect also indicates that the behavior of the function is not guaranteed to stay the same with new versions of its containing package.
+transacts
+This effect indicates that any actions performed by the function can be rolled back. The transacts effect is required any time a mutable variable (var) is written. You’ll be notified when you compile your code if the transacts effect was added to a function that can’t be rolled back. Note that this check is not done for functions with the native specifier.
+
+
+
