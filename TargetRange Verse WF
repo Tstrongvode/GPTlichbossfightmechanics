@@ -1,0 +1,79 @@
+
+using { /Fortnite.com/Devices }
+using { /Verse.org/Simulation }
+using { /Verse.org/Random }
+using { /UnrealEngine.com/Temporary/Diagnostics }
+using { /UnrealEngine.com/Temporary/SpatialMath }
+
+target_range := class(creative_device):
+
+    @editable var ScoreBillboard : billboard_device = billboard_device{}
+    @editable var PointsBillboard : billboard_device = billboard_device{}
+    @editable var WeaponSpawner : item_spawner_device = item_spawner_device{}
+    @editable var PropManipulator : prop_manipulator_device = prop_manipulator_device{}
+    @editable var VFXSpawner : vfx_spawner_device = vfx_spawner_device{}
+    @editable var VFXMover : creative_prop = creative_prop{}
+    @editable var MinimumPosition : vector3 = vector3{}
+    @editable var MaximumPosition : vector3 = vector3{}
+    
+
+    @editable var Bot : creative_prop = creative_prop{}
+
+    var Score : float = 0.0
+    var TimeStamp : float = 0.0
+
+    ScoreText<localizes>(ScoreMessage : string):message = "Score: {ScoreMessage}"
+
+   
+    OnBegin<override>()<suspends>:void=
+        PropManipulator.HideProps()
+        PropManipulator.DamagedEvent.Subscribe(OnBotDamaged)
+        WeaponSpawner.ItemPickedUpEvent.Subscribe(OnItemPickedUp)
+
+    OnBotDamaged(Agent : agent):void=
+        spawn:
+            HandleBotHit()
+        
+    OnItemPickedUp(Agent : agent):void=
+        spawn:
+            ShowNextTarget(2.0) 
+
+    HandleBotHit()<suspends>:void=
+        PropManipulator.HideProps()
+        PropManipulator.RestoreHealth()
+        VFXSpawner.Enable()
+        UpdateScore()
+        
+        
+
+    UpdateScore()<suspends>:void=
+        CurrentTime := GetSimulationElapsedTime()
+        AttackSpeed := CurrentTime - TimeStamp
+
+        var EarnedPoints : float = 1.0
+
+        if (AttackSpeed <= 1.0):
+            set EarnedPoints = 10.0
+        else if (AttackSpeed <= 2.0):
+            set EarnedPoints = 5.0
+        else if (AttackSpeed <= 3.0):
+            set EarnedPoints = 3.0
+
+        set TimeStamp = CurrentTime
+        set Score += EarnedPoints
+        PointsBillboard.SetText(ScoreText("Earned +{EarnedPoints} Points"))
+        ScoreBillboard.SetText(ScoreText("New Score: {Score}"))
+        ShowNextTarget(2.0)
+        
+
+    ShowNextTarget(Delay : float)<suspends>:void=
+        Sleep(Delay)
+        VFXSpawner.Disable()
+        RandX := GetRandomFloat(MinimumPosition.X, MaximumPosition.X)
+        RandY := GetRandomFloat(MinimumPosition.Y, MaximumPosition.Y)
+        RandZ := GetRandomFloat(MinimumPosition.Z, MaximumPosition.Z)
+        NewPosition := vector3{X := RandX, Y := RandY, Z := RandZ }
+        Bot.MoveTo(NewPosition, Bot.GetTransform().Rotation, 0.1)
+        if (VFXMover.TeleportTo[Bot.GetTransform().Translation, Bot.GetTransform().Rotation]) {}
+        PropManipulator.ShowProps()
+        set TimeStamp = GetSimulationElapsedTime()
