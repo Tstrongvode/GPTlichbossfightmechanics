@@ -9,20 +9,27 @@ using { /Fortnite.com/AI }
 using { /UnrealEngine.com/Temporary/SpatialMath}
 using { /Verse.org/Colors }
 using { /Verse.org/Colors/NamedColors }
+using { /Fortnite.com/Playspaces }
+
 
 health_bar := class():
     var iTotalHP<private> : float = 1000.0
     var iCurrentHP<private> : float = 1000.0
     var iBossName<private> : string = "Lord Of Darkness"
-
+    var IsVisible<private> : int = 0  # 0 for not visible, 1 for visible
+    GetCurrentHP() : float =
+        return iCurrentHP
+    
+        
     
     BossBarColorBase<private> : color_block = color_block{
         DefaultColor := MakeColorFromHex("000000")
-        DefaultDesiredSize := vector2{X:= 1200.0, Y := 40.0}} 
+        DefaultDesiredSize := vector2{X:= 800.0, Y := 50.0}} 
 
     var BossBarColorTop<private> : color_block = color_block{}  
     var Overlay<private> : overlay = overlay{}
         
+
     HPBarTitleTextBlock<private> : text_block = text_block{DefaultTextColor := MakeColorFromHex("FFFFFF")}
 
     HPTitleText<private><localizes>(HPText : string) : message = "{HPText}"
@@ -33,7 +40,7 @@ health_bar := class():
         set iCurrentHP = BossTotalHP
         HPBarTitleTextBlock.SetText(HPTitleText("{iBossName}: {iCurrentHP}/{iTotalHP}"))
 
-    TakeDamage(DamageAmount : float):void=
+    TakeDamage(DamageAmount : float):float=
         set iCurrentHP -= DamageAmount
         if (iCurrentHP < 0.0):
             set iCurrentHP = 0.0
@@ -45,26 +52,31 @@ health_bar := class():
             HPBarTitleTextBlock.SetText(HPTitleText("{iBossName}: {Current}/{Total}"))
         
         UpdateHealthBar(NewHealthBarWidth)
+        return iCurrentHP #This function's return type is void, but this return provides value other than false. The return value will be discarded.
     
     Heal(HealAmount : float):void=
         block:
 
+    HideUIForPlayer(Player : player) : void =
+        if (PlayerUI := GetPlayerUI[Player]):
+            PlayerUI.RemoveWidget(Overlay)  # Assuming Overlay is the widget you want to hide
+            set IsVisible = 0
+    
+
     ShowUIForPlayer(Player : player):void=
         if (PlayerUI := GetPlayerUI[Player]):
             PlayerUI.AddWidget(CreateUI())
-
-    ShowUIToAllPlayers():void=
-        block:
+            set IsVisible = 1
 
     MyButton : button_device = button_device{}
 
     UpdateHealthBar(NewWidth : float):void=
-        Overlay.RemoveWidget(HPBarTitleTextBlock)
-        Overlay.RemoveWidget(BossBarColorTop)
-        set BossBarColorTop = CreateTopHealthBar(NewWidth)
-
-        Overlay.AddWidget(CreateOverlaySlot(BossBarColorTop, horizontal_alignment.Left))
-        Overlay.AddWidget(CreateOverlaySlot(HPBarTitleTextBlock,horizontal_alignment.Center))
+            Overlay.RemoveWidget(HPBarTitleTextBlock)
+            Overlay.RemoveWidget(BossBarColorTop)
+            set BossBarColorTop = CreateTopHealthBar(NewWidth)
+        
+            Overlay.AddWidget(CreateOverlaySlot(BossBarColorTop, horizontal_alignment.Left))
+            Overlay.AddWidget(CreateOverlaySlot(HPBarTitleTextBlock,horizontal_alignment.Center))
         
     CreateOverlaySlot<private>(TheWidget : widget, HAlignment : horizontal_alignment):overlay_slot=  
         overlay_slot:
@@ -73,8 +85,8 @@ health_bar := class():
 
     CreateTopHealthBar<private>(Width: float):color_block=
         ColorBlock := color_block{
-            DefaultColor := MakeColorFromHex("ff2a00")
-            DefaultDesiredSize := vector2{X:= Width, Y := 40.0}} 
+            DefaultColor := MakeColorFromHex("8C00F0")
+            DefaultDesiredSize := vector2{X:= Width, Y := 45.0}} 
         
         set BossBarColorTop = ColorBlock
         
@@ -85,7 +97,7 @@ health_bar := class():
                 overlay_slot:
                     Widget := BossBarColorBase
                 overlay_slot:
-                    Widget := CreateTopHealthBar(1200.0)
+                    Widget := CreateTopHealthBar(800.0)
                 overlay_slot:
                     Widget := HPBarTitleTextBlock
         set Overlay = TheOverlay
@@ -95,9 +107,9 @@ health_bar := class():
         TheCanvas : canvas = canvas:
             Slots := array:
                 canvas_slot:
-                    Anchors := anchors{Minimum := vector2{X := 0.5, Y := 0.9}, Maximum := vector2{X := 0.5, Y := 0.9}}
-                    Offsets := margin{Top := 0.0, Left := 0.0, Right := 0.0, Bottom := 100.0}
-                    Alignment := vector2{X := 0.5, Y := 1.0}
+                    Anchors := anchors{Minimum := vector2{X := 0.5, Y := 0.1}, Maximum := vector2{X := 0.5, Y := 0.1}}
+                    Offsets := margin{Top := 0.0, Left := 0.0, Right := 0.0, Bottom := 0.0}
+                    Alignment := vector2{X := 0.5, Y := 0.0}
                     Widget := stack_box:
                         Orientation := orientation.Vertical
                         Slots := array:
@@ -128,62 +140,72 @@ boss_fight := class(creative_device):
 
     BossHPBar : health_bar = health_bar{}
     var CurrentState : []char = "Idle"
-    AttackRange : float = 1.0  # Adjust as needed
-    ChaseRange : float = 1.0 # Adjust as needed
+    AttackRange : float = 2000.0  # Adjust as needed
+    ChaseRange : float = 3500.0 # Adjust as needed
+    
 
     OnBegin<override>()<suspends>:void=
-        AllPlayers := GetPlayspace().GetPlayers()
-        BossHPBar.Init("Lord Of Darkness", 1000.0)  # Initialize the health bar with a name and max health
-    
-        if (Player := AllPlayers[0]):  # Assuming you want to show the UI for the first player
-            BossHPBar.ShowUIForPlayer(Player)  # Display the health bar UI for the player
-    
 
         LichBossManip.DamagedEvent.Subscribe(OnBossDamaged)
         BossBehaviorLoop()
         
-        loop:
-            UpdateState()
-            LichBossWalk()
-            PlayRandomAttack()
+   
             
     BossBehaviorLoop() <suspends> : void =
-        UpdateState()  # Update the boss's state based on player's distance
+        loop:
+            UpdateState()  # Update the boss's state based on player's distance
+    
+            if (CurrentState = "Dead"):  # If the boss is dead, do nothing
+                  # Hide the health bar when boss is idle
+                Sleep(30.0)  # Sleep for a longer duration to prevent the loop from running too frequently
 
-        # Handle boss's behavior based on its state
-        if (CurrentState = "Idle"):
-            RotateTowardPlayer() # This invocation calls a function that has the 'suspends' effect, which is not allowed by its context
-        else:
-            if (CurrentState = "Chase"):
-                LichBossWalk() # This invocation calls a function that has the 'suspends' effect, which is not allowed by its context
+
+            # Handle boss's behavior based on its state
+            if (CurrentState = "Idle"):
+                Sleep(1.0)  # Wait for a short duration before checking again
             else:
-                if (CurrentState = "Attack"):
-                    PlayRandomAttack() #This invocation calls a function that has the 'suspends' effect, which is not allowed by its context
-                    set CurrentState = "Recovery"
-                    Sleep(100.0)  # Recovery time
-                    set CurrentState = "Idle"
+                if (CurrentState = "Chase"):
+                    RotateTowardPlayer()
+                    LichBossWalk()
+                    Sleep(1.0)  # Wait for a short duration before checking again
+                else:
+                    if (CurrentState = "Attack"):
+                        RotateTowardPlayer()
+                        PlayRandomAttack()
+                        Sleep(1.0)  # Recovery time after attack
+                        UpdateState()  # Check player's distance again after attack
             
             
         
     PlayRandomAttack()<suspends>:void=
-        if (GetRandomInt(0,1) = 0):
-            LichBossRightLeftAttack()
-            LichBossSpell()
-            RotateTowardPlayer()
+        if (GetRandomInt(0,2) = 0):
             LichBossEmegance()
-            LichBossCall()
-        else:
             LichBossSpell()
             RotateTowardPlayer()
             LichBossCall()
             RotateTowardPlayer()
-            LichBossRightLeftAttack()
-        
+        else:
+            RotateTowardPlayer()
+            LichBossSpell()
+            RotateTowardPlayer()
+            LichBossCall()
+            RotateTowardPlayer()
             
+        
 
     OnBossDamaged(Agent : agent):void=
-        BossHPBar.TakeDamage(10.0)
-
+        CurrentHP := BossHPBar.TakeDamage(10.0)
+        if (CurrentHP <= 0.0):
+            if (CurrentState <> "Dead"):
+                 # Check if the boss is not already dead
+                LichBossDeathCinema.Play()  # Play the death animation
+                set CurrentState = "Dead"  # Set the boss's state to dead
+                LichBossManip.HideProps()
+                AllPlayers := GetPlayspace().GetPlayers() # Assuming you want to show the UI for the first player
+                if (Player := AllPlayers[0]): 
+                    BossHPBar.HideUIForPlayer(Player) # Hide the boss using the manipulator
+                # Hide the boss using the manipulator
+                # For now, we'll skip the Unsubscribe part since it's not directly available
     LichBossSpell()<suspends>:void=
         LichBossSpellCinema.Play()
         Sleep(5.0)
@@ -240,26 +262,36 @@ boss_fight := class(creative_device):
                 NewRotation := MakeRotationFromYawPitchRollDegrees(Yaw, Pitch, Roll)
 
                 LichBoss.MoveTo(LichBoss.GetTransform().Translation, NewRotation, 2.0)
+                      
                 
     CheckPlayerDistance() : float =
-        AllPlayers := GetPlayspace().GetPlayers()
-        if (Player := AllPlayers[0], Agent := agent[Player], Fort := Agent.GetFortCharacter[]):
-            PropLocation := LichBoss.GetTransform().Translation
+        if (Player := GetPlayspace().GetPlayers()[0], Agent := agent[Player], Fort := Agent.GetFortCharacter[]):
+            BossLocation := LichBoss.GetTransform().Translation
             PlayerLocation := Fort.GetTransform().Translation
-            PlayerDistance := Distance(PlayerLocation, PropLocation)
-            
-            return PlayerDistance
-            
+                        
+            deltaX := PlayerLocation.X - BossLocation.X
+            deltaY := PlayerLocation.Y - BossLocation.Y
+            deltaZ := PlayerLocation.Z - BossLocation.Z
+                        
+            distance := Sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ)
+                        
+            return distance
         else:
-            return -1.0  # Return a default value when the condition is not met    
-    UpdateState() : void =
+            return -1.0
         
+                
+    UpdateState() : void =
         PlayerDistance := CheckPlayerDistance()
         if (PlayerDistance < AttackRange):  
             set CurrentState = "Attack"
-            
+            AllPlayers := GetPlayspace().GetPlayers()
+            if (Player := AllPlayers[0]):  # Assuming you want to show the UI for the first player
+                BossHPBar.ShowUIForPlayer(Player)
+            BossHPBar.ShowUIForPlayer  # This function parameter expects a value of type player, but this argument is an incompatible value of type tuple().
         else:
             if (PlayerDistance < ChaseRange):
                 set CurrentState = "Chase"
+                BossHPBar.ShowUIForPlayer  # This function parameter expects a value of type player, but this argument is an incompatible value of type tuple().
             else:
                 set CurrentState = "Idle"
+                BossHPBar.HideUIForPlayer #This function parameter expects a value of type player, but this argument is an incompatible value of type tuple().
