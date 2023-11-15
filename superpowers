@@ -1,0 +1,187 @@
+
+using { /Fortnite.com/Characters }
+using { /Fortnite.com/Devices }
+using { /Fortnite.com/Game }
+using { /Fortnite.com/Teams }
+using { /Verse.org/Simulation }
+using { /Verse.org/Simulation/Tags }
+using { /Verse.org/Random}
+using { /UnrealEngine.com/Temporary/UI }
+using { /Fortnite.com/UI }
+using { /UnrealEngine.com/Temporary/SpatialMath}
+
+# 0 - 2x Health - UEFN
+#       Class Change Device - Max Health 200
+# 1 - Double Jump - UEFN
+# 2 - Flying Power - UEFN
+#       Class Change Device - Allow Flight
+#       Set Flight Speed in Island Settings to 1.5
+# 3 - Instant Reload - UEFN
+#       Class Change Device - Enable Instant Reload
+# 4 - Invisibility - Verse
+#       Give Player Fortilla Keycard
+# 5 - Super Speed - UEFN
+#       Movement Mod. - Speed 3
+#       Movement Mod. - Activate on ClassChangeDevice Trigger
+# 6 - 2x Damage
+# 7 - Freeze Gun
+# 8 - Teleportation
+# 9 - Double Pump
+
+AssignSuperpowersDevice := class(creative_device):
+
+    # 4 - Invisibility
+    @editable
+    var InvisCardDetector : conditional_button_device = conditional_button_device{}
+
+    # 6 - 2x Damage
+    @editable
+    var DamageClassSelector : class_and_team_selector_device = class_and_team_selector_device{}
+    @editable
+    var DamagePowerup : damage_amplifier_powerup_device = damage_amplifier_powerup_device{}
+
+    # 7 - Freeze
+    @editable
+    var FreezeClassSelector : class_and_team_selector_device = class_and_team_selector_device{}
+    @editable
+    var FreezeConditionalDevice : conditional_button_device = conditional_button_device{}
+    @editable
+    var FreezePlayerFor : float = 2.0
+
+    # 9 - Double Pump
+    @editable
+    var PumpClassSelector : class_and_team_selector_device = class_and_team_selector_device{}
+    @editable
+    var PumpMarker : player_marker_device = player_marker_device{}
+    @editable
+    var PumpItemGranter : item_granter_device = item_granter_device{}
+    @editable
+    var PumpItemRemover : item_remover_device = item_remover_device{}
+
+    # Other
+    var PlayerClassMap : [fort_character]int = map{}
+    @editable
+    var ClassSelectDevices : []class_and_team_selector_device = array{}
+    @editable
+    var TeleportersToAssign : []teleporter_device = array{}
+    @editable
+    var PlayerSpawners : []player_spawner_device = array{}
+    
+    
+    # Runs when the device is started in a running game
+    OnBegin<override>()<suspends>:void=
+    
+        for (playerSpawner : PlayerSpawners){
+            playerSpawner.SpawnedEvent.Subscribe(MakePlayerInvulnerable)
+        }
+
+        for (Teleporter : TeleportersToAssign):
+            Teleporter.TeleportedEvent.Subscribe(OnPlayerTeleported)
+
+        FreezeClassSelector.ClassSwitchedEvent.Subscribe(PlayerAssignedFreeze)
+
+        DamageClassSelector.ClassSwitchedEvent.Subscribe(PlayerAssignedDamage)
+
+        PumpClassSelector.ClassSwitchedEvent.Subscribe(PlayerAssignedPump)
+        PumpMarker.FirstItemValueChangedEvent.Subscribe(OnItemChange)
+
+        spawn:
+            CheckForCard()
+
+
+    # Beginning Functions
+    MakePlayerInvulnerable( InPlayer : agent) : void =
+        if(Player := InPlayer, FortCharacter := Player.GetFortCharacter[]){
+           FortCharacter.SetVulnerability(false)
+        }
+
+    OnPlayerTeleported( InPlayer : agent ) : void =
+        #Print("Player Teleported")
+        if(Player := InPlayer, FortCharacter := Player.GetFortCharacter[]){
+            FortCharacter.SetVulnerability(true)
+            AssignRandomPower(InPlayer)
+        }
+
+            
+
+    AssignRandomPower( InAgent : agent ) : void =
+        # Gets all class selector devices that are tagged and a random number
+        #AllClassSelectors := GetCreativeObjectsWithTag(class_selector_tag{})
+        var randomInt : int = GetRandomInt(0,ClassSelectDevices.Length-1)
+
+        # If the device tagged is of type: class_and_team_selector_device,
+        #   Assign a random class (superpower) to the player
+        if(ClassSelectDevice := class_and_team_selector_device[ClassSelectDevices[randomInt]]):
+            if (Player := InAgent, FortCharacter := Player.GetFortCharacter[] ):
+
+                # Assign them a class
+                ClassSelectDevice.ChangeClass(Player)
+                # Make them vulnerable
+                FortCharacter.SetVulnerability(true)
+                if(set PlayerClassMap[FortCharacter] = randomInt, playerClass := PlayerClassMap[FortCharacter]){
+                    #Print("Assigning a random power - {randomInt}" )   
+                }
+
+
+    # 4 - Invisibility Power
+    # Checks for a card and Player Class = 2 (Invis)
+    CheckForCard()<suspends>:void=
+        loop:
+            Sleep(1.0)
+            AllPlayers:=GetPlayspace().GetPlayers()
+            for(Player : AllPlayers){
+                if(IsAgent:agent = agent[Player], FortCharacter := Player.GetFortCharacter[], FortClass := PlayerClassMap[FortCharacter]){
+                    if(InvisCardDetector.IsHoldingItem[Player] and (FortClass=4)){
+                        MakePlayerInvisible(IsAgent)
+                    } else {
+                        ShowPlayer(IsAgent)
+                    }
+                }
+            }
+    
+    MakePlayerInvisible(Agent : agent) : void =
+        if(FC := Agent.GetFortCharacter[]){
+            FC.Hide()
+        }
+
+    ShowPlayer(Agent : agent) : void =
+        if(FC := Agent.GetFortCharacter[]){
+            FC.Show()
+        }
+
+    # 6 - 2x Damage
+    PlayerAssignedDamage(InPlayer : agent) : void =
+        DamagePowerup.Pickup(InPlayer)
+
+    # 7 - Freeze Gun
+    PlayerAssignedFreeze(InPlayer : agent) : void =
+        if(Player := InPlayer, FortCharacter := Player.GetFortCharacter[]){
+            FortCharacter.DamagedEvent().Subscribe(OnPlayerDamaged)
+        }
+
+
+    OnPlayerDamaged(DamageResult : damage_result) : void =
+        if:
+            Instigator := DamageResult.Instigator?
+            Agent := Instigator.GetInstigatorAgent[]
+            FreezeConditionalDevice.IsHoldingItem[Agent]
+            Target := fort_character[DamageResult.Target]
+        then:
+            spawn:
+                FreezePlayer(Target)
+
+    FreezePlayer(Target : fort_character)<suspends> : void =
+        Target.PutInStasis(stasis_args{})
+        Sleep(FreezePlayerFor)
+        Target.ReleaseFromStasis()
+
+    # 8 - Teleportation
+    #Managed in teleportation_manager
+
+    # 9 - Double Pump
+    PlayerAssignedPump(Agent: agent) : void =
+        PumpMarker.Attach(Agent)
+
+    OnItemChange(Agent : agent) : void =
+        PumpItemRemover.Remove(Agent)
+        PumpItemGranter.GrantItem(Agent)
