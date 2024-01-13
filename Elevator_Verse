@@ -1,0 +1,77 @@
+using { /Fortnite.com/Devices }
+using { /Fortnite.com/Characters }
+using { /Verse.org/Simulation }
+using { /Verse.org/Random }
+using { /UnrealEngine.com/Temporary/Diagnostics }
+using { /UnrealEngine.com/Temporary/UI }
+using { /Fortnite.com/UI }
+using { /UnrealEngine.com/Temporary/SpatialMath}
+using { /Verse.org/Colors }
+using { /Verse.org/Colors/NamedColors }
+using { /Verse.org/Verse }
+
+
+Elevator_Device := class(creative_device):
+    @editable Elevator_Up_Button : button_device = button_device{}
+    @editable Elevator_Down_Button : button_device = button_device{}
+    @editable Elevator_Trigger_Down: trigger_device = trigger_device{}
+    @editable Elevator_Trigger_Up : trigger_device = trigger_device{}
+    @editable ElevatorBP : creative_prop = creative_prop{}
+
+    ElevatorSpeed:float = 120.0
+
+    # Runs when the device is started in a running game
+    OnBegin<override>()<suspends>:void=
+        Elevator_Up_Button.InteractedWithEvent.Subscribe(ButtonPressedUp)
+        Elevator_Down_Button.InteractedWithEvent.Subscribe(ButtonPressedDown)
+        Elevator_Trigger_Down.TriggeredEvent.Subscribe(ElevatorTriggeredDown)
+        Elevator_Trigger_Up.TriggeredEvent.Subscribe(ElevatorTriggeredUp)
+
+
+    ButtonPressedDown(Agent:agent):void=
+        Print("Button pressed down")
+        Elevator_Trigger_Down.Trigger()
+
+    ButtonPressedUp(Agent:agent):void=
+        Print("Button pressed up")
+        Elevator_Trigger_Up.Trigger()
+
+
+    ElevatorTriggeredDown(Agent:?agent):void=
+        spawn:
+            MoveElevatorDown()
+
+    ElevatorTriggeredUp(Agent:?agent):void=
+        spawn:
+            MoveElevatorUp()
+      
+    
+    
+    MoveElevatorDown()<suspends>:void=
+        
+        Print("Elevator moving down")
+        # Calculate start and end positions
+        OriginalPos: vector3 = ElevatorBP.GetTransform().Translation
+        FinalPos: vector3 = vector3{X:=OriginalPos.X, Y:=OriginalPos.Y, Z:=4.0}
+        # Calculate movement time
+        TotalTime: float = CalculateMovementTime(OriginalPos, FinalPos)
+        # Move the elevator to the final position over the calculated time
+        ElevatorBP.MoveTo(FinalPos, ElevatorBP.GetTransform().Rotation, TotalTime)
+
+    MoveElevatorUp()<suspends>:void=
+        Print("Elevator moving up")
+        # Calculate start and end positions
+        OriginalPos: vector3 = ElevatorBP.GetTransform().Translation
+        FinalPos: vector3 = vector3{X:=OriginalPos.X, Y:=OriginalPos.Y, Z:=1336.0}
+        # Calculate movement time
+        TotalTime: float = CalculateMovementTime(OriginalPos, FinalPos)
+        # Move the elevator to the final position over the calculated time
+        ElevatorBP.MoveTo(FinalPos, ElevatorBP.GetTransform().Rotation, TotalTime)
+
+    CalculateMovementTime(StartPos: vector3, EndPos: vector3): float =
+        deltaX := EndPos.X - StartPos.X
+        deltaY := EndPos.Y - StartPos.Y
+        deltaZ := EndPos.Z - StartPos.Z
+        DistanceEleva := Sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ) #error Unknown identifier `sqrt`.(3506)
+        return DistanceEleva  / ElevatorSpeed
+    
