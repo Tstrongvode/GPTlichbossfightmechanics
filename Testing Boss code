@@ -1,0 +1,276 @@
+using { /Fortnite.com/AI }
+using { /Fortnite.com/Characters }
+using { /Fortnite.com/Devices }
+using { /Verse.org/Colors }
+using { /Verse.org/Random }
+using { /Verse.org/Simulation }
+using { /UnrealEngine.com/Temporary/Diagnostics }
+using { /UnrealEngine.com/Temporary/SpatialMath }
+using { /Fortnite.com/Game }
+
+BossCharacter<public> := class(npc_behavior):
+    var CurrentState : NPCData.NPCStates.npc_states = NPCData.NPCStates.npc_states.Idle
+    # The speed to play the animation at.
+    @editable
+    PlayRate : float = 1.0
+
+    # How long to blend the previous animation into
+    # the current one.
+    @editable
+    BlendInTime : float = 0.25
+
+    # How long to blend the current animation into
+    # the next one.
+    @editable
+    BlendOutTime : float = 0.25
+
+    # The position in seconds to start playing the
+    # animation from.
+    @editable
+    StartPositionSeconds : float = 0.0
+
+    # How long to wait before restarting the animation.
+    @editable
+    SleepDuration : float = 2.0
+    @editable
+    PatrolVolume:mutator_zone_device = mutator_zone_device{}
+
+    @editable
+    AttackAnimation1:cinematic_sequence_device = cinematic_sequence_device{}
+    AttackAnimation2:cinematic_sequence_device = cinematic_sequence_device{}
+    AttackAnimation3:cinematic_sequence_device = cinematic_sequence_device{}
+    RunAnimation:cinematic_sequence_device = cinematic_sequence_device{}
+    DeathAnimation:cinematic_sequence_device = cinematic_sequence_device{}
+    IdleAnimation:cinematic_sequence_device = cinematic_sequence_device{}
+
+
+    var AgentsToAttackz<public>:queue(agent) = queue(agent){}
+
+    UpdateRateSeconds<private>:float = 0.1
+    @editable
+    DamageDelay:float = 1.0
+
+    var Agent:?agent = false
+    var Character:?fort_character = false
+    var Navigatable:?navigatable = false
+    var Focus:?focus_interface = false
+
+
+    OnBegin<override>()<suspends>:void =
+        # Get the Agent (the NPC).
+        if:
+            AgentBoss := GetAgent[]
+            # Gets the Fortnite Character interface, which gets you access to its gameplay data 
+            # including its AI module for navigation and focus.
+            Characters := AgentBoss.GetFortCharacter[]
+            
+            # Get the Navigatable Interface, this allows you to tell it to move.
+            Navigatables := Characters.GetNavigatable[]
+            # Get the Focus Interface, this allows you to tell it to look at something or somewhere.
+            Focuss := Characters.GetFocusInterface[]
+            
+            # Start the combat
+        then:
+            spawn{DeviceFollowCharacter()}
+            loop:
+
+                if:
+                    DequeueResult := AgentsToAttackz.Dequeue[]
+                    set AgentsToAttackz = DequeueResult (0)
+                    AgentToDamage := DequeueResult (1)
+                then:
+                    Print("Dequeued the Next Agent to heal")
+                    StartCombat(AgentToDamage, Navigatables, Focuss)
+                else:
+                    Print("AgentsToHeal is empty")
+                    Sleep(DamageDelay)
+                    PatrolVolume.AgentEntersEvent.Await()
+
+    StartCombat(AgentToDamage:agent, Navigatabless:navigatable, Focusable:focus_interface)<suspends>:void =
+        # Start following the character when they are inside the PatrolVolume
+        if:
+            PatrolVolume.IsInVolume[AgentToDamage]
+            CharacterToAttack := AgentToDamage.GetFortCharacter[]
+        then:
+            Print("Character is in volume, starting following")
+            NavigationTarget := MakeNavigationTarget(AgentToDamage)
+            branch:
+                Navigatabless.NavigateTo(NavigationTarget)
+                Focusable.MaintainFocus(AgentToDamage)
+            # Play the attack animation
+            AttackAnimation1.Play()
+            Sleep(2.33)
+
+    DeviceFollowCharacter()<suspends>:void=
+        if:
+            AgentDevice := GetAgent[]
+            CharacterDevice := AgentDevice.GetFortCharacter[]
+        then:
+            loop:
+                CharacterTransform := CharacterDevice.GetTransform()
+                PatrolVolume.MoveTo(CharacterTransform.Translation, CharacterTransform.Rotation, UpdateRateSeconds)
+
+    OnAgentEnters(EnteredAgent:agent):void=
+         Print("Agent entered the heal volume")
+         if (EnteredAgent <> GetAgent[]):
+            set AgentsToAttackz = AgentsToAttackz.Enqueue(EnteredAgent)
+
+    OnAgentExits(ExitAgent:agent):void=
+        Print("Agent exited the heal volume")
+
+    using { /Fortnite.com/AI }
+using { /Fortnite.com/Characters }
+using { /Fortnite.com/Animation/PlayAnimation }
+using { /Fortnite.com/Devices }
+using { /Verse.org/Colors }
+using { /Verse.org/Random }
+using { /Verse.org/Simulation }
+using { /UnrealEngine.com/Temporary/Diagnostics }
+using { /UnrealEngine.com/Temporary/SpatialMath }
+using { /Fortnite.com/Game }
+
+BossCharacter<public> := class(npc_behavior):
+    var CurrentState : NPCData.NPCStates.npc_states = NPCData.NPCStates.npc_states.Idle
+    # The speed to play the animation at.
+    @editable
+    PlayRate : float = 1.0
+
+    # How long to blend the previous animation into
+    # the current one.
+    @editable
+    BlendInTime : float = 0.25
+
+    # How long to blend the current animation into
+    # the next one.
+    @editable
+    BlendOutTime : float = 0.25
+
+    # The position in seconds to start playing the
+    # animation from.
+    @editable
+    StartPositionSeconds : float = 0.0
+
+    # How long to wait before restarting the animation.
+    @editable
+    SleepDuration : float = 2.0
+    @editable
+    PatrolVolume:mutator_zone_device = mutator_zone_device{}
+
+    @editable
+    AttackAnimation1:cinematic_sequence_device = cinematic_sequence_device{}
+    AttackAnimation2:cinematic_sequence_device = cinematic_sequence_device{}
+    AttackAnimation3:cinematic_sequence_device = cinematic_sequence_device{}
+    RunAnimation:cinematic_sequence_device = cinematic_sequence_device{}
+    DeathAnimation:cinematic_sequence_device = cinematic_sequence_device{}
+    IdleAnimation:cinematic_sequence_device = cinematic_sequence_device{}
+
+    var AgentsToAttackz<public>:queue(agent) = queue(agent){}
+
+    UpdateRateSeconds<private>:float = 0.1
+    @editable
+    DamageDelay:float = 1.0
+
+    var Agent:?agent = false
+    var Character:?fort_character = false
+    var Navigatable:?navigatable = false
+    var Focus:?focus_interface = false
+
+    OnBegin<override>()<suspends>:void =
+        # Get the Agent (the NPC).
+        if:
+            AgentBoss := GetAgent[]
+            # Gets the Fortnite Character interface, which gets you access to its gameplay data 
+            # including its AI module for navigation and focus.
+            Characters := AgentBoss.GetFortCharacter[]
+            
+            # Get the Navigatable Interface, this allows you to tell it to move.
+            Navigatables := Characters.GetNavigatable[]
+            # Get the Focus Interface, this allows you to tell it to look at something or somewhere.
+            Focuss := Characters.GetFocusInterface[]
+            
+            # Start the combat
+        then:
+            spawn{DeviceFollowCharacter()}
+            loop:
+
+                if:
+                    DequeueResult := AgentsToAttackz.Dequeue[]
+                    set AgentsToAttackz = DequeueResult (0)
+                    AgentToDamage := DequeueResult (1)
+                then:
+                    Print("Dequeued the Next Agent to heal")
+                    StartCombat(AgentToDamage, Navigatables, Focuss)
+                else:
+                    Print("AgentsToHeal is empty")
+                    Sleep(DamageDelay)
+                    PatrolVolume.AgentEntersEvent.Await()
+
+    StartCombat(AgentToDamage:agent, Navigatabless:navigatable, Focusable:focus_interface)<suspends>:void =
+        # Start following the character when they are inside the PatrolVolume
+        if:
+            PatrolVolume.IsInVolume[AgentToDamage]
+            CharacterToAttack := AgentToDamage.GetFortCharacter[]
+        then:
+            Print("Character is in volume, starting following")
+            NavigationTarget := MakeNavigationTarget(AgentToDamage)
+            branch:
+                Navigatabless.NavigateTo(NavigationTarget)
+                Focusable.MaintainFocus(AgentToDamage)
+            # Play the attack animation
+            AttackAnimation1.Play()
+            Sleep(2.33)
+
+    DeviceFollowCharacter()<suspends>:void=
+        if:
+            AgentDevice := GetAgent[]
+            CharacterDevice := AgentDevice.GetFortCharacter[]
+        then:
+            loop:
+                CharacterTransform := CharacterDevice.GetTransform()
+                PatrolVolume.MoveTo(CharacterTransform.Translation, CharacterTransform.Rotation, UpdateRateSeconds)
+
+    OnAgentEnters(EnteredAgent:agent):void=
+         Print("Agent entered the heal volume")
+         if (EnteredAgent <> GetAgent[]):
+            set AgentsToAttackz = AgentsToAttackz.Enqueue(EnteredAgent)
+
+    IdleBehavior(Agentidles:agent)<suspends>:void =
+        # Get the animation controller of the NPC Character
+        if:
+            Agentidle := GetAgent[]
+            FortCharacterz := Agentidle.GetFortCharacter[]
+            PlayAnimController := FortCharacterz.GetPlayAnimationController[]
+
+            # Play the idle animation
+            AnimationResult := PlayAnimController.PlayAndAwait(NPCData.NPCStates.GetAnimationSet(NPCTypes.npc_types.Orc)[NPCData.NPCStates.npc_states.Idle], ?PlayRate := PlayRate, ?BlendInTime := BlendInTime, ?BlendOutTime := BlendOutTime, ?StartPositionSeconds := StartPositionSeconds)
+           
+
+            # Change the state to Attack
+            set CurrentState = NPCData.NPCStates.npc_states.Attack
+
+    AttackBehavior(AgentAttcks:agent, Navigatablez:navigatable, Focusablez:focus_interface )<suspends>:void =
+        if: # Get the animation controller of the NPC Character
+            AgentAttacks := GetAgent[]
+            FortCharacters := AgentAttacks.GetFortCharacter[]
+            PlayAnimController := FortCharacters.GetPlayAnimationController[]
+
+        # Dequeue the next agent to attack
+                if:
+                    DequeueResult := AgentsToAttackz.Dequeue[]
+                    set AgentsToAttackz = DequeueResult (0)
+                    AgentToDamage := DequeueResult (1)
+                then:
+                    Print("Dequeued the Next Agent to attack")
+                    StartCombat(AgentToDamage, Navigatables, Focusable)
+
+                    # Play the attack animation
+                    AnimationResult := PlayAnimController.PlayAndAwait(NPCData.NPCStates.GetAnimationSet(NPCTypes.npc_types.Orc)[NPCData.NPCStates.npc_states.Attack], ?PlayRate := PlayRate, ?BlendInTime := BlendInTime, ?BlendOutTime := BlendInTime, ?StartPositionSeconds := StartPositionSeconds)
+                else:
+                    
+                    PatrolVolume.AgentEntersEvent.Await()
+
+                # Change the state to Idle
+                set CurrentState = NPCData.NPCStates.npc_states.Idle
+
+    OnAgentExits(ExitAgent:agent):void=
+        Print("Agent exited the heal volume")
