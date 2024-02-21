@@ -1,0 +1,140 @@
+using { /Fortnite.com/AI }
+using { /Fortnite.com/Characters }
+using { /Fortnite.com/Devices }
+using { /Fortnite.com/Game }
+using { /Verse.org/Colors }
+using { /Verse.org/Random }
+using { /Verse.org/Simulation }
+using { /UnrealEngine.com/Temporary/Diagnostics }
+using { /UnrealEngine.com/Temporary/SpatialMath }
+using { /Fortnite.com/Devices/CreativeAnimation }
+using { /Fortnite.com/Devices/CreativeAnimation/InterpolationTypes }
+
+SuperPower_Devicez := class(creative_device):
+    @editable
+    VFXSpawner: vfx_spawner_device = vfx_spawner_device{}
+    @editable 
+    DamageZone : damage_volume_device = damage_volume_device{}
+    @editable
+    FireInputz : input_trigger_device = input_trigger_device{}
+    @editable
+    DeviceMover : creative_prop = creative_prop{}
+
+    OnBegin<override>()<suspends>:void=
+        FireInputz.PressedEvent.Subscribe(Skill_Pressed)
+        FireInputz.ReleasedEvent.Subscribe(Skill_Released)
+        for (Player : GetPlayspace().GetPlayers()):
+            FireInputz.Register(Player)
+            Print("player Registered")
+            DoFollowPlayer()
+            Print("activating device Following Player")
+
+    DoFollowPlayer()<suspends> : void =
+        loop:
+            if (PlayerList := GetPlayspace().GetPlayers(), Fortnitecharacter := PlayerList[0].GetFortCharacter[]):
+                PlayerPosition : vector3 = Fortnitecharacter.GetTransform().Translation
+                PlayerRotation : rotation = Fortnitecharacter.GetViewRotation()
+                ForwardVector : vector3 = PlayerRotation.GetLocalForward()
+                NewPosition : vector3 = PlayerPosition + ForwardVector
+    
+                var MovementKeyFrame : keyframe_delta = keyframe_delta
+                    {
+                        DeltaLocation := vector3 { 
+                            X:= NewPosition.X - DeviceMover.GetTransform().Translation.X, 
+                            Y:= NewPosition.Y - DeviceMover.GetTransform().Translation.Y, 
+                            Z:= NewPosition.Z - DeviceMover.GetTransform().Translation.Z 
+                        },
+                        DeltaRotation := MakeComponentWiseDeltaRotation(PlayerRotation, DeviceMover.GetTransform().Rotation),
+                        Time := 0.1,
+                        Interpolation := Linear
+                    }
+    
+                if (AController := DeviceMover.GetAnimationController[]):
+                    FortVaderKeyFrames:[]keyframe_delta = array { MovementKeyFrame }
+                    AController.SetAnimation(FortVaderKeyFrames, ?Mode:=animation_mode.OneShot)
+                    AController.Play()
+    
+                Sleep(2.0)
+            
+
+    Skill_Pressed(Agent:agent):void=
+        VFXSpawner.Enable()
+        DamageZone.Enable()
+        Print("Vfx Playing")
+
+    Skill_Released(Agent:agent, InputHeldDuration:float):void=
+        VFXSpawner.Disable()
+        DamageZone.Disable()
+        Print("Input held for {InputHeldDuration} seconds.")
+
+
+
+
+using { /Fortnite.com/AI }
+using { /Fortnite.com/Characters }
+using { /Fortnite.com/Devices }
+using { /Fortnite.com/Game }
+using { /Verse.org/Colors }
+using { /Verse.org/Random }
+using { /Verse.org/Simulation }
+using { /UnrealEngine.com/Temporary/Diagnostics }
+using { /UnrealEngine.com/Temporary/SpatialMath }
+
+TestSuperPower_Devicezz := class(creative_device):
+    @editable
+    VFXSpawner: vfx_spawner_device = vfx_spawner_device{}
+    @editable 
+    DamageZone : damage_volume_device = damage_volume_device{}
+    @editable
+    FireInputz : input_trigger_device = input_trigger_device{}
+    @editable
+    DeviceMover : creative_prop = creative_prop{}
+
+    
+
+    OnBegin<override>()<suspends>:void=
+        
+        FireInputz.PressedEvent.Subscribe(Skill_Pressed)
+        FireInputz.ReleasedEvent.Subscribe(Skill_Released)
+        for (Player : GetPlayspace().GetPlayers()):
+            FireInputz.Register(Player)
+            Print("player Rgistered")
+                DoFollowPlayer()
+                Print("activating device Following Player")
+
+
+    DoFollowPlayer()<suspends> : void =
+        loop:
+            if  (PlayerList := GetPlayspace().GetPlayers(), Fortnitecharacter := PlayerList[0].GetFortCharacter[]):
+                PlayerPosition : vector3 = Fortnitecharacter.GetTransform().Translation
+                PlayerRotation : rotation = Fortnitecharacter.GetViewRotation()
+                ForwardVector : vector3 = PlayerRotation.GetLocalForward()
+                NewPosition : vector3 = PlayerPosition + ForwardVector
+                Movingdevices := DeviceMover.MoveTo(PlayerPosition, rotation{}, 0.1)
+               
+
+    Skill_Pressed(Agent:agent):void=
+        VFXSpawner.Enable()
+        DamageZone.Enable()
+        Print("Vfx Playing")
+        
+
+    Skill_Released(Agent:agent, InputHeldDuration:float):void=
+        VFXSpawner.Disable()
+        DamageZone.Disable()
+        Print("Input held for {InputHeldDuration} seconds.")
+                
+                
+    
+
+
+
+
+    
+
+
+
+
+                 
+    
+
