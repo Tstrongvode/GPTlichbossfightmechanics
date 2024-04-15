@@ -1,1 +1,142 @@
+using { /Fortnite.com/AI }
+using { /Fortnite.com/Game }
+using { /Fortnite.com/Animation/PlayAnimation }
+using { /Verse.org/Simulation }
+using { /Fortnite.com/Characters }
+using { /Fortnite.com/Devices }
+using { /Verse.org/Colors }
+using { /Verse.org/Random }
+using { /Verse.org/Simulation }
+using { /UnrealEngine.com/Temporary/Diagnostics }
+using { /UnrealEngine.com/Temporary/SpatialMath }
+ 
+
+
+
+BH_ScarletPriests<public> := class(npc_behavior):
+    @editable
+    DamageThreshold:float = 0.1  # Threshold at which the NPC stops dealing damage.
+
+    @editable
+    DamageDelay:float = 1.5  # Delay between each damage instance.
+
+    @editable
+    DamageAmount:float = 5.0  # Amount of damage dealt per instance.
+
+    @editable
+    DamageVolume:mutator_zone_device = mutator_zone_device{}  # Volume characters enter to receive damage.
+
+    @editable
+    HolyScarletRay:cinematic_sequence_device = cinematic_sequence_device{}
+
+    @editable
+    VFXSpawner:vfx_spawner_device = vfx_spawner_device {}  # VFX for damage effects.
+
+    var AgentToFollow:?agent = false
+    var AgentsToDamage<public>:queue(agent) = queue(agent){}
+
+    UpdateRateSeconds<private>:float = 0.1
+
+    OnBegin<override>()<suspends>:void=
+        VFXSpawner.Disable()
+        DamageVolume.AgentEntersEvent.Subscribe(OnAgentEnters)
+        DamageVolume.AgentExitsEvent.Subscribe(OnAgentExits)
+
+        if:
+            Agent := GetAgent[]
+            Character := Agent.GetFortCharacter[]
+            Navigatable := Character.GetNavigatable[]
+            Focusable := Character.GetFocusInterface[]
+        then:
+            # Subscribe the character's damaged event to OnDamaged
+            Character.DamagedEvent().Subscribe(OnDamaged)
+            spawn{DeviceFollowCharacter()}
+            loop:
+                if:
+                    DequeueResult := AgentsToDamage.Dequeue[]
+                    set AgentsToDamage = DequeueResult(0)
+                    AgentToDamage := DequeueResult(1)
+                then:
+                    Print("Dequeued the next agent to damage")
+                    DamageCharacter(AgentToDamage, Navigatable, Focusable)
+                else:
+                    Print("AgentsToDamage is empty!")
+                    Sleep(DamageDelay)
+                    DamageVolume.AgentEntersEvent.Await()
+        else:
+            Print("Error in NPC Behavior Script on NPC Setup")
+
+    DamageCharacter(AgentToDamage:agent, Navigatable:navigatable, Focusable:focus_interface)<suspends>:void=
+        if:
+            DamageVolume.IsInVolume[AgentToDamage]
+            CharacterToDamage := AgentToDamage.GetFortCharacter[]
+        then:
+            Print("Character is in volume, starting damage")
+            NavigationTarget := MakeNavigationTarget(AgentToDamage)
+            branch:
+                Navigatable.NavigateTo(NavigationTarget)
+                Focusable.MaintainFocus(AgentToDamage)
+            VFXSpawner.Enable()
+            HolyScarletRay.Play()
+            Sleep(2.70)
+            HolyScarletRay.Stop()
+            defer:
+                VFXSpawner.Disable()
+            race:
+                loop:
+                    CurrentHealth := CharacterToDamage.GetHealth()
+                    if(CurrentHealth - DamageAmount < DamageThreshold):
+                        if (CurrentHealth > DamageThreshold):
+                            CharacterToDamage.SetHealth(DamageThreshold)
+                        Print("Character has reached DamageThreshold, stopping damage")
+                        break
+                    else:
+                        CharacterToDamage.SetHealth(CurrentHealth - DamageAmount)
+                    Sleep(DamageDelay)
+                DamageVolume.AgentExitsEvent.Await()
+    
+    OnDamaged(DamageResult:damage_result):void=
+
+        Instigator := DamageResult.Instigator
+        if:
+
+            Agent := GetAgent[]
+
+            Character := Agent.GetFortCharacter[]
+            Navigatable := Character.GetNavigatable[]
+
+            # Get the agent that instigated the damage
+            InstigatingAgent := agent[Instigator?]
+
+        then:
+            # Start navigating to the InstigatingAgent
+            NavigationTarget := MakeNavigationTarget(InstigatingAgent)
+            spawn{Navigatable.NavigateTo(NavigationTarget)}
+    
+    
+    DeviceFollowCharacter()<suspends>:void=
+        if:
+            Agent := GetAgent[]
+            Character := Agent.GetFortCharacter[]
+        then:
+            loop:
+                CharacterTransform := Character.GetTransform()
+                VFXSpawner.MoveTo(CharacterTransform.Translation, CharacterTransform.Rotation, UpdateRateSeconds)
+                DamageVolume.MoveTo(CharacterTransform.Translation, CharacterTransform.Rotation, UpdateRateSeconds)
+                Sleep(UpdateRateSeconds)
+
+    OnAgentEnters(EnteredAgent:agent):void=
+        Print("Agent entered the damage volume")
+        if (EnteredAgent <> GetAgent[]):
+            set AgentsToDamage = AgentsToDamage.Enqueue(EnteredAgent)
+
+    OnAgentExits(ExitAgent:agent):void=
+        Print("Agent exited the damage volume")
+    
+    PrintNPCB(Msg:string, ?Duration:float = 3.0, ?TextColor:color = NamedColors.Green):void =
+        Print("[new_npc_behavior] {Msg}", ?Color := TextColor, ?Duration := Duration)
+
+    OnEnd<override>():void =
+        
+        PrintNPCB("OnEnd")
 
