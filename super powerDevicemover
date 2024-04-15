@@ -1,0 +1,83 @@
+SuperPower_Devicez := class(creative_device):
+    @editable
+    TargetZone : mutator_zone_device = mutator_zone_device{}
+    @editable
+    FireInputz : input_trigger_device = input_trigger_device{}
+    @editable
+    DeviceMover : creative_prop = creative_prop{}
+    @editable
+    DistanceInFront : float = 3000.0
+    @editable
+    SkillSleep : float = 1.0
+    @editable
+    RotationSpeed : float = 90.0 # Degrees per second
+
+    OnBegin<override>()<suspends>:void=
+        FireInputz.PressedEvent.Subscribe(Skill_pressedvalid)
+        FireInputz.ReleasedEvent.Subscribe(Skill_Released)
+        
+        for (Player : GetPlayspace().GetPlayers()):
+            FireInputz.Register(Player)
+            Print("Player Registered")
+            MoveToPlayer(Player)
+
+    MoveToPlayer(Player:agent)<suspends>:void=
+        loop:
+            if (Fortnitecharacter := Player.GetFortCharacter[]):
+                PlayerPosition := Fortnitecharacter.GetTransform().Translation
+                PlayerRotation := Fortnitecharacter.GetViewRotation()
+
+                OffsetRotation := MakeRotation(vector3{X := 0.0, Y := 0.0, Z := 1.0}, DegreesToRadians(RotationSpeed) * GetSimulationElapsedTime())
+                NewRotation := PlayerRotation.RotateBy(OffsetRotation)
+            
+                MovementKeyFrame := keyframe_delta{
+                    DeltaLocation := PlayerPosition - DeviceMover.GetTransform().Translation,
+                    DeltaRotation := MakeComponentWiseDeltaRotation(NewRotation, DeviceMover.GetTransform().Rotation),
+                    Time := 0.1,
+                    Interpolation := Ease
+                }
+
+                if (AController := DeviceMover.GetAnimationController[]):
+                    FortVaderKeyFrames:[]keyframe_delta = array{MovementKeyFrame}
+                    AController.SetAnimation(FortVaderKeyFrames, ?Mode := animation_mode.Loop)
+                    AController.Play()
+
+            Sleep(0.1)
+
+    Skill_pressedvalid(Agent:agent):void=
+        if (Fortnitecharacter := Agent.GetFortCharacter[]):
+            PlayerPosition := Fortnitecharacter.GetTransform().Translation
+            PlayerRotation := Fortnitecharacter.GetViewRotation()
+            ForwardVector := PlayerRotation.GetLocalForward() # Get the forward direction of the rotation
+            NewPosition := PlayerPosition + ForwardVector * DistanceInFront
+
+            MovementKeyFrame := keyframe_delta{
+                DeltaLocation := NewPosition - DeviceMover.GetTransform().Translation,
+                DeltaRotation := MakeComponentWiseDeltaRotation(PlayerRotation, DeviceMover.GetTransform().Rotation),
+                Time := 0.1,
+                Interpolation := Ease
+            }
+
+            if (AController := DeviceMover.GetAnimationController[]):
+                FortVaderKeyFrames:[]keyframe_delta = array{MovementKeyFrame}
+                AController.SetAnimation(FortVaderKeyFrames, ?Mode := animation_mode.OneShot)
+                AController.Play()
+
+    Skill_Released(Agent:agent, InputHeldDuration:float):void=
+        Print("Input held for {InputHeldDuration} seconds.")
+        
+        if (Fortnitecharacter := Agent.GetFortCharacter[]):
+            PlayerPosition := Fortnitecharacter.GetTransform().Translation
+            PlayerRotation := Fortnitecharacter.GetViewRotation()
+
+            ReturnKeyFrame := keyframe_delta{
+                DeltaLocation := PlayerPosition - DeviceMover.GetTransform().Translation,
+                DeltaRotation := MakeComponentWiseDeltaRotation(PlayerRotation, DeviceMover.GetTransform().Rotation),
+                Time := 0.5,
+                Interpolation := Ease
+            }
+
+            if (AController := DeviceMover.GetAnimationController[]):
+                ReturnKeyFrames:[]keyframe_delta = array{ReturnKeyFrame}
+                AController.SetAnimation(ReturnKeyFrames, ?Mode := animation_mode.OneShot)
+                AController.Play()
