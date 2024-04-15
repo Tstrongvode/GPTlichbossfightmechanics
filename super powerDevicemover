@@ -1,35 +1,44 @@
+# Definition of a custom device class in Verse, possibly for Unreal Engine's Fortnite Creative environment.
 SuperPower_Devicez := class(creative_device):
+    # Configurable properties for the device, settable in the editor or at runtime.
     @editable
-    TargetZone : mutator_zone_device = mutator_zone_device{}
+    TargetZone : mutator_zone_device = mutator_zone_device{}  # Zone where effects or controls are targeted.
     @editable
-    FireInputz : input_trigger_device = input_trigger_device{}
+    FireInputz : input_trigger_device = input_trigger_device{}  # Trigger for activating the device.
     @editable
-    DeviceMover : creative_prop = creative_prop{}
+    DeviceMover : creative_prop = creative_prop{}  # The physical prop that moves according to inputs.
     @editable
-    DistanceInFront : float = 3000.0
+    DistanceInFront : float = 3000.0  # Distance the device moves in front of the player/AI.
     @editable
-    SkillSleep : float = 1.0
+    SkillSleep : float = 1.0  # Time delay between skill uses or checks.
     @editable
-    RotationSpeed : float = 90.0 # Degrees per second
+    RotationSpeed : float = 90.0 # Rotation speed of the device in degrees per second.
 
+    # Function called at the beginning of the device's lifecycle.
     OnBegin<override>()<suspends>:void=
+        # Subscribing to input press and release events.
         FireInputz.PressedEvent.Subscribe(Skill_pressedvalid)
         FireInputz.ReleasedEvent.Subscribe(Skill_Released)
         
+        # Register all players in the playspace to respond to the device's input trigger.
         for (Player : GetPlayspace().GetPlayers()):
             FireInputz.Register(Player)
             Print("Player Registered")
-            MoveToPlayer(Player)
+            MoveToPlayer(Player)  # Initialize the movement behavior for each player.
 
+    # Function to handle the movement of the device related to the player.
     MoveToPlayer(Player:agent)<suspends>:void=
         loop:
+            # Continuously updates the device's position and rotation based on the player's position.
             if (Fortnitecharacter := Player.GetFortCharacter[]):
                 PlayerPosition := Fortnitecharacter.GetTransform().Translation
                 PlayerRotation := Fortnitecharacter.GetViewRotation()
 
+                # Compute new rotation based on the defined rotation speed and elapsed simulation time.
                 OffsetRotation := MakeRotation(vector3{X := 0.0, Y := 0.0, Z := 1.0}, DegreesToRadians(RotationSpeed) * GetSimulationElapsedTime())
                 NewRotation := PlayerRotation.RotateBy(OffsetRotation)
             
+                # Define movement keyframe for animation.
                 MovementKeyFrame := keyframe_delta{
                     DeltaLocation := PlayerPosition - DeviceMover.GetTransform().Translation,
                     DeltaRotation := MakeComponentWiseDeltaRotation(NewRotation, DeviceMover.GetTransform().Rotation),
@@ -37,6 +46,7 @@ SuperPower_Devicez := class(creative_device):
                     Interpolation := Ease
                 }
 
+                # Play the defined animation if possible.
                 if (AController := DeviceMover.GetAnimationController[]):
                     FortVaderKeyFrames:[]keyframe_delta = array{MovementKeyFrame}
                     AController.SetAnimation(FortVaderKeyFrames, ?Mode := animation_mode.Loop)
@@ -44,13 +54,16 @@ SuperPower_Devicez := class(creative_device):
 
             Sleep(0.1)
 
+    # Function to handle the device's behavior when the input trigger is pressed.
     Skill_pressedvalid(Agent:agent):void=
+        # Compute the new position based on the current forward direction and predefined distance.
         if (Fortnitecharacter := Agent.GetFortCharacter[]):
             PlayerPosition := Fortnitecharacter.GetTransform().Translation
             PlayerRotation := Fortnitecharacter.GetViewRotation()
-            ForwardVector := PlayerRotation.GetLocalForward() # Get the forward direction of the rotation
+            ForwardVector := PlayerRotation.GetLocalForward()
             NewPosition := PlayerPosition + ForwardVector * DistanceInFront
 
+            # Define movement keyframe for a one-shot move.
             MovementKeyFrame := keyframe_delta{
                 DeltaLocation := NewPosition - DeviceMover.GetTransform().Translation,
                 DeltaRotation := MakeComponentWiseDeltaRotation(PlayerRotation, DeviceMover.GetTransform().Rotation),
@@ -58,26 +71,20 @@ SuperPower_Devicez := class(creative_device):
                 Interpolation := Ease
             }
 
+            # Play the defined animation if possible.
             if (AController := DeviceMover.GetAnimationController[]):
                 FortVaderKeyFrames:[]keyframe_delta = array{MovementKeyFrame}
                 AController.SetAnimation(FortVaderKeyFrames, ?Mode := animation_mode.OneShot)
                 AController.Play()
 
+    # Function to handle the device's behavior when the input trigger is released.
     Skill_Released(Agent:agent, InputHeldDuration:float):void=
         Print("Input held for {InputHeldDuration} seconds.")
         
+        # Compute the return movement to the original position.
         if (Fortnitecharacter := Agent.GetFortCharacter[]):
             PlayerPosition := Fortnitecharacter.GetTransform().Translation
             PlayerRotation := Fortnitecharacter.GetViewRotation()
 
             ReturnKeyFrame := keyframe_delta{
-                DeltaLocation := PlayerPosition - DeviceMover.GetTransform().Translation,
-                DeltaRotation := MakeComponentWiseDeltaRotation(PlayerRotation, DeviceMover.GetTransform().Rotation),
-                Time := 0.5,
-                Interpolation := Ease
-            }
-
-            if (AController := DeviceMover.GetAnimationController[]):
-                ReturnKeyFrames:[]keyframe_delta = array{ReturnKeyFrame}
-                AController.SetAnimation(ReturnKeyFrames, ?Mode := animation_mode.OneShot)
-                AController.Play()
+                DeltaLocation := Player
