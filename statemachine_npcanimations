@@ -1,0 +1,77 @@
+using { /Fortnite.com/AI }
+using { /Fortnite.com/Characters }
+using { /Fortnite.com/Animation/PlayAnimation }
+using { /Fortnite.com/Devices }
+using { /Verse.org/Colors }
+using { /Verse.org/Random }
+using { /Verse.org/Simulation/Tags }
+using { /UnrealEngine.com/Temporary/Diagnostics }
+using { /UnrealEngine.com/Temporary/SpatialMath }
+using { /Fortnite.com/Game }
+
+A1_BossAnimations<public> := module:
+    TheSaw<public> := module:
+
+
+npc_state_machine_log_channel := class(log_channel){}
+
+Log<internal>(Text:string, ?Level:log_level=log_level.Debug):void=
+    Logger:log = log{Channel:=npc_state_machine_log_channel}
+    Logger.Print(Text, ?Level:=Level)
+
+NPCData<public> := module:
+    NPCTypes<public> := module:
+        npc_types<public> := enum{None, TheSaw}
+
+        ToStrong<public>(npc_type: npc_types):string=
+            case(npc_type):
+                npc_types.None => return "None"
+                npc_types.TheSaw => return "TheSaw"
+
+    NPCStates<public> := module:
+        npc_states<public> := enum{FollowPlayer, Idle, Patrol, GoToLocation, Cinematic, Attack, Dance, Wave, Death}
+
+        ToString<Public>(State: npc_states):string=
+            case(State):
+                npc_states.FollowPlayer => return "FollowPlayer"
+                npc_states.Idle => return "Idle"
+                npc_states.Patrol => return "Patrol"
+                npc_states.GoToLocation => return "GoToLocation"
+                npc_states.Cinematic => return "Cinematic"
+                npc_states.Attack => return "Attack"
+                npc_states.Dance => return "Dance"
+                npc_states.Wave => return "Wave"
+                npc_states.Death => return "Death"
+        
+        GetAllStates<public>():[]npc_states =
+            return array{
+                npc_states.FollowPlayer,
+                npc_states.Idle,
+                npc_states.Patrol,
+                npc_states.GoToLocation,
+                npc_states.Cinematic,
+                npc_states.Attack,
+                npc_states.Dance,
+                npc_states.Wave,
+                npc_states.Death
+            }
+
+        #Mapping state -> Animation Sequnce for each NPC_Type
+        TheSaw_npc_animation : [npc_states]animation_sequence = map {
+            npc_states.Attack => A1_BossAnimations.TheSaw.TheSaw_HeavyPunch,
+            npc_states.Cinematic => A1_BossAnimations.TheSaw.TheSaw_AquaJet,
+            npc_states.Dance => A1_BossAnimations.TheSaw.TheSaw_JetDown,
+        }
+
+
+
+        GetAnimationSet<public>(npc_type:NPCTypes.npc_types): [npc_states]animation_sequence =
+            case(npc_type):
+                NPCTypes.npc_types.TheSaw +>
+                    Log("Retrieved animation for TheSaw")
+                    return TheSaw_npc_animation
+                _ =>
+                    return map{}
+
+    
+      
